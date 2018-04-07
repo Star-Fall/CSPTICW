@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+	<!-- targetRuntime="MyBatis3Simple":生成简单版的CRUD MyBatis3:豪华版 -->
+	<context
+		id="DB2Tables"
+		targetRuntime="MyBatis3">
+		<!-- 生成的Java文件的编码 -->
+		<property
+			name="javaFileEncoding"
+			value="UTF-8" />
+		<!-- 格式化java代码 -->
+		<property
+			name="javaFormatter"
+			value="org.mybatis.generator.api.dom.DefaultJavaFormatter" />
+		<!-- 格式化XML代码 -->
+		<property
+			name="xmlFormatter"
+			value="org.mybatis.generator.api.dom.DefaultXmlFormatter" />
+
+
+		<commentGenerator>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property
+				name="suppressAllComments"
+				value="true" />
+
+		</commentGenerator>
+
+		<!-- jdbcConnection：指定如何连接到目标数据库 -->
+		<jdbcConnection
+			driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/cspticw"
+			userId="root"
+			password="root">
+		</jdbcConnection>
+
+		<!-- -->
+		<javaTypeResolver>
+			<property
+				name="forceBigDecimals"
+				value="true" />
+		</javaTypeResolver>
+
+		<!-- javaModelGenerator：指定javaBean的生成策略 targetPackage：目标包名 targetProject：目标工程 -->
+		<javaModelGenerator
+			targetPackage="com.cspticw.entity"
+			targetProject=".\src\main\java">
+			<property
+				name="enableSubPackages"
+				value="true" />
+			<property
+				name="trimStrings"
+				value="true" />
+			<property
+				name="rootClass"
+				value="com.cspticw.entity.BaseEntity" />
+
+		</javaModelGenerator>
+
+		<!-- sqlMapGenerator：sql映射生成策略：指定sql映射文件生成的位置 -->
+		<sqlMapGenerator
+			targetPackage="com.cspticw.mapper"
+			targetProject=".\src\main\java">
+			<property
+				name="enableSubPackages"
+				value="true" />
+		</sqlMapGenerator>
+
+		<!-- javaClientGenerator:指定mapper接口所在的位置 -->
+		<javaClientGenerator
+			type="XMLMAPPER"
+			targetPackage="com.cspticw.dao"
+			targetProject=".\src\main\java">
+			<property
+				name="enableSubPackages"
+				value="true" />
+		</javaClientGenerator>
+
+		<!-- 指定要逆向分析哪些表：根据表要创建javaBean -->
+		<table
+			tableName="apply_record"
+			domainObjectName="ApplyRecord"></table>
+		<table
+			tableName="city"
+			domainObjectName="City"></table>
+		<table
+			tableName="collect_record"
+			domainObjectName="CollectRecord"></table>
+		<table
+			tableName="comp _info_certi"
+			domainObjectName="CompInfoCerti"></table>
+		<table
+			tableName="comp_job_info"
+			domainObjectName="CompJobInfo"></table>
+		<table
+			tableName="comp_user_info"
+			domainObjectName="CompUserInfo"></table>
+		<table
+			tableName="complaint_record"
+			domainObjectName="ComplaintRecord"></table>
+		<table
+			tableName="country"
+			domainObjectName="Country"></table>
+		<table
+			tableName="job_category"
+			domainObjectName="JobCategory"></table>
+		<table
+			tableName="province"
+			domainObjectName="Province"></table>
+		<table
+			tableName="recruit_record"
+			domainObjectName="RecruitRecord"></table>
+		<table
+			tableName="resume_job"
+			domainObjectName="ResumeJob"></table>
+		<table
+			tableName="stu_resume_info"
+			domainObjectName="StuResumeInfo"></table>
+		<table
+			tableName="stu_sch_certi"
+			domainObjectName="StuSchCerti"></table>
+		<table
+			tableName="stu_user_info"
+			domainObjectName="StuUserInfo"></table>
+		<table
+			tableName="website_news"
+			domainObjectName="WebsiteNews"></table>
+	</context>
+</generatorConfiguration>

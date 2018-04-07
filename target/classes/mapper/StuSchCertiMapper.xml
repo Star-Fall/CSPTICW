@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cspticw.dao.StuSchCertiMapper">
+  <resultMap id="BaseResultMap" type="com.cspticw.entity.StuSchCerti">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="stu_id" jdbcType="BIGINT" property="stuId" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="major" jdbcType="VARCHAR" property="major" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="stu_card_pic" jdbcType="VARCHAR" property="stuCardPic" />
+    <result column="is_graduate" jdbcType="INTEGER" property="isGraduate" />
+    <result column="is_certified" jdbcType="INTEGER" property="isCertified" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, create_time, modify_time, stu_id, school, major, education, stu_card_pic, is_graduate, 
+    is_certified
+  </sql>
+  <select id="selectByExample" parameterType="com.cspticw.entity.StuSchCertiExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from stu_sch_certi
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from stu_sch_certi
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from stu_sch_certi
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cspticw.entity.StuSchCertiExample">
+    delete from stu_sch_certi
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cspticw.entity.StuSchCerti">
+    insert into stu_sch_certi (id, create_time, modify_time, 
+      stu_id, school, major, 
+      education, stu_card_pic, is_graduate, 
+      is_certified)
+    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{stuId,jdbcType=BIGINT}, #{school,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, 
+      #{education,jdbcType=VARCHAR}, #{stuCardPic,jdbcType=VARCHAR}, #{isGraduate,jdbcType=INTEGER}, 
+      #{isCertified,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cspticw.entity.StuSchCerti">
+    insert into stu_sch_certi
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="stuId != null">
+        stu_id,
+      </if>
+      <if test="school != null">
+        school,
+      </if>
+      <if test="major != null">
+        major,
+      </if>
+      <if test="education != null">
+        education,
+      </if>
+      <if test="stuCardPic != null">
+        stu_card_pic,
+      </if>
+      <if test="isGraduate != null">
+        is_graduate,
+      </if>
+      <if test="isCertified != null">
+        is_certified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stuId != null">
+        #{stuId,jdbcType=BIGINT},
+      </if>
+      <if test="school != null">
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null">
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="stuCardPic != null">
+        #{stuCardPic,jdbcType=VARCHAR},
+      </if>
+      <if test="isGraduate != null">
+        #{isGraduate,jdbcType=INTEGER},
+      </if>
+      <if test="isCertified != null">
+        #{isCertified,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cspticw.entity.StuSchCertiExample" resultType="java.lang.Long">
+    select count(*) from stu_sch_certi
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update stu_sch_certi
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyTime != null">
+        modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.stuId != null">
+        stu_id = #{record.stuId,jdbcType=BIGINT},
+      </if>
+      <if test="record.school != null">
+        school = #{record.school,jdbcType=VARCHAR},
+      </if>
+      <if test="record.major != null">
+        major = #{record.major,jdbcType=VARCHAR},
+      </if>
+      <if test="record.education != null">
+        education = #{record.education,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuCardPic != null">
+        stu_card_pic = #{record.stuCardPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isGraduate != null">
+        is_graduate = #{record.isGraduate,jdbcType=INTEGER},
+      </if>
+      <if test="record.isCertified != null">
+        is_certified = #{record.isCertified,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update stu_sch_certi
+    set id = #{record.id,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      stu_id = #{record.stuId,jdbcType=BIGINT},
+      school = #{record.school,jdbcType=VARCHAR},
+      major = #{record.major,jdbcType=VARCHAR},
+      education = #{record.education,jdbcType=VARCHAR},
+      stu_card_pic = #{record.stuCardPic,jdbcType=VARCHAR},
+      is_graduate = #{record.isGraduate,jdbcType=INTEGER},
+      is_certified = #{record.isCertified,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cspticw.entity.StuSchCerti">
+    update stu_sch_certi
+    <set>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stuId != null">
+        stu_id = #{stuId,jdbcType=BIGINT},
+      </if>
+      <if test="school != null">
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null">
+        major = #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="stuCardPic != null">
+        stu_card_pic = #{stuCardPic,jdbcType=VARCHAR},
+      </if>
+      <if test="isGraduate != null">
+        is_graduate = #{isGraduate,jdbcType=INTEGER},
+      </if>
+      <if test="isCertified != null">
+        is_certified = #{isCertified,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cspticw.entity.StuSchCerti">
+    update stu_sch_certi
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      stu_id = #{stuId,jdbcType=BIGINT},
+      school = #{school,jdbcType=VARCHAR},
+      major = #{major,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      stu_card_pic = #{stuCardPic,jdbcType=VARCHAR},
+      is_graduate = #{isGraduate,jdbcType=INTEGER},
+      is_certified = #{isCertified,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
