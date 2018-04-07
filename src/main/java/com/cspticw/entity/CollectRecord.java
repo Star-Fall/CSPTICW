@@ -1,65 +1,55 @@
 package com.cspticw.entity;
 
-import java.util.Date;
-
+/**
+ * @ClassName: CollectRecord
+ * @author: StarFall
+ * @date: 2018年4月7日 下午10:40:55
+ * @Description:收藏记录实体
+ */
 public class CollectRecord extends BaseEntity {
-    private Date createTime;
 
-    private Date modifyTime;
+	/**
+	 * @Fields serialVersionUID
+	 */
+	private static final long serialVersionUID = -8622367186431068145L;
 
-    private Long stuId;
+	private Long stuId;
 
-    private Long compId;
+	private Long compId;
 
-    private Integer collectUser;
+	private Integer collectUser;
 
-    private Integer isDelete;
+	private Integer isDelete;
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public Long getStuId() {
+		return stuId;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public void setStuId(Long stuId) {
+		this.stuId = stuId;
+	}
 
-    public Date getModifyTime() {
-        return modifyTime;
-    }
+	public Long getCompId() {
+		return compId;
+	}
 
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
-    }
+	public void setCompId(Long compId) {
+		this.compId = compId;
+	}
 
-    public Long getStuId() {
-        return stuId;
-    }
+	public Integer getCollectUser() {
+		return collectUser;
+	}
 
-    public void setStuId(Long stuId) {
-        this.stuId = stuId;
-    }
+	public void setCollectUser(Integer collectUser) {
+		this.collectUser = collectUser;
+	}
 
-    public Long getCompId() {
-        return compId;
-    }
+	public Integer getIsDelete() {
+		return isDelete;
+	}
 
-    public void setCompId(Long compId) {
-        this.compId = compId;
-    }
-
-    public Integer getCollectUser() {
-        return collectUser;
-    }
-
-    public void setCollectUser(Integer collectUser) {
-        this.collectUser = collectUser;
-    }
-
-    public Integer getIsDelete() {
-        return isDelete;
-    }
-
-    public void setIsDelete(Integer isDelete) {
-        this.isDelete = isDelete;
-    }
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
+	}
 }

@@ -1,176 +1,166 @@
 package com.cspticw.entity;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
+/**
+ * @ClassName: CompJobInfo
+ * @author: StarFall
+ * @date: 2018年4月7日 下午10:41:42
+ * @Description:企业职位信息实体
+ */
 public class CompJobInfo extends BaseEntity {
-    private Date createTime;
+	/**
+	 * @Fields serialVersionUID
+	 */
+	private static final long serialVersionUID = 7696710967562604479L;
 
-    private Date modifyTime;
+	private Long compId;
 
-    private Long compId;
+	private String jobTitle;
 
-    private String jobTitle;
+	private Long jobCateId;
 
-    private Long jobCateId;
+	private String jobPlace;
 
-    private String jobPlace;
+	private BigDecimal jobTreat;
 
-    private BigDecimal jobTreat;
+	private String treatMethod;
 
-    private String treatMethod;
+	private String payMethod;
 
-    private String payMethod;
+	private String jobRequire;
 
-    private String jobRequire;
+	private String jobContent;
 
-    private String jobContent;
+	private String jobTime;
 
-    private String jobTime;
+	private String contactName;
 
-    private String contactName;
+	private String contactPhone;
 
-    private String contactPhone;
+	private String personNum;
 
-    private String personNum;
+	private Integer isAvailable;
 
-    private Integer isAvailable;
+	private Integer resuHot;
 
-    private Integer resuHot;
+	public Long getCompId() {
+		return compId;
+	}
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public void setCompId(Long compId) {
+		this.compId = compId;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public String getJobTitle() {
+		return jobTitle;
+	}
 
-    public Date getModifyTime() {
-        return modifyTime;
-    }
+	public void setJobTitle(String jobTitle) {
+		this.jobTitle = jobTitle == null ? null : jobTitle.trim();
+	}
 
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
-    }
+	public Long getJobCateId() {
+		return jobCateId;
+	}
 
-    public Long getCompId() {
-        return compId;
-    }
+	public void setJobCateId(Long jobCateId) {
+		this.jobCateId = jobCateId;
+	}
 
-    public void setCompId(Long compId) {
-        this.compId = compId;
-    }
+	public String getJobPlace() {
+		return jobPlace;
+	}
 
-    public String getJobTitle() {
-        return jobTitle;
-    }
+	public void setJobPlace(String jobPlace) {
+		this.jobPlace = jobPlace == null ? null : jobPlace.trim();
+	}
 
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle == null ? null : jobTitle.trim();
-    }
+	public BigDecimal getJobTreat() {
+		return jobTreat;
+	}
 
-    public Long getJobCateId() {
-        return jobCateId;
-    }
+	public void setJobTreat(BigDecimal jobTreat) {
+		this.jobTreat = jobTreat;
+	}
 
-    public void setJobCateId(Long jobCateId) {
-        this.jobCateId = jobCateId;
-    }
+	public String getTreatMethod() {
+		return treatMethod;
+	}
 
-    public String getJobPlace() {
-        return jobPlace;
-    }
+	public void setTreatMethod(String treatMethod) {
+		this.treatMethod = treatMethod == null ? null : treatMethod.trim();
+	}
 
-    public void setJobPlace(String jobPlace) {
-        this.jobPlace = jobPlace == null ? null : jobPlace.trim();
-    }
+	public String getPayMethod() {
+		return payMethod;
+	}
 
-    public BigDecimal getJobTreat() {
-        return jobTreat;
-    }
+	public void setPayMethod(String payMethod) {
+		this.payMethod = payMethod == null ? null : payMethod.trim();
+	}
 
-    public void setJobTreat(BigDecimal jobTreat) {
-        this.jobTreat = jobTreat;
-    }
+	public String getJobRequire() {
+		return jobRequire;
+	}
 
-    public String getTreatMethod() {
-        return treatMethod;
-    }
+	public void setJobRequire(String jobRequire) {
+		this.jobRequire = jobRequire == null ? null : jobRequire.trim();
+	}
 
-    public void setTreatMethod(String treatMethod) {
-        this.treatMethod = treatMethod == null ? null : treatMethod.trim();
-    }
+	public String getJobContent() {
+		return jobContent;
+	}
 
-    public String getPayMethod() {
-        return payMethod;
-    }
+	public void setJobContent(String jobContent) {
+		this.jobContent = jobContent == null ? null : jobContent.trim();
+	}
 
-    public void setPayMethod(String payMethod) {
-        this.payMethod = payMethod == null ? null : payMethod.trim();
-    }
+	public String getJobTime() {
+		return jobTime;
+	}
 
-    public String getJobRequire() {
-        return jobRequire;
-    }
+	public void setJobTime(String jobTime) {
+		this.jobTime = jobTime == null ? null : jobTime.trim();
+	}
 
-    public void setJobRequire(String jobRequire) {
-        this.jobRequire = jobRequire == null ? null : jobRequire.trim();
-    }
+	public String getContactName() {
+		return contactName;
+	}
 
-    public String getJobContent() {
-        return jobContent;
-    }
+	public void setContactName(String contactName) {
+		this.contactName = contactName == null ? null : contactName.trim();
+	}
 
-    public void setJobContent(String jobContent) {
-        this.jobContent = jobContent == null ? null : jobContent.trim();
-    }
+	public String getContactPhone() {
+		return contactPhone;
+	}
 
-    public String getJobTime() {
-        return jobTime;
-    }
+	public void setContactPhone(String contactPhone) {
+		this.contactPhone = contactPhone == null ? null : contactPhone.trim();
+	}
 
-    public void setJobTime(String jobTime) {
-        this.jobTime = jobTime == null ? null : jobTime.trim();
-    }
+	public String getPersonNum() {
+		return personNum;
+	}
 
-    public String getContactName() {
-        return contactName;
-    }
+	public void setPersonNum(String personNum) {
+		this.personNum = personNum == null ? null : personNum.trim();
+	}
 
-    public void setContactName(String contactName) {
-        this.contactName = contactName == null ? null : contactName.trim();
-    }
+	public Integer getIsAvailable() {
+		return isAvailable;
+	}
 
-    public String getContactPhone() {
-        return contactPhone;
-    }
+	public void setIsAvailable(Integer isAvailable) {
+		this.isAvailable = isAvailable;
+	}
 
-    public void setContactPhone(String contactPhone) {
-        this.contactPhone = contactPhone == null ? null : contactPhone.trim();
-    }
+	public Integer getResuHot() {
+		return resuHot;
+	}
 
-    public String getPersonNum() {
-        return personNum;
-    }
-
-    public void setPersonNum(String personNum) {
-        this.personNum = personNum == null ? null : personNum.trim();
-    }
-
-    public Integer getIsAvailable() {
-        return isAvailable;
-    }
-
-    public void setIsAvailable(Integer isAvailable) {
-        this.isAvailable = isAvailable;
-    }
-
-    public Integer getResuHot() {
-        return resuHot;
-    }
-
-    public void setResuHot(Integer resuHot) {
-        this.resuHot = resuHot;
-    }
+	public void setResuHot(Integer resuHot) {
+		this.resuHot = resuHot;
+	}
 }

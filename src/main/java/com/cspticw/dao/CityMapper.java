@@ -1,30 +1,34 @@
 package com.cspticw.dao;
 
-import com.cspticw.entity.City;
-import com.cspticw.entity.CityExample;
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
+import com.cspticw.entity.City;
+import com.cspticw.entity.CityExample;
+
 public interface CityMapper {
-    long countByExample(CityExample example);
 
-    int deleteByExample(CityExample example);
+	long countByExample(CityExample example);
 
-    int deleteByPrimaryKey(Long id);
+	int deleteByExample(CityExample example);
 
-    int insert(City record);
+	int deleteByPrimaryKey(Long id);
 
-    int insertSelective(City record);
+	int insert(City record);
 
-    List<City> selectByExample(CityExample example);
+	int insertSelective(City record);
 
-    City selectByPrimaryKey(Long id);
+	List<City> selectByExample(CityExample example);
 
-    int updateByExampleSelective(@Param("record") City record, @Param("example") CityExample example);
+	City selectByPrimaryKey(Long id);
 
-    int updateByExample(@Param("record") City record, @Param("example") CityExample example);
+	int updateByExampleSelective(@Param("record") City record,
+			@Param("example") CityExample example);
 
-    int updateByPrimaryKeySelective(City record);
+	int updateByExample(@Param("record") City record, @Param("example") CityExample example);
 
-    int updateByPrimaryKey(City record);
+	int updateByPrimaryKeySelective(City record);
+
+	int updateByPrimaryKey(City record);
 }

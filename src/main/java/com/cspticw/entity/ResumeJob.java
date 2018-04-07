@@ -1,45 +1,34 @@
 package com.cspticw.entity;
 
-import java.util.Date;
-
+/**
+ * @ClassName: ResumeJob
+ * @author: StarFall
+ * @date: 2018年4月7日 下午10:44:40
+ * @Description:求职意向实体
+ */
 public class ResumeJob extends BaseEntity {
-    private Date createTime;
+	/**
+	 * @Fields serialVersionUID
+	 */
+	private static final long serialVersionUID = -5805965791935716108L;
 
-    private Date modifyTime;
+	private Long resuId;
 
-    private Long resuId;
+	private Long jobCateId;
 
-    private Long jobCateId;
+	public Long getResuId() {
+		return resuId;
+	}
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public void setResuId(Long resuId) {
+		this.resuId = resuId;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public Long getJobCateId() {
+		return jobCateId;
+	}
 
-    public Date getModifyTime() {
-        return modifyTime;
-    }
-
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
-    }
-
-    public Long getResuId() {
-        return resuId;
-    }
-
-    public void setResuId(Long resuId) {
-        this.resuId = resuId;
-    }
-
-    public Long getJobCateId() {
-        return jobCateId;
-    }
-
-    public void setJobCateId(Long jobCateId) {
-        this.jobCateId = jobCateId;
-    }
+	public void setJobCateId(Long jobCateId) {
+		this.jobCateId = jobCateId;
+	}
 }

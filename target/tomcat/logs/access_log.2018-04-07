@@ -8,3 +8,8 @@
 0:0:0:0:0:0:0:1 - - [07/Apr/2018:21:44:18 +0800] "GET /test/testMap HTTP/1.1" 200 106 http-bio-8080-exec-1 97
 0:0:0:0:0:0:0:1 - - [07/Apr/2018:21:44:22 +0800] "GET /test/testMap HTTP/1.1" 200 106 http-bio-8080-exec-2 3
 0:0:0:0:0:0:0:1 - - [07/Apr/2018:21:44:31 +0800] "GET /test/cities HTTP/1.1" 200 55852 http-bio-8080-exec-3 764
+0:0:0:0:0:0:0:1 - - [07/Apr/2018:22:38:37 +0800] "GET / HTTP/1.1" 200 331 http-bio-8080-exec-1 995
+0:0:0:0:0:0:0:1 - - [07/Apr/2018:22:38:40 +0800] "GET /test/testMap HTTP/1.1" 200 106 http-bio-8080-exec-2 79
+0:0:0:0:0:0:0:1 - - [07/Apr/2018:22:38:45 +0800] "GET /test/cities HTTP/1.1" 200 55852 http-bio-8080-exec-3 730
+0:0:0:0:0:0:0:1 - - [07/Apr/2018:22:38:47 +0800] "GET /test/cities HTTP/1.1" 200 55852 http-bio-8080-exec-4 57
+0:0:0:0:0:0:0:1 - - [07/Apr/2018:22:38:49 +0800] "GET /test/cities HTTP/1.1" 200 55852 http-bio-8080-exec-5 42

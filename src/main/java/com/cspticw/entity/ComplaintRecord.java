@@ -1,95 +1,85 @@
 package com.cspticw.entity;
 
-import java.util.Date;
-
+/**
+ * @ClassName: ComplaintRecord
+ * @author: StarFall
+ * @date: 2018年4月7日 下午10:42:14
+ * @Description:投诉记录实体
+ */
 public class ComplaintRecord extends BaseEntity {
-    private Date createTime;
 
-    private Date modifyTime;
+	/**
+	 * @Fields serialVersionUID
+	 */
+	private static final long serialVersionUID = -4569045833108295249L;
 
-    private Long resumeId;
+	private Long resumeId;
 
-    private Long compJobId;
+	private Long compJobId;
 
-    private Integer complaintMode;
+	private Integer complaintMode;
 
-    private String complaintTitle;
+	private String complaintTitle;
 
-    private String complaintContent;
+	private String complaintContent;
 
-    private String handleResult;
+	private String handleResult;
 
-    private Integer status;
+	private Integer status;
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public Long getResumeId() {
+		return resumeId;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public void setResumeId(Long resumeId) {
+		this.resumeId = resumeId;
+	}
 
-    public Date getModifyTime() {
-        return modifyTime;
-    }
+	public Long getCompJobId() {
+		return compJobId;
+	}
 
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
-    }
+	public void setCompJobId(Long compJobId) {
+		this.compJobId = compJobId;
+	}
 
-    public Long getResumeId() {
-        return resumeId;
-    }
+	public Integer getComplaintMode() {
+		return complaintMode;
+	}
 
-    public void setResumeId(Long resumeId) {
-        this.resumeId = resumeId;
-    }
+	public void setComplaintMode(Integer complaintMode) {
+		this.complaintMode = complaintMode;
+	}
 
-    public Long getCompJobId() {
-        return compJobId;
-    }
+	public String getComplaintTitle() {
+		return complaintTitle;
+	}
 
-    public void setCompJobId(Long compJobId) {
-        this.compJobId = compJobId;
-    }
+	public void setComplaintTitle(String complaintTitle) {
+		this.complaintTitle = complaintTitle == null ? null : complaintTitle.trim();
+	}
 
-    public Integer getComplaintMode() {
-        return complaintMode;
-    }
+	public String getComplaintContent() {
+		return complaintContent;
+	}
 
-    public void setComplaintMode(Integer complaintMode) {
-        this.complaintMode = complaintMode;
-    }
+	public void setComplaintContent(String complaintContent) {
+		this.complaintContent = complaintContent == null ? null : complaintContent.trim();
+	}
 
-    public String getComplaintTitle() {
-        return complaintTitle;
-    }
+	public String getHandleResult() {
+		return handleResult;
+	}
 
-    public void setComplaintTitle(String complaintTitle) {
-        this.complaintTitle = complaintTitle == null ? null : complaintTitle.trim();
-    }
+	public void setHandleResult(String handleResult) {
+		this.handleResult = handleResult == null ? null : handleResult.trim();
+	}
 
-    public String getComplaintContent() {
-        return complaintContent;
-    }
+	public Integer getStatus() {
+		return status;
+	}
 
-    public void setComplaintContent(String complaintContent) {
-        this.complaintContent = complaintContent == null ? null : complaintContent.trim();
-    }
-
-    public String getHandleResult() {
-        return handleResult;
-    }
-
-    public void setHandleResult(String handleResult) {
-        this.handleResult = handleResult == null ? null : handleResult.trim();
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 }

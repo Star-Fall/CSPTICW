@@ -1,55 +1,45 @@
 package com.cspticw.entity;
 
-import java.util.Date;
-
+/**
+ * @ClassName: CompUserInfo
+ * @author: StarFall
+ * @date: 2018年4月7日 下午10:42:57
+ * @Description:企业用户实体
+ */
 public class CompUserInfo extends BaseEntity {
-    private Date createTime;
 
-    private Date modifyTime;
+	/**
+	 * @Fields serialVersionUID
+	 */
+	private static final long serialVersionUID = 45268788287230116L;
 
-    private String userName;
+	private String userName;
 
-    private String password;
+	private String password;
 
-    private Integer isAvailable;
+	private Integer isAvailable;
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public String getUserName() {
+		return userName;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public void setUserName(String userName) {
+		this.userName = userName == null ? null : userName.trim();
+	}
 
-    public Date getModifyTime() {
-        return modifyTime;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
-    }
+	public void setPassword(String password) {
+		this.password = password == null ? null : password.trim();
+	}
 
-    public String getUserName() {
-        return userName;
-    }
+	public Integer getIsAvailable() {
+		return isAvailable;
+	}
 
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
-
-    public Integer getIsAvailable() {
-        return isAvailable;
-    }
-
-    public void setIsAvailable(Integer isAvailable) {
-        this.isAvailable = isAvailable;
-    }
+	public void setIsAvailable(Integer isAvailable) {
+		this.isAvailable = isAvailable;
+	}
 }

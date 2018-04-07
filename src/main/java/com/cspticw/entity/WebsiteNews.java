@@ -1,55 +1,44 @@
 package com.cspticw.entity;
 
-import java.util.Date;
-
+/**
+ * @ClassName: WebsiteNews
+ * @author: StarFall
+ * @date: 2018年4月7日 下午10:46:46
+ * @Description:网站新闻实体
+ */
 public class WebsiteNews extends BaseEntity {
-    private Date createTime;
+	/**
+	 * @Fields serialVersionUID
+	 */
+	private static final long serialVersionUID = -4691972092087280305L;
 
-    private Date modifyTime;
+	private String newsTitle;
 
-    private String newsTitle;
+	private String newsContent;
 
-    private String newsContent;
+	private Integer status;
 
-    private Integer status;
+	public String getNewsTitle() {
+		return newsTitle;
+	}
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public void setNewsTitle(String newsTitle) {
+		this.newsTitle = newsTitle == null ? null : newsTitle.trim();
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public String getNewsContent() {
+		return newsContent;
+	}
 
-    public Date getModifyTime() {
-        return modifyTime;
-    }
+	public void setNewsContent(String newsContent) {
+		this.newsContent = newsContent == null ? null : newsContent.trim();
+	}
 
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
-    }
+	public Integer getStatus() {
+		return status;
+	}
 
-    public String getNewsTitle() {
-        return newsTitle;
-    }
-
-    public void setNewsTitle(String newsTitle) {
-        this.newsTitle = newsTitle == null ? null : newsTitle.trim();
-    }
-
-    public String getNewsContent() {
-        return newsContent;
-    }
-
-    public void setNewsContent(String newsContent) {
-        this.newsContent = newsContent == null ? null : newsContent.trim();
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 }

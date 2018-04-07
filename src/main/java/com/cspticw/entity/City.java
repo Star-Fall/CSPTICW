@@ -1,55 +1,45 @@
 package com.cspticw.entity;
 
-import java.util.Date;
-
+/**
+ * @ClassName: City
+ * @author: StarFall
+ * @date: 2018年4月7日 下午10:39:50
+ * @Description:城市实体类
+ */
 public class City extends BaseEntity {
-    private Date createTime;
 
-    private Date modifyTime;
+	/**
+	 * @Fields serialVersionUID
+	 */
+	private static final long serialVersionUID = 8723232819814866975L;
 
-    private String cityId;
+	private String cityId;
 
-    private String city;
+	private String city;
 
-    private String provinceId;
+	private String provinceId;
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public String getCityId() {
+		return cityId;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public void setCityId(String cityId) {
+		this.cityId = cityId == null ? null : cityId.trim();
+	}
 
-    public Date getModifyTime() {
-        return modifyTime;
-    }
+	public String getCity() {
+		return city;
+	}
 
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
-    }
+	public void setCity(String city) {
+		this.city = city == null ? null : city.trim();
+	}
 
-    public String getCityId() {
-        return cityId;
-    }
+	public String getProvinceId() {
+		return provinceId;
+	}
 
-    public void setCityId(String cityId) {
-        this.cityId = cityId == null ? null : cityId.trim();
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city == null ? null : city.trim();
-    }
-
-    public String getProvinceId() {
-        return provinceId;
-    }
-
-    public void setProvinceId(String provinceId) {
-        this.provinceId = provinceId == null ? null : provinceId.trim();
-    }
+	public void setProvinceId(String provinceId) {
+		this.provinceId = provinceId == null ? null : provinceId.trim();
+	}
 }

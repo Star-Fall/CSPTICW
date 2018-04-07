@@ -1,95 +1,84 @@
 package com.cspticw.entity;
 
-import java.util.Date;
-
+/**
+ * @ClassName: StuSchCerti
+ * @author: StarFall
+ * @date: 2018年4月7日 下午10:46:01
+ * @Description:学生学校认证实体
+ */
 public class StuSchCerti extends BaseEntity {
-    private Date createTime;
+	/**
+	 * @Fields serialVersionUID
+	 */
+	private static final long serialVersionUID = 8621894323629720879L;
 
-    private Date modifyTime;
+	private Long stuId;
 
-    private Long stuId;
+	private String school;
 
-    private String school;
+	private String major;
 
-    private String major;
+	private String education;
 
-    private String education;
+	private String stuCardPic;
 
-    private String stuCardPic;
+	private Integer isGraduate;
 
-    private Integer isGraduate;
+	private Integer isCertified;
 
-    private Integer isCertified;
+	public Long getStuId() {
+		return stuId;
+	}
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public void setStuId(Long stuId) {
+		this.stuId = stuId;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public String getSchool() {
+		return school;
+	}
 
-    public Date getModifyTime() {
-        return modifyTime;
-    }
+	public void setSchool(String school) {
+		this.school = school == null ? null : school.trim();
+	}
 
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
-    }
+	public String getMajor() {
+		return major;
+	}
 
-    public Long getStuId() {
-        return stuId;
-    }
+	public void setMajor(String major) {
+		this.major = major == null ? null : major.trim();
+	}
 
-    public void setStuId(Long stuId) {
-        this.stuId = stuId;
-    }
+	public String getEducation() {
+		return education;
+	}
 
-    public String getSchool() {
-        return school;
-    }
+	public void setEducation(String education) {
+		this.education = education == null ? null : education.trim();
+	}
 
-    public void setSchool(String school) {
-        this.school = school == null ? null : school.trim();
-    }
+	public String getStuCardPic() {
+		return stuCardPic;
+	}
 
-    public String getMajor() {
-        return major;
-    }
+	public void setStuCardPic(String stuCardPic) {
+		this.stuCardPic = stuCardPic == null ? null : stuCardPic.trim();
+	}
 
-    public void setMajor(String major) {
-        this.major = major == null ? null : major.trim();
-    }
+	public Integer getIsGraduate() {
+		return isGraduate;
+	}
 
-    public String getEducation() {
-        return education;
-    }
+	public void setIsGraduate(Integer isGraduate) {
+		this.isGraduate = isGraduate;
+	}
 
-    public void setEducation(String education) {
-        this.education = education == null ? null : education.trim();
-    }
+	public Integer getIsCertified() {
+		return isCertified;
+	}
 
-    public String getStuCardPic() {
-        return stuCardPic;
-    }
-
-    public void setStuCardPic(String stuCardPic) {
-        this.stuCardPic = stuCardPic == null ? null : stuCardPic.trim();
-    }
-
-    public Integer getIsGraduate() {
-        return isGraduate;
-    }
-
-    public void setIsGraduate(Integer isGraduate) {
-        this.isGraduate = isGraduate;
-    }
-
-    public Integer getIsCertified() {
-        return isCertified;
-    }
-
-    public void setIsCertified(Integer isCertified) {
-        this.isCertified = isCertified;
-    }
+	public void setIsCertified(Integer isCertified) {
+		this.isCertified = isCertified;
+	}
 }

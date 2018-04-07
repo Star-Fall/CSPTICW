@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cspticw.service.CityService;
 
+/**
+ * @ClassName: TestController
+ * @author: StarFall
+ * @date: 2018年4月7日 下午10:39:06
+ * @Description:测试Controller
+ */
 @RequestMapping("test")
 @RestController
 public class TestController {
