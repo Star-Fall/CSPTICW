@@ -1,0 +1,166 @@
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
+
+
+	<!-- Shiro 的Web过滤器 id 为web.xml中配置的filter名称 -->
+	<bean
+		id="shiroFilter"
+		class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property
+			name="securityManager"
+			ref="securityManager" />
+		<!-- loginUrl认证提交地址，如果没有认证将会请求此地址进行认证，请求此地址将由formAuthenticationFilter进行表单认证 -->
+		<property
+			name="loginUrl"
+			value="/login" />
+		<!-- 认证成功跳转的url，建议不配置，默认跳转到上一个请求路径。 <property name="successUrl" value="main.do"></property> -->
+		<!--unauthorizedUrl指定没有权限的跳转页面 -->
+		<property
+			name="unauthorizedUrl"
+			value="/refuse.jsp" />
+		<property name="filters">
+			<map>
+				<!-- FormAuthenticationFilter是基于表单认证的过虑器 -->
+				<entry
+					key="authc"
+					value-ref="formAuthenticationFilter" />
+
+			</map>
+		</property>
+		<!-- 过虑器链定义，从上向下顺序执行，一般将/**放在最下边 -->
+		<property name="filterChainDefinitions">
+			<value>
+				<!-- 退出，shiro会自动清除session，放在/**上面，防止被/**拦截 -->
+				/logout=logout
+				/queryItems=perms[item:query]
+				<!-- 所有url都需要认证 -->
+
+				/**=authc
+
+				<!--所有url都可以匿名访问 /**=anon -->
+
+			</value>
+		</property>
+	</bean>
+
+	<!-- 安全管理器 -->
+	<bean
+		id="securityManager"
+		class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realms">
+			<list>
+				<ref bean="StudentRealm" />
+				<ref bean="CompanyRealm" />
+			</list>
+		</property>
+		<property
+			name="cacheManager"
+			ref="cacheManager" />
+		<property
+			name="sessionManager"
+			ref="sessionManager" />
+	</bean>
+
+	<bean
+		id="authenticator"
+		class="org.apache.shiro.authc.pam.ModularRealmAuthenticator">
+		<property name="authenticationStrategy">
+			<bean class="org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy"></bean>
+		</property>
+	</bean>
+
+	<!-- 自定义 realm -->
+	<bean
+		id="StudentRealm"
+		class="com.cspticw.realm.StudentRealm">
+		<!-- 将凭证匹配器设置到realm中，realm按照凭证匹配器的要求进行散列 -->
+		<property
+			name="credentialsMatcher"
+			ref="credentialsMatcher"></property>
+	</bean>
+
+	<bean
+		id="CompanyRealm"
+		class="com.cspticw.realm.CompanyRealm">
+		<!-- 将凭证匹配器设置到realm中，realm按照凭证匹配器的要求进行散列 -->
+		<property
+			name="credentialsMatcher"
+			ref="credentialsMatcher"></property>
+	</bean>
+
+	<!-- 凭证匹配器 -->
+	<bean
+		id="credentialsMatcher"
+		class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+		<property
+			name="hashAlgorithmName"
+			value="md5"></property>
+		<property
+			name="hashIterations"
+			value="1024"></property>
+	</bean>
+
+	<!-- 缓存管理器 -->
+	<bean
+		id="cacheManager"
+		class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property
+			name="cacheManagerConfigFile"
+			value="classpath:shiro-ehcache.xml" />
+	</bean>
+	<!-- 会话管理器 -->
+	<bean
+		id="sessionManager"
+		class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+		<!-- session的失效时长，单位毫秒 -->
+		<property
+			name="globalSessionTimeout"
+			value="600000" />
+		<!-- 删除失效的session -->
+		<property
+			name="deleteInvalidSessions"
+			value="true" />
+		<property
+			name="sessionIdCookie"
+			ref="sessionIdCookie" />
+	</bean>
+	<!-- 指定本系统SESSIONID, 默认为: JSESSIONID 问题: 与SERVLET容器名冲突, 如JETTY, TOMCAT 等默认JSESSIONID, 
+		当跳出SHIRO SERVLET时如ERROR-PAGE容器会为JSESSIONID重新分配值导致登录会话丢失! -->
+	<bean
+		id="sessionIdCookie"
+		class="org.apache.shiro.web.servlet.SimpleCookie">
+		<constructor-arg
+			name="name"
+			value="shiro.session.id" />
+	</bean>
+
+	<!-- 基于Form表单的身份验证过滤器，不配置将也会注册此过虑器，表单中的用户账号、密码及loginurl将采用默认值，建议配置 -->
+	<bean
+		id="formAuthenticationFilter"
+		class="com.cspticw.realm.filter.MyFormAuthenticationFilter">
+		<!-- 表单中账号的input名称 -->
+		<property
+			name="usernameParam"
+			value="username" />
+		<!-- 表单中密码的input名称 -->
+		<property
+			name="passwordParam"
+			value="password" />
+	</bean>
+
+</beans>

@@ -5,12 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cspticw.service.CityService;
+import com.cspticw.service.StuUserService;
 
 /**
  * @ClassName: TestController
@@ -24,6 +27,25 @@ public class TestController {
 
 	@Autowired
 	private CityService cityService;
+
+	@Autowired
+	private StuUserService stuUserService;
+
+	@RequestMapping("testUser")
+	public Map<String, Object> testUser() {
+		Map<String, Object> map = new HashMap<String, Object>();
+		Subject subject = SecurityUtils.getSubject();
+		Object user = subject.getPrincipal();
+		map.put("user", user);
+		return map;
+	}
+
+	@RequestMapping("testStuUser")
+	public Map<String, Object> testStudentUser() {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("stuUser", stuUserService.selectByUserName("Star_Fall"));
+		return map;
+	}
 
 	@RequestMapping("cities")
 	public Map<String, Object> testCities() {

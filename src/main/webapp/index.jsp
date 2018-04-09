@@ -7,6 +7,6 @@
 <title>大学生兼职信息分类网站</title>
 </head>
 <body>
-	<h1>欢迎来到大学生兼职信息分类网站</h1>
+	<h1>欢迎来到大学生兼职信息分类网站</h1><a href="/logout">退出</a>
 </body>
 </html>
