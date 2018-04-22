@@ -17,4 +17,12 @@ public interface CompUserService {
 	 * @return
 	 */
 	CompUserInfo selectByUserName(String userName);
+
+	/**
+	 * 新增用户
+	 * 
+	 * @param company
+	 * @return
+	 */
+	boolean addUser(CompUserInfo company);
 }

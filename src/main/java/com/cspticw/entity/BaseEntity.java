@@ -43,4 +43,12 @@ public class BaseEntity implements Serializable {
 		this.modifyTime = modifyTime;
 	}
 
+	public void preInsert() {
+		this.createTime = new Date();
+		this.modifyTime = this.createTime;
+	}
+
+	public void preUpdate() {
+		this.modifyTime = new Date();
+	}
 }

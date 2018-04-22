@@ -18,4 +18,12 @@ public interface StuUserService {
 	 * @return StuUserInfo
 	 */
 	StuUserInfo selectByUserName(String userName);
+
+	/**
+	 * 新增用户
+	 * 
+	 * @param student
+	 * @return
+	 */
+	boolean addUser(StuUserInfo student);
 }

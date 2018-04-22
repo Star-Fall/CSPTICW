@@ -62,7 +62,7 @@
 			value="com.cspticw.dao"></property>
 	</bean>
 
-	<!-- 配置一个可以执行批量的sqlSession -->
+	<!-- 配置一个可以执行批量的sqlSession
 	<bean
 		id="sqlSession"
 		class="org.mybatis.spring.SqlSessionTemplate">
@@ -74,8 +74,8 @@
 			name="executorType"
 			value="BATCH">
 		</constructor-arg>
-	</bean>
-
+	</bean>-->
+	
 	<!-- ===============事务控制的配置 ================ -->
 	<bean
 		id="transactionManager"

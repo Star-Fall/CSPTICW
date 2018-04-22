@@ -9,6 +9,19 @@
 		<setting
 			name="mapUnderscoreToCamelCase"
 			value="true" />
+		<!-- 对于批量更新操作缓存SQL以提高性能 -->
+		<setting
+			name="defaultExecutorType"
+			value="SIMPLE" />
+
+		<!-- 查询时，关闭关联对象即时加载以提高性能
+		<setting
+			name="lazyLoadingEnabled"
+			value="true" /> -->
+		<!-- 设置关联对象加载的形态，此处为按需加载字段(加载字段由SQL指 定)，不会加载关联表的所有字段，以提高性能 
+		<setting
+			name="aggressiveLazyLoading"
+			value="false" />-->
 	</settings>
 
 

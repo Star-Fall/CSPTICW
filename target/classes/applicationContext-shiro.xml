@@ -33,27 +33,19 @@
 		<property
 			name="unauthorizedUrl"
 			value="/refuse.jsp" />
-		<property name="filters">
-			<map>
-				<!-- FormAuthenticationFilter是基于表单认证的过虑器 -->
-				<entry
-					key="authc"
-					value-ref="formAuthenticationFilter" />
-
-			</map>
-		</property>
+		
 		<!-- 过虑器链定义，从上向下顺序执行，一般将/**放在最下边 -->
 		<property name="filterChainDefinitions">
 			<value>
+				/resource/** = anon
 				<!-- 退出，shiro会自动清除session，放在/**上面，防止被/**拦截 -->
 				/logout=logout
 				/queryItems=perms[item:query]
 				<!-- 所有url都需要认证 -->
 
-				/**=authc
+				/user=authc
 
 				<!--所有url都可以匿名访问 /**=anon -->
-
 			</value>
 		</property>
 	</bean>
@@ -62,46 +54,36 @@
 	<bean
 		id="securityManager"
 		class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-		<property name="realms">
-			<list>
-				<ref bean="StudentRealm" />
-				<ref bean="CompanyRealm" />
-			</list>
+		<property
+			name="realm"
+			ref="CompoundRealm">
 		</property>
+		<!-- 注入缓存管理器 -->
 		<property
 			name="cacheManager"
 			ref="cacheManager" />
+		<!-- 注入session管理器 -->
 		<property
 			name="sessionManager"
 			ref="sessionManager" />
+		<!-- 记住我 -->
+		<property
+			name="rememberMeManager"
+			ref="rememberMeManager" />
 	</bean>
 
-	<bean
-		id="authenticator"
-		class="org.apache.shiro.authc.pam.ModularRealmAuthenticator">
-		<property name="authenticationStrategy">
-			<bean class="org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy"></bean>
-		</property>
-	</bean>
+
 
 	<!-- 自定义 realm -->
 	<bean
-		id="StudentRealm"
-		class="com.cspticw.realm.StudentRealm">
+		id="CompoundRealm"
+		class="com.cspticw.realm.CompoundRealm">
 		<!-- 将凭证匹配器设置到realm中，realm按照凭证匹配器的要求进行散列 -->
 		<property
 			name="credentialsMatcher"
 			ref="credentialsMatcher"></property>
 	</bean>
 
-	<bean
-		id="CompanyRealm"
-		class="com.cspticw.realm.CompanyRealm">
-		<!-- 将凭证匹配器设置到realm中，realm按照凭证匹配器的要求进行散列 -->
-		<property
-			name="credentialsMatcher"
-			ref="credentialsMatcher"></property>
-	</bean>
 
 	<!-- 凭证匹配器 -->
 	<bean
@@ -149,18 +131,23 @@
 			value="shiro.session.id" />
 	</bean>
 
-	<!-- 基于Form表单的身份验证过滤器，不配置将也会注册此过虑器，表单中的用户账号、密码及loginurl将采用默认值，建议配置 -->
+	<!-- rememberMeManager管理器，写cookie，取出cookie生成用户信息 -->
 	<bean
-		id="formAuthenticationFilter"
-		class="com.cspticw.realm.filter.MyFormAuthenticationFilter">
-		<!-- 表单中账号的input名称 -->
+		id="rememberMeManager"
+		class="org.apache.shiro.web.mgt.CookieRememberMeManager">
 		<property
-			name="usernameParam"
-			value="username" />
-		<!-- 表单中密码的input名称 -->
-		<property
-			name="passwordParam"
-			value="password" />
+			name="cookie"
+			ref="rememberMeCookie" />
 	</bean>
-
+	<!-- 记住我cookie -->
+	<bean
+		id="rememberMeCookie"
+		class="org.apache.shiro.web.servlet.SimpleCookie">
+		<!-- rememberMe是cookie的名字 -->
+		<constructor-arg value="rememberMe" />
+		<!-- 记住我cookie生效时间30天 -->
+		<property
+			name="maxAge"
+			value="2592000" />
+	</bean>
 </beans>

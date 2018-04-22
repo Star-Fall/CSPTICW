@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.body{
+    background-color: #F1F3F8;
+}
+.nav_log{
+    background-color: #222222;
+    color:#D0D0D0;
+    height: 30px;
+    line-height: 30px;
+}
+.nav_log a{
+	 color:#D0D0D0;
+}
+.nav_head{
+    background-color:#FFFFFF;
+}
+.log_img{
+    background-image: url(../images/152345539154987.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 54px;
+    margin-left: 50px;
+}
+

@@ -13,14 +13,19 @@ F:\CSPTICW\src\main\java\com\cspticw\entity\CompInfoCertiExample.java
 F:\CSPTICW\src\main\java\com\cspticw\dao\CompJobInfoMapper.java
 F:\CSPTICW\src\main\java\com\cspticw\dao\WebsiteNewsMapper.java
 F:\CSPTICW\src\main\java\com\cspticw\entity\StuSchCerti.java
+F:\CSPTICW\src\main\java\com\cspticw\util\MoblieMessageUtil.java
 F:\CSPTICW\src\main\java\com\cspticw\dao\StuUserInfoMapper.java
 F:\CSPTICW\src\main\java\com\cspticw\entity\ResumeJobExample.java
 F:\CSPTICW\src\main\java\com\cspticw\realm\StudentRealm.java
 F:\CSPTICW\src\main\java\com\cspticw\dao\StuResumeInfoMapper.java
 F:\CSPTICW\src\main\java\com\cspticw\service\impl\CityServiceImpl.java
 F:\CSPTICW\src\main\java\com\cspticw\entity\CompUserInfoExample.java
+F:\CSPTICW\src\main\java\com\cspticw\controller\RegistController.java
 F:\CSPTICW\src\main\java\com\cspticw\service\CompUserService.java
+F:\CSPTICW\src\main\java\com\cspticw\util\tools\Constants.java
+F:\CSPTICW\src\main\java\com\cspticw\controller\ForwardController.java
 F:\CSPTICW\src\main\java\com\cspticw\entity\StuUserInfoExample.java
+F:\CSPTICW\src\main\java\com\cspticw\util\tools\ErrorCode.java
 F:\CSPTICW\src\main\java\com\cspticw\entity\RecruitRecordExample.java
 F:\CSPTICW\src\main\java\com\cspticw\realm\filter\MyFormAuthenticationFilter.java
 F:\CSPTICW\src\main\java\com\cspticw\dao\CompUserInfoMapper.java
@@ -40,6 +45,7 @@ F:\CSPTICW\src\main\java\com\cspticw\entity\CompInfoCerti.java
 F:\CSPTICW\src\main\java\com\cspticw\entity\Province.java
 F:\CSPTICW\src\main\java\com\cspticw\entity\ApplyRecordExample.java
 F:\CSPTICW\src\main\java\com\cspticw\service\impl\CompUserServiceImpl.java
+F:\CSPTICW\src\main\java\com\cspticw\util\MD5Util.java
 F:\CSPTICW\src\main\java\com\cspticw\entity\ComplaintRecordExample.java
 F:\CSPTICW\src\main\java\com\cspticw\entity\CountryExample.java
 F:\CSPTICW\src\main\java\com\cspticw\dao\CompInfoCertiMapper.java

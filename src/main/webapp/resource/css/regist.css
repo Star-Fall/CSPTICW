@@ -1,0 +1,21 @@
+.ng-cloak{display: none;}
+.nav-path{
+    font-size: 16px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 20px;
+    margin-left: -50px;
+}
+.center-body{
+    margin: auto;
+    margin-top: 40px;
+}
+.panel{
+    padding: 0px;
+}
+.regist-form{
+    margin-top: 20px;
+}
+.input-error{
+    color: red;
+}

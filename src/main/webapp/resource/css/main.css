@@ -1,0 +1,22 @@
+.login_out{
+	text-align: center;
+	line-height: 30px;;
+	height: 30px;
+}
+.login{
+	padding: 0px;
+}
+.logout{
+	padding: 0px;
+}
+
+.nav-4{
+	margin-top: 8px;
+	margin-left: -40px;
+	font-size: 17px;
+}
+.search{
+	height: 54px;
+	line-height: 54px;
+	margin-left: 10px;
+}
