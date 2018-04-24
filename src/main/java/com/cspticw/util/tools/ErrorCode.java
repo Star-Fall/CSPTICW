@@ -16,6 +16,8 @@ public interface ErrorCode {
 	public static final String ERROR_PARAMS = "1001";
 	// 验证码错误
 	public static final String ERROR_VALIDATE = "1002";
+	// 验证码发送失败
+	public static final String ERROR_SEND_VALIDATE = "1003";
 
 	// 添加用户错误
 	public static final String ERROR_ADD_USER = "2001";

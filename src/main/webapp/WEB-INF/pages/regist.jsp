@@ -157,6 +157,10 @@
         		method:'post',
         		data:{'userName':$scope.userName}
         	}).success(function(response, status, headers, config){
+        		if(response.error){
+        			alert("验证码发送失败，请稍后再试！");
+        			return;
+        		}
         		//返回的msg
         		var msgCode=response.msg.Code;
         		if(msgCode=="OK"){

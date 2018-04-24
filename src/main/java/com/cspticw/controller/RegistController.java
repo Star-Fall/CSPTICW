@@ -18,6 +18,7 @@ import com.cspticw.entity.CompUserInfo;
 import com.cspticw.entity.StuUserInfo;
 import com.cspticw.service.CompUserService;
 import com.cspticw.service.StuUserService;
+import com.cspticw.util.MoblieMessageUtil;
 import com.cspticw.util.tools.Constants;
 import com.cspticw.util.tools.ErrorCode;
 
@@ -94,15 +95,22 @@ public class RegistController {
 	public Map<String, Object> sendMessage(@RequestBody Map<String, Object> params)
 			throws Exception {
 		returnMap = new HashMap<>();
-		Map<String, Object> responseMap;
-		responseMap = new HashMap<>();
-		responseMap.put("Code", "OK");
-		responseMap.put("Message", "OK");
-		validateCode = "123456";
-		// String code = (int) ((Math.random() * 9 + 1) * 100000) + "";
-		// responseMap =
-		// MoblieMessageUtil.callBackMessage(MoblieMessageUtil.sendSms(userName,
-		// code));
+		Map<String, Object> responseMap = null;
+		// responseMap = new HashMap<>();
+		// responseMap.put("Code", "OK");
+		// responseMap.put("Message", "OK");
+		// validateCode = "123456";
+		String userName = params.get("userName").toString();
+		String code = (int) ((Math.random() * 9 + 1) * 100000) + "";
+		try {
+			responseMap = MoblieMessageUtil
+					.callBackMessage(MoblieMessageUtil.sendSms(userName, code));
+
+		} catch (Exception e) {
+			returnMap.put(Constants.ERROR, ErrorCode.ERROR_SEND_VALIDATE);
+			return returnMap;
+		}
+		System.out.println("code:" + code);
 		returnMap.put(Constants.MSG, responseMap);
 		return returnMap;
 	}

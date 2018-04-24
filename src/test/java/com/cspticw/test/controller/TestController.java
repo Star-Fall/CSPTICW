@@ -1,4 +1,4 @@
-package com.cspticw.controller;
+package com.cspticw.test.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;

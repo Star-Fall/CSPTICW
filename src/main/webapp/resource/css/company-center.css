@@ -1,0 +1,43 @@
+.nav-path{
+    font-size: 16px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 20px;
+    margin-left: -50px;
+}
+.center-body{
+    margin: auto;
+    margin-top: 10px;
+    height: 300px;
+}
+.center-menu{
+    margin-left: 40px;
+    text-align: center;
+}
+
+.left-nav-one{
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 25px;
+    text-align: left;
+}
+.left-nav-zhe{
+    display: none;
+    line-height: 18px;
+}
+/*暂无认证信息*/
+.sch-cert-no{
+    display: none;
+}
+/*认证面板*/
+.sch-cert-form-panel{
+
+}
+.cert-form{
+}
+.card-pic-01,.card-pic-02{
+    background-image: url("../images/default-image-user.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 140px;
+}
