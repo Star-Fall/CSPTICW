@@ -21,4 +21,9 @@ public interface Constants {
 	// 登录的用户
 	public static final String LOGIN_USER = "loginUser";
 	public static final String CODE = "code";
+	// 文件上传路径
+	public static final String UP_FILE_PATH = "upfile";
+	// 简历Id
+	public static final String RESUME_ID = "resumeId";
+
 }

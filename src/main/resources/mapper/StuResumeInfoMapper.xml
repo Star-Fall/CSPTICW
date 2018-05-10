@@ -1,418 +1,671 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cspticw.dao.StuResumeInfoMapper">
-  <resultMap id="BaseResultMap" type="com.cspticw.entity.StuResumeInfo">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
-    <result column="stu_id" jdbcType="BIGINT" property="stuId" />
-    <result column="resu_name" jdbcType="VARCHAR" property="resuName" />
-    <result column="real_name" jdbcType="VARCHAR" property="realName" />
-    <result column="id_photo" jdbcType="VARCHAR" property="idPhoto" />
-    <result column="gender" jdbcType="VARCHAR" property="gender" />
-    <result column="age" jdbcType="INTEGER" property="age" />
-    <result column="province" jdbcType="VARCHAR" property="province" />
-    <result column="city" jdbcType="VARCHAR" property="city" />
-    <result column="job_ position" jdbcType="VARCHAR" property="jobPosition" />
-    <result column="self_description" jdbcType="VARCHAR" property="selfDescription" />
-    <result column="qq" jdbcType="VARCHAR" property="qq" />
-    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
-    <result column="annex_resume" jdbcType="VARCHAR" property="annexResume" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="resu_hot" jdbcType="INTEGER" property="resuHot" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    id, create_time, modify_time, stu_id, resu_name, real_name, id_photo, gender, age, 
-    province, city, "job_ position", self_description, qq, wechat, annex_resume, status, 
-    resu_hot
-  </sql>
-  <select id="selectByExample" parameterType="com.cspticw.entity.StuResumeInfoExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from stu_resume_info
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from stu_resume_info
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from stu_resume_info
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.cspticw.entity.StuResumeInfoExample">
-    delete from stu_resume_info
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.cspticw.entity.StuResumeInfo">
-    insert into stu_resume_info (id, create_time, modify_time, 
-      stu_id, resu_name, real_name, 
-      id_photo, gender, age, 
-      province, city, "job_ position", 
-      self_description, qq, wechat, 
-      annex_resume, status, resu_hot
-      )
-    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
-      #{stuId,jdbcType=BIGINT}, #{resuName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
-      #{idPhoto,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
-      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{jobPosition,jdbcType=VARCHAR}, 
-      #{selfDescription,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, 
-      #{annexResume,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{resuHot,jdbcType=INTEGER}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.cspticw.entity.StuResumeInfo">
-    insert into stu_resume_info
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="modifyTime != null">
-        modify_time,
-      </if>
-      <if test="stuId != null">
-        stu_id,
-      </if>
-      <if test="resuName != null">
-        resu_name,
-      </if>
-      <if test="realName != null">
-        real_name,
-      </if>
-      <if test="idPhoto != null">
-        id_photo,
-      </if>
-      <if test="gender != null">
-        gender,
-      </if>
-      <if test="age != null">
-        age,
-      </if>
-      <if test="province != null">
-        province,
-      </if>
-      <if test="city != null">
-        city,
-      </if>
-      <if test="jobPosition != null">
-        "job_ position",
-      </if>
-      <if test="selfDescription != null">
-        self_description,
-      </if>
-      <if test="qq != null">
-        qq,
-      </if>
-      <if test="wechat != null">
-        wechat,
-      </if>
-      <if test="annexResume != null">
-        annex_resume,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="resuHot != null">
-        resu_hot,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="modifyTime != null">
-        #{modifyTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="stuId != null">
-        #{stuId,jdbcType=BIGINT},
-      </if>
-      <if test="resuName != null">
-        #{resuName,jdbcType=VARCHAR},
-      </if>
-      <if test="realName != null">
-        #{realName,jdbcType=VARCHAR},
-      </if>
-      <if test="idPhoto != null">
-        #{idPhoto,jdbcType=VARCHAR},
-      </if>
-      <if test="gender != null">
-        #{gender,jdbcType=VARCHAR},
-      </if>
-      <if test="age != null">
-        #{age,jdbcType=INTEGER},
-      </if>
-      <if test="province != null">
-        #{province,jdbcType=VARCHAR},
-      </if>
-      <if test="city != null">
-        #{city,jdbcType=VARCHAR},
-      </if>
-      <if test="jobPosition != null">
-        #{jobPosition,jdbcType=VARCHAR},
-      </if>
-      <if test="selfDescription != null">
-        #{selfDescription,jdbcType=VARCHAR},
-      </if>
-      <if test="qq != null">
-        #{qq,jdbcType=VARCHAR},
-      </if>
-      <if test="wechat != null">
-        #{wechat,jdbcType=VARCHAR},
-      </if>
-      <if test="annexResume != null">
-        #{annexResume,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="resuHot != null">
-        #{resuHot,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.cspticw.entity.StuResumeInfoExample" resultType="java.lang.Long">
-    select count(*) from stu_resume_info
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update stu_resume_info
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=BIGINT},
-      </if>
-      <if test="record.createTime != null">
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.modifyTime != null">
-        modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.stuId != null">
-        stu_id = #{record.stuId,jdbcType=BIGINT},
-      </if>
-      <if test="record.resuName != null">
-        resu_name = #{record.resuName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.realName != null">
-        real_name = #{record.realName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.idPhoto != null">
-        id_photo = #{record.idPhoto,jdbcType=VARCHAR},
-      </if>
-      <if test="record.gender != null">
-        gender = #{record.gender,jdbcType=VARCHAR},
-      </if>
-      <if test="record.age != null">
-        age = #{record.age,jdbcType=INTEGER},
-      </if>
-      <if test="record.province != null">
-        province = #{record.province,jdbcType=VARCHAR},
-      </if>
-      <if test="record.city != null">
-        city = #{record.city,jdbcType=VARCHAR},
-      </if>
-      <if test="record.jobPosition != null">
-        "job_ position" = #{record.jobPosition,jdbcType=VARCHAR},
-      </if>
-      <if test="record.selfDescription != null">
-        self_description = #{record.selfDescription,jdbcType=VARCHAR},
-      </if>
-      <if test="record.qq != null">
-        qq = #{record.qq,jdbcType=VARCHAR},
-      </if>
-      <if test="record.wechat != null">
-        wechat = #{record.wechat,jdbcType=VARCHAR},
-      </if>
-      <if test="record.annexResume != null">
-        annex_resume = #{record.annexResume,jdbcType=VARCHAR},
-      </if>
-      <if test="record.status != null">
-        status = #{record.status,jdbcType=INTEGER},
-      </if>
-      <if test="record.resuHot != null">
-        resu_hot = #{record.resuHot,jdbcType=INTEGER},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update stu_resume_info
-    set id = #{record.id,jdbcType=BIGINT},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
-      stu_id = #{record.stuId,jdbcType=BIGINT},
-      resu_name = #{record.resuName,jdbcType=VARCHAR},
-      real_name = #{record.realName,jdbcType=VARCHAR},
-      id_photo = #{record.idPhoto,jdbcType=VARCHAR},
-      gender = #{record.gender,jdbcType=VARCHAR},
-      age = #{record.age,jdbcType=INTEGER},
-      province = #{record.province,jdbcType=VARCHAR},
-      city = #{record.city,jdbcType=VARCHAR},
-      "job_ position" = #{record.jobPosition,jdbcType=VARCHAR},
-      self_description = #{record.selfDescription,jdbcType=VARCHAR},
-      qq = #{record.qq,jdbcType=VARCHAR},
-      wechat = #{record.wechat,jdbcType=VARCHAR},
-      annex_resume = #{record.annexResume,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=INTEGER},
-      resu_hot = #{record.resuHot,jdbcType=INTEGER}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cspticw.entity.StuResumeInfo">
-    update stu_resume_info
-    <set>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="modifyTime != null">
-        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="stuId != null">
-        stu_id = #{stuId,jdbcType=BIGINT},
-      </if>
-      <if test="resuName != null">
-        resu_name = #{resuName,jdbcType=VARCHAR},
-      </if>
-      <if test="realName != null">
-        real_name = #{realName,jdbcType=VARCHAR},
-      </if>
-      <if test="idPhoto != null">
-        id_photo = #{idPhoto,jdbcType=VARCHAR},
-      </if>
-      <if test="gender != null">
-        gender = #{gender,jdbcType=VARCHAR},
-      </if>
-      <if test="age != null">
-        age = #{age,jdbcType=INTEGER},
-      </if>
-      <if test="province != null">
-        province = #{province,jdbcType=VARCHAR},
-      </if>
-      <if test="city != null">
-        city = #{city,jdbcType=VARCHAR},
-      </if>
-      <if test="jobPosition != null">
-        "job_ position" = #{jobPosition,jdbcType=VARCHAR},
-      </if>
-      <if test="selfDescription != null">
-        self_description = #{selfDescription,jdbcType=VARCHAR},
-      </if>
-      <if test="qq != null">
-        qq = #{qq,jdbcType=VARCHAR},
-      </if>
-      <if test="wechat != null">
-        wechat = #{wechat,jdbcType=VARCHAR},
-      </if>
-      <if test="annexResume != null">
-        annex_resume = #{annexResume,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="resuHot != null">
-        resu_hot = #{resuHot,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.cspticw.entity.StuResumeInfo">
-    update stu_resume_info
-    set create_time = #{createTime,jdbcType=TIMESTAMP},
-      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      stu_id = #{stuId,jdbcType=BIGINT},
-      resu_name = #{resuName,jdbcType=VARCHAR},
-      real_name = #{realName,jdbcType=VARCHAR},
-      id_photo = #{idPhoto,jdbcType=VARCHAR},
-      gender = #{gender,jdbcType=VARCHAR},
-      age = #{age,jdbcType=INTEGER},
-      province = #{province,jdbcType=VARCHAR},
-      city = #{city,jdbcType=VARCHAR},
-      "job_ position" = #{jobPosition,jdbcType=VARCHAR},
-      self_description = #{selfDescription,jdbcType=VARCHAR},
-      qq = #{qq,jdbcType=VARCHAR},
-      wechat = #{wechat,jdbcType=VARCHAR},
-      annex_resume = #{annexResume,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
-      resu_hot = #{resuHot,jdbcType=INTEGER}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
+	<resultMap
+		id="BaseResultMap"
+		type="com.cspticw.entity.StuResumeInfo">
+		<id
+			column="id"
+			jdbcType="BIGINT"
+			property="id" />
+		<result
+			column="create_time"
+			jdbcType="TIMESTAMP"
+			property="createTime" />
+		<result
+			column="modify_time"
+			jdbcType="TIMESTAMP"
+			property="modifyTime" />
+		<result
+			column="stu_id"
+			jdbcType="BIGINT"
+			property="stuId" />
+		<result
+			column="resu_name"
+			jdbcType="VARCHAR"
+			property="resuName" />
+		<result
+			column="real_name"
+			jdbcType="VARCHAR"
+			property="realName" />
+		<result
+			column="id_photo"
+			jdbcType="VARCHAR"
+			property="idPhoto" />
+		<result
+			column="gender"
+			jdbcType="VARCHAR"
+			property="gender" />
+		<result
+			column="age"
+			jdbcType="INTEGER"
+			property="age" />
+		<result
+			column="province"
+			jdbcType="VARCHAR"
+			property="province" />
+		<result
+			column="city"
+			jdbcType="VARCHAR"
+			property="city" />
+		<result
+			column="school"
+			jdbcType="VARCHAR"
+			property="school" />
+		<result
+			column="major"
+			jdbcType="VARCHAR"
+			property="major" />
+		<result
+			column="education"
+			jdbcType="VARCHAR"
+			property="education" />
+		<result
+			column="phone"
+			jdbcType="VARCHAR"
+			property="phone" />
+		<result
+			column="qq"
+			jdbcType="VARCHAR"
+			property="qq" />
+		<result
+			column="wechat"
+			jdbcType="VARCHAR"
+			property="wechat" />
+		<result
+			column="self_description"
+			jdbcType="VARCHAR"
+			property="selfDescription" />
+		<result
+			column="annex_resume"
+			jdbcType="VARCHAR"
+			property="annexResume" />
+		<result
+			column="status"
+			jdbcType="INTEGER"
+			property="status" />
+		<result
+			column="resu_hot"
+			jdbcType="INTEGER"
+			property="resuHot" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach
+				collection="oredCriteria"
+				item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim
+						prefix="("
+						prefixOverrides="and"
+						suffix=")">
+						<foreach
+							collection="criteria.criteria"
+							item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach
+										close=")"
+										collection="criterion.value"
+										item="listItem"
+										open="("
+										separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach
+				collection="example.oredCriteria"
+				item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim
+						prefix="("
+						prefixOverrides="and"
+						suffix=")">
+						<foreach
+							collection="criteria.criteria"
+							item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach
+										close=")"
+										collection="criterion.value"
+										item="listItem"
+										open="("
+										separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, create_time, modify_time, stu_id, resu_name, real_name, id_photo,
+		gender, age,
+		province, city, school, major, education, phone, qq, wechat, self_description,
+		annex_resume,
+		status, resu_hot
+	</sql>
+	<select
+		id="selectByExample"
+		parameterType="com.cspticw.entity.StuResumeInfoExample"
+		resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from stu_resume_info
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select
+		id="selectByPrimaryKey"
+		parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from stu_resume_info
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete
+		id="deleteByPrimaryKey"
+		parameterType="java.lang.Long">
+		delete from stu_resume_info
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<delete
+		id="deleteByExample"
+		parameterType="com.cspticw.entity.StuResumeInfoExample">
+		delete from stu_resume_info
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert
+		id="insert"
+		parameterType="com.cspticw.entity.StuResumeInfo">
+		<selectKey
+			resultType="java.lang.Long"
+			order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into stu_resume_info (id, create_time, modify_time,
+		stu_id, resu_name, real_name,
+		id_photo, gender, age,
+		province, city, school,
+		major, education, phone,
+		qq, wechat, self_description,
+		annex_resume, status, resu_hot
+		)
+		values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
+		#{modifyTime,jdbcType=TIMESTAMP},
+		#{stuId,jdbcType=BIGINT}, #{resuName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR},
+		#{idPhoto,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR},
+		#{age,jdbcType=INTEGER},
+		#{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR},
+		#{major,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR},
+		#{qq,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, #{selfDescription,jdbcType=VARCHAR},
+		#{annexResume,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+		#{resuHot,jdbcType=INTEGER}
+		)
+
+	</insert>
+	<insert
+		id="insertSelective"
+		parameterType="com.cspticw.entity.StuResumeInfo">
+		insert into stu_resume_info
+		<trim
+			prefix="("
+			suffix=")"
+			suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="modifyTime != null">
+				modify_time,
+			</if>
+			<if test="stuId != null">
+				stu_id,
+			</if>
+			<if test="resuName != null">
+				resu_name,
+			</if>
+			<if test="realName != null">
+				real_name,
+			</if>
+			<if test="idPhoto != null">
+				id_photo,
+			</if>
+			<if test="gender != null">
+				gender,
+			</if>
+			<if test="age != null">
+				age,
+			</if>
+			<if test="province != null">
+				province,
+			</if>
+			<if test="city != null">
+				city,
+			</if>
+			<if test="school != null">
+				school,
+			</if>
+			<if test="major != null">
+				major,
+			</if>
+			<if test="education != null">
+				education,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="qq != null">
+				qq,
+			</if>
+			<if test="wechat != null">
+				wechat,
+			</if>
+			<if test="selfDescription != null">
+				self_description,
+			</if>
+			<if test="annexResume != null">
+				annex_resume,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="resuHot != null">
+				resu_hot,
+			</if>
+		</trim>
+		<trim
+			prefix="values ("
+			suffix=")"
+			suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyTime != null">
+				#{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="stuId != null">
+				#{stuId,jdbcType=BIGINT},
+			</if>
+			<if test="resuName != null">
+				#{resuName,jdbcType=VARCHAR},
+			</if>
+			<if test="realName != null">
+				#{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="idPhoto != null">
+				#{idPhoto,jdbcType=VARCHAR},
+			</if>
+			<if test="gender != null">
+				#{gender,jdbcType=VARCHAR},
+			</if>
+			<if test="age != null">
+				#{age,jdbcType=INTEGER},
+			</if>
+			<if test="province != null">
+				#{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				#{city,jdbcType=VARCHAR},
+			</if>
+			<if test="school != null">
+				#{school,jdbcType=VARCHAR},
+			</if>
+			<if test="major != null">
+				#{major,jdbcType=VARCHAR},
+			</if>
+			<if test="education != null">
+				#{education,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="qq != null">
+				#{qq,jdbcType=VARCHAR},
+			</if>
+			<if test="wechat != null">
+				#{wechat,jdbcType=VARCHAR},
+			</if>
+			<if test="selfDescription != null">
+				#{selfDescription,jdbcType=VARCHAR},
+			</if>
+			<if test="annexResume != null">
+				#{annexResume,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="resuHot != null">
+				#{resuHot,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<select
+		id="countByExample"
+		parameterType="com.cspticw.entity.StuResumeInfoExample"
+		resultType="java.lang.Long">
+		select count(*) from stu_resume_info
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update
+		id="updateByExampleSelective"
+		parameterType="map">
+		update stu_resume_info
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=BIGINT},
+			</if>
+			<if test="record.createTime != null">
+				create_time = #{record.createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.modifyTime != null">
+				modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.stuId != null">
+				stu_id = #{record.stuId,jdbcType=BIGINT},
+			</if>
+			<if test="record.resuName != null">
+				resu_name = #{record.resuName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.realName != null">
+				real_name = #{record.realName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.idPhoto != null">
+				id_photo = #{record.idPhoto,jdbcType=VARCHAR},
+			</if>
+			<if test="record.gender != null">
+				gender = #{record.gender,jdbcType=VARCHAR},
+			</if>
+			<if test="record.age != null">
+				age = #{record.age,jdbcType=INTEGER},
+			</if>
+			<if test="record.province != null">
+				province = #{record.province,jdbcType=VARCHAR},
+			</if>
+			<if test="record.city != null">
+				city = #{record.city,jdbcType=VARCHAR},
+			</if>
+			<if test="record.school != null">
+				school = #{record.school,jdbcType=VARCHAR},
+			</if>
+			<if test="record.major != null">
+				major = #{record.major,jdbcType=VARCHAR},
+			</if>
+			<if test="record.education != null">
+				education = #{record.education,jdbcType=VARCHAR},
+			</if>
+			<if test="record.phone != null">
+				phone = #{record.phone,jdbcType=VARCHAR},
+			</if>
+			<if test="record.qq != null">
+				qq = #{record.qq,jdbcType=VARCHAR},
+			</if>
+			<if test="record.wechat != null">
+				wechat = #{record.wechat,jdbcType=VARCHAR},
+			</if>
+			<if test="record.selfDescription != null">
+				self_description = #{record.selfDescription,jdbcType=VARCHAR},
+			</if>
+			<if test="record.annexResume != null">
+				annex_resume = #{record.annexResume,jdbcType=VARCHAR},
+			</if>
+			<if test="record.status != null">
+				status = #{record.status,jdbcType=INTEGER},
+			</if>
+			<if test="record.resuHot != null">
+				resu_hot = #{record.resuHot,jdbcType=INTEGER},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update
+		id="updateByExample"
+		parameterType="map">
+		update stu_resume_info
+		set id = #{record.id,jdbcType=BIGINT},
+		create_time = #{record.createTime,jdbcType=TIMESTAMP},
+		modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+		stu_id = #{record.stuId,jdbcType=BIGINT},
+		resu_name = #{record.resuName,jdbcType=VARCHAR},
+		real_name = #{record.realName,jdbcType=VARCHAR},
+		id_photo = #{record.idPhoto,jdbcType=VARCHAR},
+		gender = #{record.gender,jdbcType=VARCHAR},
+		age = #{record.age,jdbcType=INTEGER},
+		province = #{record.province,jdbcType=VARCHAR},
+		city = #{record.city,jdbcType=VARCHAR},
+		school = #{record.school,jdbcType=VARCHAR},
+		major = #{record.major,jdbcType=VARCHAR},
+		education = #{record.education,jdbcType=VARCHAR},
+		phone = #{record.phone,jdbcType=VARCHAR},
+		qq = #{record.qq,jdbcType=VARCHAR},
+		wechat = #{record.wechat,jdbcType=VARCHAR},
+		self_description = #{record.selfDescription,jdbcType=VARCHAR},
+		annex_resume = #{record.annexResume,jdbcType=VARCHAR},
+		status = #{record.status,jdbcType=INTEGER},
+		resu_hot = #{record.resuHot,jdbcType=INTEGER}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update
+		id="updateByPrimaryKeySelective"
+		parameterType="com.cspticw.entity.StuResumeInfo">
+		update stu_resume_info
+		<set>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyTime != null">
+				modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="stuId != null">
+				stu_id = #{stuId,jdbcType=BIGINT},
+			</if>
+			<if test="resuName != null">
+				resu_name = #{resuName,jdbcType=VARCHAR},
+			</if>
+			<if test="realName != null">
+				real_name = #{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="idPhoto != null">
+				id_photo = #{idPhoto,jdbcType=VARCHAR},
+			</if>
+			<if test="gender != null">
+				gender = #{gender,jdbcType=VARCHAR},
+			</if>
+			<if test="age != null">
+				age = #{age,jdbcType=INTEGER},
+			</if>
+			<if test="province != null">
+				province = #{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				city = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="school != null">
+				school = #{school,jdbcType=VARCHAR},
+			</if>
+			<if test="major != null">
+				major = #{major,jdbcType=VARCHAR},
+			</if>
+			<if test="education != null">
+				education = #{education,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="qq != null">
+				qq = #{qq,jdbcType=VARCHAR},
+			</if>
+			<if test="wechat != null">
+				wechat = #{wechat,jdbcType=VARCHAR},
+			</if>
+			<if test="selfDescription != null">
+				self_description = #{selfDescription,jdbcType=VARCHAR},
+			</if>
+			<if test="annexResume != null">
+				annex_resume = #{annexResume,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="resuHot != null">
+				resu_hot = #{resuHot,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update
+		id="updateByPrimaryKey"
+		parameterType="com.cspticw.entity.StuResumeInfo">
+		update stu_resume_info
+		set create_time = #{createTime,jdbcType=TIMESTAMP},
+		modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+		stu_id = #{stuId,jdbcType=BIGINT},
+		resu_name = #{resuName,jdbcType=VARCHAR},
+		real_name = #{realName,jdbcType=VARCHAR},
+		id_photo = #{idPhoto,jdbcType=VARCHAR},
+		gender = #{gender,jdbcType=VARCHAR},
+		age = #{age,jdbcType=INTEGER},
+		province = #{province,jdbcType=VARCHAR},
+		city = #{city,jdbcType=VARCHAR},
+		school = #{school,jdbcType=VARCHAR},
+		major = #{major,jdbcType=VARCHAR},
+		education = #{education,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
+		qq = #{qq,jdbcType=VARCHAR},
+		wechat = #{wechat,jdbcType=VARCHAR},
+		self_description = #{selfDescription,jdbcType=VARCHAR},
+		annex_resume = #{annexResume,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER},
+		resu_hot = #{resuHot,jdbcType=INTEGER}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<!--  新增-->
+	<resultMap	id="MyResumeDetailMap"	type="com.alibaba.fastjson.JSONObject">
+		<id	column="id"	jdbcType="BIGINT" property="id" />
+		<result	column="create_time"	jdbcType="TIMESTAMP"	property="createTime" />
+		<result	column="modify_time"	jdbcType="TIMESTAMP"	property="modifyTime" />
+		<result	column="stu_id"		jdbcType="BIGINT"		property="stuId" />
+		<result	column="resu_name"	jdbcType="VARCHAR"	property="resuName" />
+		<result	column="real_name"	jdbcType="VARCHAR"	property="realName" />
+		<result	column="id_photo"	jdbcType="VARCHAR"	property="idPhoto" />
+		<result	column="gender"		jdbcType="VARCHAR"	property="gender" />
+		<result	column="age"	jdbcType="INTEGER"	property="age" />
+		<result	column="province"	jdbcType="VARCHAR"	property="province" />
+		<result	column="city"	jdbcType="VARCHAR"	property="city" />
+		<result	column="school"	jdbcType="VARCHAR"	property="school" />
+		<result	column="major"	jdbcType="VARCHAR"	property="major" />
+		<result	column="education"	jdbcType="VARCHAR"	property="education" />
+		<result	column="phone"	jdbcType="VARCHAR"	property="phone" />
+		<result	column="qq"	jdbcType="VARCHAR"	property="qq" />
+		<result	column="wechat"	jdbcType="VARCHAR"	property="wechat" />
+		<result	column="self_description"	jdbcType="VARCHAR"	property="selfDescription" />
+		<result	column="annex_resume"	jdbcType="VARCHAR"	property="annexResume" />
+		<result	column="status"	jdbcType="INTEGER"	property="status" />
+		<result	column="resu_hot"	jdbcType="INTEGER"	property="resuHot" />
+		<collection property="resumeJobs" ofType="com.alibaba.fastjson.JSONObject" javaType="com.alibaba.fastjson.JSONArray">
+			<id	column="job_cate_id"	jdbcType="BIGINT" property="jobCateId" />
+			<result	column="category_name"	jdbcType="VARCHAR"	property="categoryName" />
+		</collection>
+		<collection property="workExperiences"  ofType="com.alibaba.fastjson.JSONObject" javaType="com.alibaba.fastjson.JSONArray">
+			<id	column="workExperienceId"	jdbcType="BIGINT" property="workExperienceId" />
+			<result	column="work_title"	jdbcType="VARCHAR"	property="workTitle" />
+			<result	column="work_content"	jdbcType="VARCHAR"	property="workContent" />
+			
+		</collection>
+	</resultMap>
+
+	<select id="getMyResumeDetailList" parameterType="java.lang.Long" resultMap="MyResumeDetailMap">
+		SELECT
+			sr.*, rj.job_cate_id,
+			jc.category_name,
+			we.id AS workExperienceId,
+			we.work_title,
+			we.work_content
+		FROM
+			stu_resume_info sr
+		LEFT JOIN resume_job rj ON sr.id = rj.resu_id
+		LEFT JOIN job_category jc ON rj.job_cate_id = jc.id
+		LEFT JOIN work_experience we ON sr.id = we.resu_id
+		WHERE
+			sr.stu_id =#{studentId,jdbcType=BIGINT}
+		AND sr.`status` != 2
+	</select>
+	
+	<select id="getResumeDetail" parameterType="java.lang.Long" resultMap="MyResumeDetailMap">
+		SELECT
+			sr.*, rj.job_cate_id,
+			jc.category_name,
+			we.id AS workExperienceId,
+			we.work_title,
+			we.work_content
+		FROM
+			stu_resume_info sr
+		LEFT JOIN resume_job rj ON sr.id = rj.resu_id
+		LEFT JOIN job_category jc ON rj.job_cate_id = jc.id
+		LEFT JOIN work_experience we ON sr.id = we.resu_id
+		WHERE
+			sr.id =#{id,jdbcType=BIGINT}
+	</select>
+
 </mapper>

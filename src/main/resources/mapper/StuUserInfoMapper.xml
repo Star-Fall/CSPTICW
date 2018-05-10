@@ -323,8 +323,6 @@
 		is_available = #{isAvailable,jdbcType=INTEGER}
 		where id = #{id,jdbcType=BIGINT}
 	</update>
-	
-	
 	<!-- 新增的方法 -->
 	<select
 		id="selectByUserName"

@@ -307,7 +307,6 @@
 	</update>
 	
 	<!-- 新增的方法 -->
-	
 	<select
 		id="selectByUserName"
 		parameterType="java.lang.String"

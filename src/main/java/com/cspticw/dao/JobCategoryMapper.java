@@ -1,30 +1,47 @@
 package com.cspticw.dao;
 
-import com.cspticw.entity.JobCategory;
-import com.cspticw.entity.JobCategoryExample;
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
+import com.cspticw.entity.JobCategory;
+import com.cspticw.entity.JobCategoryAllModel;
+import com.cspticw.entity.JobCategoryExample;
+
+/**
+ * @ClassName: JobCategoryMapper
+ * @author: StarFall
+ * @date: 2018年4月30日 下午7:10:28
+ * @Description:行业分类
+ */
 public interface JobCategoryMapper {
-    long countByExample(JobCategoryExample example);
 
-    int deleteByExample(JobCategoryExample example);
+	long countByExample(JobCategoryExample example);
 
-    int deleteByPrimaryKey(Long id);
+	int deleteByExample(JobCategoryExample example);
 
-    int insert(JobCategory record);
+	int deleteByPrimaryKey(Long id);
 
-    int insertSelective(JobCategory record);
+	int insert(JobCategory record);
 
-    List<JobCategory> selectByExample(JobCategoryExample example);
+	int insertSelective(JobCategory record);
 
-    JobCategory selectByPrimaryKey(Long id);
+	List<JobCategory> selectByExample(JobCategoryExample example);
 
-    int updateByExampleSelective(@Param("record") JobCategory record, @Param("example") JobCategoryExample example);
+	JobCategory selectByPrimaryKey(Long id);
 
-    int updateByExample(@Param("record") JobCategory record, @Param("example") JobCategoryExample example);
+	int updateByExampleSelective(@Param("record") JobCategory record,
+			@Param("example") JobCategoryExample example);
 
-    int updateByPrimaryKeySelective(JobCategory record);
+	int updateByExample(@Param("record") JobCategory record,
+			@Param("example") JobCategoryExample example);
 
-    int updateByPrimaryKey(JobCategory record);
+	int updateByPrimaryKeySelective(JobCategory record);
+
+	int updateByPrimaryKey(JobCategory record);
+
+	/**
+	 * 新增
+	 */
+	List<JobCategoryAllModel> getJobCategoryAll();
 }

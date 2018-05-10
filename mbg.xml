@@ -80,7 +80,7 @@
 				value="true" />
 		</javaClientGenerator>
 
-		<!-- 指定要逆向分析哪些表：根据表要创建javaBean -->
+		<!-- 指定要逆向分析哪些表：根据表要创建javaBean 
 		<table
 			tableName="apply_record"
 			domainObjectName="ApplyRecord"></table>
@@ -91,7 +91,7 @@
 			tableName="collect_record"
 			domainObjectName="CollectRecord"></table>
 		<table
-			tableName="comp _info_certi"
+			tableName="comp_info_certi"
 			domainObjectName="CompInfoCerti"></table>
 		<table
 			tableName="comp_job_info"
@@ -128,6 +128,13 @@
 			domainObjectName="StuUserInfo"></table>
 		<table
 			tableName="website_news"
-			domainObjectName="WebsiteNews"></table>
+			domainObjectName="WebsiteNews"></table>-->
+		<table
+			tableName="comp_info_certi"
+			domainObjectName="CompInfoCerti"></table>
+		<table
+			tableName="comp_job_info"
+			domainObjectName="CompJobInfo"></table>
+			
 	</context>
 </generatorConfiguration>

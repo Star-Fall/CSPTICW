@@ -3,14 +3,15 @@ package com.cspticw.entity;
 /**
  * @ClassName: StuResumeInfo
  * @author: StarFall
- * @date: 2018年4月7日 下午10:45:38
- * @Description:学生简历信息实体
+ * @date: 2018年4月30日 上午10:17:38
+ * @Description:简历
  */
 public class StuResumeInfo extends BaseEntity {
+
 	/**
 	 * @Fields serialVersionUID
 	 */
-	private static final long serialVersionUID = -1936898041190217698L;
+	private static final long serialVersionUID = -6947794362248408725L;
 
 	private Long stuId;
 
@@ -28,13 +29,19 @@ public class StuResumeInfo extends BaseEntity {
 
 	private String city;
 
-	private String jobPosition;
+	private String school;
 
-	private String selfDescription;
+	private String major;
+
+	private String education;
+
+	private String phone;
 
 	private String qq;
 
 	private String wechat;
+
+	private String selfDescription;
 
 	private String annexResume;
 
@@ -106,20 +113,36 @@ public class StuResumeInfo extends BaseEntity {
 		this.city = city == null ? null : city.trim();
 	}
 
-	public String getJobPosition() {
-		return jobPosition;
+	public String getSchool() {
+		return school;
 	}
 
-	public void setJobPosition(String jobPosition) {
-		this.jobPosition = jobPosition == null ? null : jobPosition.trim();
+	public void setSchool(String school) {
+		this.school = school == null ? null : school.trim();
 	}
 
-	public String getSelfDescription() {
-		return selfDescription;
+	public String getMajor() {
+		return major;
 	}
 
-	public void setSelfDescription(String selfDescription) {
-		this.selfDescription = selfDescription == null ? null : selfDescription.trim();
+	public void setMajor(String major) {
+		this.major = major == null ? null : major.trim();
+	}
+
+	public String getEducation() {
+		return education;
+	}
+
+	public void setEducation(String education) {
+		this.education = education == null ? null : education.trim();
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone == null ? null : phone.trim();
 	}
 
 	public String getQq() {
@@ -136,6 +159,14 @@ public class StuResumeInfo extends BaseEntity {
 
 	public void setWechat(String wechat) {
 		this.wechat = wechat == null ? null : wechat.trim();
+	}
+
+	public String getSelfDescription() {
+		return selfDescription;
+	}
+
+	public void setSelfDescription(String selfDescription) {
+		this.selfDescription = selfDescription == null ? null : selfDescription.trim();
 	}
 
 	public String getAnnexResume() {

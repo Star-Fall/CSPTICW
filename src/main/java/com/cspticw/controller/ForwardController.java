@@ -62,4 +62,49 @@ public class ForwardController {
 		}
 		return "main";
 	}
+
+	/**
+	 * 发布简历页面
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/to_student_center_resume")
+	public String toStudentCenterResume() {
+		return "student-center-resume";
+	}
+
+	/**
+	 * 我的简历页面
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/to_my_resume_list")
+	public String toMyResumeList() {
+		return "student-center-resume-list";
+	}
+
+	/**
+	 * 跳转到简历修改页面
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/to_resume_modify")
+	public String toModifyResume() {
+		return "student-center-resume-modify";
+	}
+
+	/**
+	 * 跳转至管理员
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/to_admin")
+	public String toAdmin() {
+		return "admin/admin";
+	}
+
+	@RequestMapping("/to_testDown")
+	public String toTest() {
+		return "/testUpLoad";
+	}
 }

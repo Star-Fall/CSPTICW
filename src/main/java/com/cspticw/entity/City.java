@@ -1,11 +1,15 @@
 package com.cspticw.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 /**
  * @ClassName: City
  * @author: StarFall
  * @date: 2018年4月7日 下午10:39:50
  * @Description:城市实体类
  */
+@JsonInclude(Include.NON_NULL)
 public class City extends BaseEntity {
 
 	/**

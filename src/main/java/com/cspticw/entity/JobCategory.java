@@ -1,11 +1,15 @@
 package com.cspticw.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 /**
  * @ClassName: JobCategory
  * @author: StarFall
  * @date: 2018年4月7日 下午10:43:37
  * @Description:行业分类实体
  */
+@JsonInclude(Include.NON_NULL)
 public class JobCategory extends BaseEntity {
 	/**
 	 * @Fields serialVersionUID

@@ -7,13 +7,14 @@
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
     <result column="comp_id" jdbcType="BIGINT" property="compId" />
     <result column="comp_name" jdbcType="VARCHAR" property="compName" />
+    <result column="comp_home" jdbcType="VARCHAR" property="compHome" />
     <result column="comp_establish_time" jdbcType="TIMESTAMP" property="compEstablishTime" />
-    <result column="legal_person" jdbcType="VARCHAR" property="legalPerson" />
     <result column="comp_size" jdbcType="VARCHAR" property="compSize" />
     <result column="comp_nature" jdbcType="VARCHAR" property="compNature" />
     <result column="comp_industry" jdbcType="VARCHAR" property="compIndustry" />
     <result column="province" jdbcType="VARCHAR" property="province" />
     <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="detail_address" jdbcType="VARCHAR" property="detailAddress" />
     <result column="comp_ introduction" jdbcType="VARCHAR" property="compIntroduction" />
     <result column="business_license" jdbcType="VARCHAR" property="businessLicense" />
     <result column="contact_name" jdbcType="VARCHAR" property="contactName" />
@@ -80,9 +81,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, create_time, modify_time, comp_id, comp_name, comp_establish_time, legal_person, 
-    comp_size, comp_nature, comp_industry, province, city, "comp_ introduction", business_license, 
-    contact_name, contact_phone, contact_email, is_certified
+    id, create_time, modify_time, comp_id, comp_name, comp_home, comp_establish_time, 
+    comp_size, comp_nature, comp_industry, province, city, detail_address, "comp_ introduction", 
+    business_license, contact_name, contact_phone, contact_email, is_certified
   </sql>
   <select id="selectByExample" parameterType="com.cspticw.entity.CompInfoCertiExample" resultMap="BaseResultMap">
     select
@@ -90,7 +91,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from "comp _info_certi"
+    from comp_info_certi
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -101,37 +102,37 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from "comp _info_certi"
+    from comp_info_certi
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from "comp _info_certi"
+    delete from comp_info_certi
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.cspticw.entity.CompInfoCertiExample">
-    delete from "comp _info_certi"
+    delete from comp_info_certi
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.cspticw.entity.CompInfoCerti">
-    insert into "comp _info_certi" (id, create_time, modify_time, 
-      comp_id, comp_name, comp_establish_time, 
-      legal_person, comp_size, comp_nature, 
+    insert into comp_info_certi (id, create_time, modify_time, 
+      comp_id, comp_name, comp_home, 
+      comp_establish_time, comp_size, comp_nature, 
       comp_industry, province, city, 
-      "comp_ introduction", business_license, contact_name, 
-      contact_phone, contact_email, is_certified
-      )
+      detail_address, "comp_ introduction", business_license, 
+      contact_name, contact_phone, contact_email, 
+      is_certified)
     values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
-      #{compId,jdbcType=BIGINT}, #{compName,jdbcType=VARCHAR}, #{compEstablishTime,jdbcType=TIMESTAMP}, 
-      #{legalPerson,jdbcType=VARCHAR}, #{compSize,jdbcType=VARCHAR}, #{compNature,jdbcType=VARCHAR}, 
+      #{compId,jdbcType=BIGINT}, #{compName,jdbcType=VARCHAR}, #{compHome,jdbcType=VARCHAR}, 
+      #{compEstablishTime,jdbcType=TIMESTAMP}, #{compSize,jdbcType=VARCHAR}, #{compNature,jdbcType=VARCHAR}, 
       #{compIndustry,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
-      #{compIntroduction,jdbcType=VARCHAR}, #{businessLicense,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, 
-      #{contactPhone,jdbcType=VARCHAR}, #{contactEmail,jdbcType=VARCHAR}, #{isCertified,jdbcType=INTEGER}
-      )
+      #{detailAddress,jdbcType=VARCHAR}, #{compIntroduction,jdbcType=VARCHAR}, #{businessLicense,jdbcType=VARCHAR}, 
+      #{contactName,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, #{contactEmail,jdbcType=VARCHAR}, 
+      #{isCertified,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.cspticw.entity.CompInfoCerti">
-    insert into "comp _info_certi"
+    insert into comp_info_certi
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -148,11 +149,11 @@
       <if test="compName != null">
         comp_name,
       </if>
+      <if test="compHome != null">
+        comp_home,
+      </if>
       <if test="compEstablishTime != null">
         comp_establish_time,
-      </if>
-      <if test="legalPerson != null">
-        legal_person,
       </if>
       <if test="compSize != null">
         comp_size,
@@ -168,6 +169,9 @@
       </if>
       <if test="city != null">
         city,
+      </if>
+      <if test="detailAddress != null">
+        detail_address,
       </if>
       <if test="compIntroduction != null">
         "comp_ introduction",
@@ -204,11 +208,11 @@
       <if test="compName != null">
         #{compName,jdbcType=VARCHAR},
       </if>
+      <if test="compHome != null">
+        #{compHome,jdbcType=VARCHAR},
+      </if>
       <if test="compEstablishTime != null">
         #{compEstablishTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="legalPerson != null">
-        #{legalPerson,jdbcType=VARCHAR},
       </if>
       <if test="compSize != null">
         #{compSize,jdbcType=VARCHAR},
@@ -224,6 +228,9 @@
       </if>
       <if test="city != null">
         #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAddress != null">
+        #{detailAddress,jdbcType=VARCHAR},
       </if>
       <if test="compIntroduction != null">
         #{compIntroduction,jdbcType=VARCHAR},
@@ -246,13 +253,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.cspticw.entity.CompInfoCertiExample" resultType="java.lang.Long">
-    select count(*) from "comp _info_certi"
+    select count(*) from comp_info_certi
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update "comp _info_certi"
+    update comp_info_certi
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
@@ -269,11 +276,11 @@
       <if test="record.compName != null">
         comp_name = #{record.compName,jdbcType=VARCHAR},
       </if>
+      <if test="record.compHome != null">
+        comp_home = #{record.compHome,jdbcType=VARCHAR},
+      </if>
       <if test="record.compEstablishTime != null">
         comp_establish_time = #{record.compEstablishTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.legalPerson != null">
-        legal_person = #{record.legalPerson,jdbcType=VARCHAR},
       </if>
       <if test="record.compSize != null">
         comp_size = #{record.compSize,jdbcType=VARCHAR},
@@ -289,6 +296,9 @@
       </if>
       <if test="record.city != null">
         city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailAddress != null">
+        detail_address = #{record.detailAddress,jdbcType=VARCHAR},
       </if>
       <if test="record.compIntroduction != null">
         "comp_ introduction" = #{record.compIntroduction,jdbcType=VARCHAR},
@@ -314,19 +324,20 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update "comp _info_certi"
+    update comp_info_certi
     set id = #{record.id,jdbcType=BIGINT},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
       comp_id = #{record.compId,jdbcType=BIGINT},
       comp_name = #{record.compName,jdbcType=VARCHAR},
+      comp_home = #{record.compHome,jdbcType=VARCHAR},
       comp_establish_time = #{record.compEstablishTime,jdbcType=TIMESTAMP},
-      legal_person = #{record.legalPerson,jdbcType=VARCHAR},
       comp_size = #{record.compSize,jdbcType=VARCHAR},
       comp_nature = #{record.compNature,jdbcType=VARCHAR},
       comp_industry = #{record.compIndustry,jdbcType=VARCHAR},
       province = #{record.province,jdbcType=VARCHAR},
       city = #{record.city,jdbcType=VARCHAR},
+      detail_address = #{record.detailAddress,jdbcType=VARCHAR},
       "comp_ introduction" = #{record.compIntroduction,jdbcType=VARCHAR},
       business_license = #{record.businessLicense,jdbcType=VARCHAR},
       contact_name = #{record.contactName,jdbcType=VARCHAR},
@@ -338,7 +349,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.cspticw.entity.CompInfoCerti">
-    update "comp _info_certi"
+    update comp_info_certi
     <set>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -352,11 +363,11 @@
       <if test="compName != null">
         comp_name = #{compName,jdbcType=VARCHAR},
       </if>
+      <if test="compHome != null">
+        comp_home = #{compHome,jdbcType=VARCHAR},
+      </if>
       <if test="compEstablishTime != null">
         comp_establish_time = #{compEstablishTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="legalPerson != null">
-        legal_person = #{legalPerson,jdbcType=VARCHAR},
       </if>
       <if test="compSize != null">
         comp_size = #{compSize,jdbcType=VARCHAR},
@@ -372,6 +383,9 @@
       </if>
       <if test="city != null">
         city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAddress != null">
+        detail_address = #{detailAddress,jdbcType=VARCHAR},
       </if>
       <if test="compIntroduction != null">
         "comp_ introduction" = #{compIntroduction,jdbcType=VARCHAR},
@@ -395,18 +409,19 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cspticw.entity.CompInfoCerti">
-    update "comp _info_certi"
+    update comp_info_certi
     set create_time = #{createTime,jdbcType=TIMESTAMP},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
       comp_id = #{compId,jdbcType=BIGINT},
       comp_name = #{compName,jdbcType=VARCHAR},
+      comp_home = #{compHome,jdbcType=VARCHAR},
       comp_establish_time = #{compEstablishTime,jdbcType=TIMESTAMP},
-      legal_person = #{legalPerson,jdbcType=VARCHAR},
       comp_size = #{compSize,jdbcType=VARCHAR},
       comp_nature = #{compNature,jdbcType=VARCHAR},
       comp_industry = #{compIndustry,jdbcType=VARCHAR},
       province = #{province,jdbcType=VARCHAR},
       city = #{city,jdbcType=VARCHAR},
+      detail_address = #{detailAddress,jdbcType=VARCHAR},
       "comp_ introduction" = #{compIntroduction,jdbcType=VARCHAR},
       business_license = #{businessLicense,jdbcType=VARCHAR},
       contact_name = #{contactName,jdbcType=VARCHAR},

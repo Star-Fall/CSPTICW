@@ -38,6 +38,7 @@
 		<property name="filterChainDefinitions">
 			<value>
 				/resource/** = anon
+				../upfile/**=anon
 				<!-- 退出，shiro会自动清除session，放在/**上面，防止被/**拦截 -->
 				/logout=logout
 				/queryItems=perms[item:query]

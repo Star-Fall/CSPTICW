@@ -1,0 +1,39 @@
+.nav-path{
+    font-size: 16px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 20px;
+    margin-left: -50px;
+}
+.center-body{
+    margin: auto;
+    margin-top: 10px;
+    height: 300px;
+}
+.center-menu{
+    margin-left: 40px;
+    text-align: center;
+}
+.left-nav-one{
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 25px;
+    text-align: left;
+}
+.left-nav-zhe{
+    display: none;
+    line-height: 18px;
+}
+.input-error{
+    font-size: 14px;
+    font-weight: normal;
+    color: red;
+}
+.resume-div>.resume-form>.panel{
+    margin-bottom: 10px;
+}
+.resume-div>.resume-form>.panel>.panel-heading{
+    font-size: 16px;
+    font-weight: bold;
+    color:#337AB7;
+}

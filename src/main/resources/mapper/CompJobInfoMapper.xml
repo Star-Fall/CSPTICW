@@ -6,18 +6,17 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
     <result column="comp_id" jdbcType="BIGINT" property="compId" />
-    <result column="job_title" jdbcType="VARCHAR" property="jobTitle" />
     <result column="job_cate_id" jdbcType="BIGINT" property="jobCateId" />
     <result column="job_place" jdbcType="VARCHAR" property="jobPlace" />
     <result column="job_treat" jdbcType="DECIMAL" property="jobTreat" />
     <result column="treat_method" jdbcType="VARCHAR" property="treatMethod" />
     <result column="pay_method" jdbcType="VARCHAR" property="payMethod" />
-    <result column="job_require" jdbcType="VARCHAR" property="jobRequire" />
+    <result column="job_title" jdbcType="VARCHAR" property="jobTitle" />
     <result column="job_content" jdbcType="VARCHAR" property="jobContent" />
-    <result column="job_time" jdbcType="VARCHAR" property="jobTime" />
+    <result column="job_require" jdbcType="VARCHAR" property="jobRequire" />
+    <result column="person_num" jdbcType="VARCHAR" property="personNum" />
     <result column="contact_name" jdbcType="VARCHAR" property="contactName" />
     <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
-    <result column="person_num" jdbcType="VARCHAR" property="personNum" />
     <result column="is_available" jdbcType="INTEGER" property="isAvailable" />
     <result column="resu_hot" jdbcType="INTEGER" property="resuHot" />
   </resultMap>
@@ -80,9 +79,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, create_time, modify_time, comp_id, job_title, job_cate_id, job_place, job_treat, 
-    treat_method, pay_method, job_require, job_content, job_time, contact_name, contact_phone, 
-    person_num, is_available, resu_hot
+    id, create_time, modify_time, comp_id, job_cate_id, job_place, job_treat, treat_method, 
+    pay_method, job_title, job_content, job_require, person_num, contact_name, contact_phone, 
+    is_available, resu_hot
   </sql>
   <select id="selectByExample" parameterType="com.cspticw.entity.CompJobInfoExample" resultMap="BaseResultMap">
     select
@@ -116,19 +115,17 @@
   </delete>
   <insert id="insert" parameterType="com.cspticw.entity.CompJobInfo">
     insert into comp_job_info (id, create_time, modify_time, 
-      comp_id, job_title, job_cate_id, 
-      job_place, job_treat, treat_method, 
-      pay_method, job_require, job_content, 
-      job_time, contact_name, contact_phone, 
-      person_num, is_available, resu_hot
-      )
+      comp_id, job_cate_id, job_place, 
+      job_treat, treat_method, pay_method, 
+      job_title, job_content, job_require, 
+      person_num, contact_name, contact_phone, 
+      is_available, resu_hot)
     values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
-      #{compId,jdbcType=BIGINT}, #{jobTitle,jdbcType=VARCHAR}, #{jobCateId,jdbcType=BIGINT}, 
-      #{jobPlace,jdbcType=VARCHAR}, #{jobTreat,jdbcType=DECIMAL}, #{treatMethod,jdbcType=VARCHAR}, 
-      #{payMethod,jdbcType=VARCHAR}, #{jobRequire,jdbcType=VARCHAR}, #{jobContent,jdbcType=VARCHAR}, 
-      #{jobTime,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, 
-      #{personNum,jdbcType=VARCHAR}, #{isAvailable,jdbcType=INTEGER}, #{resuHot,jdbcType=INTEGER}
-      )
+      #{compId,jdbcType=BIGINT}, #{jobCateId,jdbcType=BIGINT}, #{jobPlace,jdbcType=VARCHAR}, 
+      #{jobTreat,jdbcType=DECIMAL}, #{treatMethod,jdbcType=VARCHAR}, #{payMethod,jdbcType=VARCHAR}, 
+      #{jobTitle,jdbcType=VARCHAR}, #{jobContent,jdbcType=VARCHAR}, #{jobRequire,jdbcType=VARCHAR}, 
+      #{personNum,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, 
+      #{isAvailable,jdbcType=INTEGER}, #{resuHot,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.cspticw.entity.CompJobInfo">
     insert into comp_job_info
@@ -145,9 +142,6 @@
       <if test="compId != null">
         comp_id,
       </if>
-      <if test="jobTitle != null">
-        job_title,
-      </if>
       <if test="jobCateId != null">
         job_cate_id,
       </if>
@@ -163,23 +157,23 @@
       <if test="payMethod != null">
         pay_method,
       </if>
-      <if test="jobRequire != null">
-        job_require,
+      <if test="jobTitle != null">
+        job_title,
       </if>
       <if test="jobContent != null">
         job_content,
       </if>
-      <if test="jobTime != null">
-        job_time,
+      <if test="jobRequire != null">
+        job_require,
+      </if>
+      <if test="personNum != null">
+        person_num,
       </if>
       <if test="contactName != null">
         contact_name,
       </if>
       <if test="contactPhone != null">
         contact_phone,
-      </if>
-      <if test="personNum != null">
-        person_num,
       </if>
       <if test="isAvailable != null">
         is_available,
@@ -201,9 +195,6 @@
       <if test="compId != null">
         #{compId,jdbcType=BIGINT},
       </if>
-      <if test="jobTitle != null">
-        #{jobTitle,jdbcType=VARCHAR},
-      </if>
       <if test="jobCateId != null">
         #{jobCateId,jdbcType=BIGINT},
       </if>
@@ -219,23 +210,23 @@
       <if test="payMethod != null">
         #{payMethod,jdbcType=VARCHAR},
       </if>
-      <if test="jobRequire != null">
-        #{jobRequire,jdbcType=VARCHAR},
+      <if test="jobTitle != null">
+        #{jobTitle,jdbcType=VARCHAR},
       </if>
       <if test="jobContent != null">
         #{jobContent,jdbcType=VARCHAR},
       </if>
-      <if test="jobTime != null">
-        #{jobTime,jdbcType=VARCHAR},
+      <if test="jobRequire != null">
+        #{jobRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="personNum != null">
+        #{personNum,jdbcType=VARCHAR},
       </if>
       <if test="contactName != null">
         #{contactName,jdbcType=VARCHAR},
       </if>
       <if test="contactPhone != null">
         #{contactPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="personNum != null">
-        #{personNum,jdbcType=VARCHAR},
       </if>
       <if test="isAvailable != null">
         #{isAvailable,jdbcType=INTEGER},
@@ -266,9 +257,6 @@
       <if test="record.compId != null">
         comp_id = #{record.compId,jdbcType=BIGINT},
       </if>
-      <if test="record.jobTitle != null">
-        job_title = #{record.jobTitle,jdbcType=VARCHAR},
-      </if>
       <if test="record.jobCateId != null">
         job_cate_id = #{record.jobCateId,jdbcType=BIGINT},
       </if>
@@ -284,23 +272,23 @@
       <if test="record.payMethod != null">
         pay_method = #{record.payMethod,jdbcType=VARCHAR},
       </if>
-      <if test="record.jobRequire != null">
-        job_require = #{record.jobRequire,jdbcType=VARCHAR},
+      <if test="record.jobTitle != null">
+        job_title = #{record.jobTitle,jdbcType=VARCHAR},
       </if>
       <if test="record.jobContent != null">
         job_content = #{record.jobContent,jdbcType=VARCHAR},
       </if>
-      <if test="record.jobTime != null">
-        job_time = #{record.jobTime,jdbcType=VARCHAR},
+      <if test="record.jobRequire != null">
+        job_require = #{record.jobRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personNum != null">
+        person_num = #{record.personNum,jdbcType=VARCHAR},
       </if>
       <if test="record.contactName != null">
         contact_name = #{record.contactName,jdbcType=VARCHAR},
       </if>
       <if test="record.contactPhone != null">
         contact_phone = #{record.contactPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="record.personNum != null">
-        person_num = #{record.personNum,jdbcType=VARCHAR},
       </if>
       <if test="record.isAvailable != null">
         is_available = #{record.isAvailable,jdbcType=INTEGER},
@@ -319,18 +307,17 @@
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
       comp_id = #{record.compId,jdbcType=BIGINT},
-      job_title = #{record.jobTitle,jdbcType=VARCHAR},
       job_cate_id = #{record.jobCateId,jdbcType=BIGINT},
       job_place = #{record.jobPlace,jdbcType=VARCHAR},
       job_treat = #{record.jobTreat,jdbcType=DECIMAL},
       treat_method = #{record.treatMethod,jdbcType=VARCHAR},
       pay_method = #{record.payMethod,jdbcType=VARCHAR},
-      job_require = #{record.jobRequire,jdbcType=VARCHAR},
+      job_title = #{record.jobTitle,jdbcType=VARCHAR},
       job_content = #{record.jobContent,jdbcType=VARCHAR},
-      job_time = #{record.jobTime,jdbcType=VARCHAR},
+      job_require = #{record.jobRequire,jdbcType=VARCHAR},
+      person_num = #{record.personNum,jdbcType=VARCHAR},
       contact_name = #{record.contactName,jdbcType=VARCHAR},
       contact_phone = #{record.contactPhone,jdbcType=VARCHAR},
-      person_num = #{record.personNum,jdbcType=VARCHAR},
       is_available = #{record.isAvailable,jdbcType=INTEGER},
       resu_hot = #{record.resuHot,jdbcType=INTEGER}
     <if test="_parameter != null">
@@ -349,9 +336,6 @@
       <if test="compId != null">
         comp_id = #{compId,jdbcType=BIGINT},
       </if>
-      <if test="jobTitle != null">
-        job_title = #{jobTitle,jdbcType=VARCHAR},
-      </if>
       <if test="jobCateId != null">
         job_cate_id = #{jobCateId,jdbcType=BIGINT},
       </if>
@@ -367,23 +351,23 @@
       <if test="payMethod != null">
         pay_method = #{payMethod,jdbcType=VARCHAR},
       </if>
-      <if test="jobRequire != null">
-        job_require = #{jobRequire,jdbcType=VARCHAR},
+      <if test="jobTitle != null">
+        job_title = #{jobTitle,jdbcType=VARCHAR},
       </if>
       <if test="jobContent != null">
         job_content = #{jobContent,jdbcType=VARCHAR},
       </if>
-      <if test="jobTime != null">
-        job_time = #{jobTime,jdbcType=VARCHAR},
+      <if test="jobRequire != null">
+        job_require = #{jobRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="personNum != null">
+        person_num = #{personNum,jdbcType=VARCHAR},
       </if>
       <if test="contactName != null">
         contact_name = #{contactName,jdbcType=VARCHAR},
       </if>
       <if test="contactPhone != null">
         contact_phone = #{contactPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="personNum != null">
-        person_num = #{personNum,jdbcType=VARCHAR},
       </if>
       <if test="isAvailable != null">
         is_available = #{isAvailable,jdbcType=INTEGER},
@@ -399,18 +383,17 @@
     set create_time = #{createTime,jdbcType=TIMESTAMP},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
       comp_id = #{compId,jdbcType=BIGINT},
-      job_title = #{jobTitle,jdbcType=VARCHAR},
       job_cate_id = #{jobCateId,jdbcType=BIGINT},
       job_place = #{jobPlace,jdbcType=VARCHAR},
       job_treat = #{jobTreat,jdbcType=DECIMAL},
       treat_method = #{treatMethod,jdbcType=VARCHAR},
       pay_method = #{payMethod,jdbcType=VARCHAR},
-      job_require = #{jobRequire,jdbcType=VARCHAR},
+      job_title = #{jobTitle,jdbcType=VARCHAR},
       job_content = #{jobContent,jdbcType=VARCHAR},
-      job_time = #{jobTime,jdbcType=VARCHAR},
+      job_require = #{jobRequire,jdbcType=VARCHAR},
+      person_num = #{personNum,jdbcType=VARCHAR},
       contact_name = #{contactName,jdbcType=VARCHAR},
       contact_phone = #{contactPhone,jdbcType=VARCHAR},
-      person_num = #{personNum,jdbcType=VARCHAR},
       is_available = #{isAvailable,jdbcType=INTEGER},
       resu_hot = #{resuHot,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}

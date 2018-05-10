@@ -19,6 +19,7 @@ import com.cspticw.entity.StuUserInfo;
 import com.cspticw.service.CompUserService;
 import com.cspticw.service.StuUserService;
 import com.cspticw.util.MoblieMessageUtil;
+import com.cspticw.util.ValidateMap;
 import com.cspticw.util.tools.Constants;
 import com.cspticw.util.tools.ErrorCode;
 
@@ -30,7 +31,7 @@ public class RegistController {
 	@Autowired
 	private CompUserService compUserService;
 	// 验证码
-	private static String validateCode = "";
+	private ValidateMap validateMap;
 
 	private HashMap<String, Object> returnMap;
 
@@ -49,7 +50,9 @@ public class RegistController {
 			return returnMap;
 		}
 		String regist = map.get("regist").toString();
-		// 验证码
+		// 验证码 根据手机号取出
+		validateMap = ValidateMap.getInstance();
+		String validateCode = validateMap.get(map.get("userName").toString());
 		if ("".equals(validateCode) || "".equals(map.get("validateCode"))
 				|| !validateCode.equals(map.get("validateCode"))) {
 			returnMap.put(Constants.ERROR, ErrorCode.ERROR_VALIDATE);
@@ -64,7 +67,7 @@ public class RegistController {
 				returnMap.put(Constants.ERROR, ErrorCode.ERROR_ADD_USER);
 				return returnMap;
 			}
-			// 注册完成进行登录 TODO
+			// 注册完成进行登录
 			afterLogin(Constants.STUDENT_USER, student.getUserName(),
 					map.get("password").toString());
 		} else if (Constants.COMPANY_USER.equals(regist)) {
@@ -75,10 +78,12 @@ public class RegistController {
 				returnMap.put(Constants.ERROR, ErrorCode.ERROR_ADD_USER);
 				return returnMap;
 			}
-			// 注册完成进行登录 TODO
+			// 注册完成进行登录
 			afterLogin(Constants.COMPANY_USER, company.getUserName(),
 					map.get("password").toString());
 		}
+		// 注册成功去除存储的验证码
+		validateMap.remove(map.get("userName").toString());
 		returnMap.put(Constants.MSG, Constants.SUCCESS);
 		return returnMap;
 	}
@@ -111,6 +116,9 @@ public class RegistController {
 			return returnMap;
 		}
 		System.out.println("code:" + code);
+		// 存储发送的验证码
+		validateMap = ValidateMap.getInstance();
+		validateMap.put(userName, code);
 		returnMap.put(Constants.MSG, responseMap);
 		return returnMap;
 	}

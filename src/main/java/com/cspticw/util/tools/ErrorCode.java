@@ -29,4 +29,16 @@ public interface ErrorCode {
 	public static final String ERROR_PASSWORD = "2004";
 	// 其他用户错误
 	public static final String ERROR_ORTHER = "2005";
+
+	// 上传文件错误
+	public static final String ERROR_UP_FILE = "3000";
+
+	// 添加简历错误
+	public static final String ERROR_ADD_RESUME = "3001";
+	// 更新简历错误
+	public static final String ERROR_UPDATE_RESUME = "3002";
+	// 删除简历错误
+	public static final String ERROR_DELETE_RESUME = "3003";
+	// 添加行业错误
+	public static final String ERROR_ADD_JOB_CATEGORY = "0001";
 }

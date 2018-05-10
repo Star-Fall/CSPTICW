@@ -1,30 +1,44 @@
 package com.cspticw.dao;
 
-import com.cspticw.entity.StuResumeInfo;
-import com.cspticw.entity.StuResumeInfoExample;
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
+import com.alibaba.fastjson.JSONObject;
+import com.cspticw.entity.StuResumeInfo;
+import com.cspticw.entity.StuResumeInfoExample;
+
 public interface StuResumeInfoMapper {
-    long countByExample(StuResumeInfoExample example);
 
-    int deleteByExample(StuResumeInfoExample example);
+	long countByExample(StuResumeInfoExample example);
 
-    int deleteByPrimaryKey(Long id);
+	int deleteByExample(StuResumeInfoExample example);
 
-    int insert(StuResumeInfo record);
+	int deleteByPrimaryKey(Long id);
 
-    int insertSelective(StuResumeInfo record);
+	Long insert(StuResumeInfo record);
 
-    List<StuResumeInfo> selectByExample(StuResumeInfoExample example);
+	int insertSelective(StuResumeInfo record);
 
-    StuResumeInfo selectByPrimaryKey(Long id);
+	List<StuResumeInfo> selectByExample(StuResumeInfoExample example);
 
-    int updateByExampleSelective(@Param("record") StuResumeInfo record, @Param("example") StuResumeInfoExample example);
+	StuResumeInfo selectByPrimaryKey(Long id);
 
-    int updateByExample(@Param("record") StuResumeInfo record, @Param("example") StuResumeInfoExample example);
+	int updateByExampleSelective(@Param("record") StuResumeInfo record,
+			@Param("example") StuResumeInfoExample example);
 
-    int updateByPrimaryKeySelective(StuResumeInfo record);
+	int updateByExample(@Param("record") StuResumeInfo record,
+			@Param("example") StuResumeInfoExample example);
 
-    int updateByPrimaryKey(StuResumeInfo record);
+	int updateByPrimaryKeySelective(StuResumeInfo record);
+
+	int updateByPrimaryKey(StuResumeInfo record);
+
+	/**
+	 * 新增
+	 */
+
+	List<JSONObject> getMyResumeDetailList(@Param("studentId") Long studentId);
+
+	JSONObject getResumeDetail(@Param("id") Long id);
 }
