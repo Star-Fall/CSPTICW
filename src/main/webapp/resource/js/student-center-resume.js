@@ -13,6 +13,21 @@ $(function () {
 var app=angular.module('studentCenter',[]);
 //简历Controller
 app.controller('resumeController',function ($scope,$http) {
+	//首先请求用户的数据
+	$http({
+        url:'/get_login_user',
+        method:'get'
+    }).success(function(response, status, headers, config){
+    	//已登录
+    	 if(response.data){
+    		 $(".login_info").css("display","block");
+    		 $scope.loginUser=response.data;
+    		 console.log($scope.loginUser);
+    	 }else{
+    		 $(".login_info").css("display","none");
+    	 }
+    	 
+    })
     //基本信息
     $scope.real_name="";
     $scope.age="";

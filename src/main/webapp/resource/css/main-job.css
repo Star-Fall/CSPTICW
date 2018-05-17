@@ -1,0 +1,71 @@
+.login_out{
+	text-align: center;
+	line-height: 30px;;
+	height: 30px;
+}
+.login{
+	padding: 0px;
+}
+.logout{
+	padding: 0px;
+}
+.nav-4{
+	margin-top: 8px;
+	margin-left: -40px;
+	font-size: 17px;
+}
+.search{
+	height: 54px;
+	line-height: 54px;
+	margin-left: 10px;
+}
+.job-row{
+	margin-top: 10px;
+	margin-left: 150px;
+}
+.job-panel{
+	margin-bottom: 5px;
+}
+.job-title{
+	font-size: 17px;
+}
+.job-personNum,.job-cate,.job-company{
+	padding: 0px;
+	color: #999999;
+	font-size:13px;
+}
+.job-treat{
+	font-size: 15px;
+	font-weight: bold;
+	color: #ff3a00;
+}
+.job-treat,.job-treatMethod,.job-payMethod{
+	padding: 0px;
+}
+
+
+.modal-jobTitle{
+	font-size: 20px;
+	margin-bottom: 8px;
+}
+.modal-jobTreat{
+	text-align: center;
+	font-size: 18px;
+	color: #ff0600;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+.modal-jobTreat,.modal-treatMethod,.modal-payMethod,.modal-personNum,
+.modal-jobPlace-l,.modal-jobPlace,.modal-jobCate-l,.modal-jobCate,
+.modal-jobRequire-l,.modal-jobRequire,.modal-jobContent-l,.modal-jobContent{
+	padding: 0px;
+}
+.modal-jobPlace-l,.modal-jobCate-l,.modal-jobRequire-l,.modal-jobContent-l{
+	font-size: 16px;
+	font-weight: bold;
+}
+.modal-jobPlace,.modal-jobCate,.modal-jobRequire,.modal-jobContent{
+	font-size: 15px;
+	margin-bottom: 8px;
+	word-wrap:break-word;
+}

@@ -1,30 +1,50 @@
 package com.cspticw.dao;
 
-import com.cspticw.entity.CompJobInfo;
-import com.cspticw.entity.CompJobInfoExample;
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
+import com.alibaba.fastjson.JSONObject;
+import com.cspticw.entity.CompJobInfo;
+import com.cspticw.entity.CompJobInfoExample;
+
 public interface CompJobInfoMapper {
-    long countByExample(CompJobInfoExample example);
 
-    int deleteByExample(CompJobInfoExample example);
+	long countByExample(CompJobInfoExample example);
 
-    int deleteByPrimaryKey(Long id);
+	int deleteByExample(CompJobInfoExample example);
 
-    int insert(CompJobInfo record);
+	int deleteByPrimaryKey(Long id);
 
-    int insertSelective(CompJobInfo record);
+	int insert(CompJobInfo record);
 
-    List<CompJobInfo> selectByExample(CompJobInfoExample example);
+	int insertSelective(CompJobInfo record);
 
-    CompJobInfo selectByPrimaryKey(Long id);
+	List<CompJobInfo> selectByExample(CompJobInfoExample example);
 
-    int updateByExampleSelective(@Param("record") CompJobInfo record, @Param("example") CompJobInfoExample example);
+	CompJobInfo selectByPrimaryKey(Long id);
 
-    int updateByExample(@Param("record") CompJobInfo record, @Param("example") CompJobInfoExample example);
+	int updateByExampleSelective(@Param("record") CompJobInfo record,
+			@Param("example") CompJobInfoExample example);
 
-    int updateByPrimaryKeySelective(CompJobInfo record);
+	int updateByExample(@Param("record") CompJobInfo record,
+			@Param("example") CompJobInfoExample example);
 
-    int updateByPrimaryKey(CompJobInfo record);
+	int updateByPrimaryKeySelective(CompJobInfo record);
+
+	int updateByPrimaryKey(CompJobInfo record);
+
+	/**
+	 * 新增
+	 */
+	List<CompJobInfo> getCompJobTop10(@Param("province") String province,
+			@Param("city") String city);
+
+	/**
+	 * 根据id查看工作公司
+	 * 
+	 * @param jobId
+	 * @return
+	 */
+	JSONObject getCompanyJobDetailById(@Param("jobId") Long jobId);
 }

@@ -27,17 +27,21 @@ public class FileDownloadController extends BaseController {
 			throws Exception {
 		fileName = new String(fileName.getBytes("ISO-8859-1"), "utf-8");
 
-		System.out.println(fileName + "," + stuId);
 		ServletContext servletContext = request.getServletContext();
 
 		// String fileName = "JAVA开发工程师-邵赫.html";
 		// 得到文件所在位置
 		// 父路径/upfile/student(company)/1
 		String upfilePath = getUpFilePath(Constants.STUDENT_USER);
-		String realPath = upfilePath + File.separator + fileName;
+		String realPath = upfilePath + File.separator + stuId + File.separator + fileName;
+		// 如果获取到stuId
+		if (getStuUserInfo() != null || getCompUserInfo() != null) {
+			// 去除uerId
+			int indexOf = upfilePath.lastIndexOf(File.separator);
+			upfilePath = upfilePath.substring(0, indexOf + 1);
+			realPath = upfilePath + stuId + File.separator + fileName;
+		}
 		// "C:\\apache-tomcat-7.0.86\\webapps\\upfile\\student\\2\\JAVA开发工程师-邵赫.html";
-		// servletContext.getRealPath("/WEB-INF/" + fileName);
-
 		InputStream in = new FileInputStream(new File(realPath));// 将该文件加入到输入流之中
 		byte[] body = null;
 		body = new byte[in.available()];// 返回下一次对此输入流调用的方法可以不受阻塞地从此输入流读取（或跳过）的估计剩余字节数

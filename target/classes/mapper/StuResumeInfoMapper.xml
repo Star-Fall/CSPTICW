@@ -667,5 +667,30 @@
 		WHERE
 			sr.id =#{id,jdbcType=BIGINT}
 	</select>
+	
+	<select id="getResumeTop10" resultMap="MyResumeDetailMap">
+		SELECT
+			sr.*, rj.job_cate_id,
+			jc.category_name,
+			we.id AS workExperienceId,
+			we.work_title,
+			we.work_content
+		FROM
+			stu_resume_info sr
+		LEFT JOIN resume_job rj ON sr.id = rj.resu_id
+		LEFT JOIN job_category jc ON rj.job_cate_id = jc.id
+		LEFT JOIN work_experience we ON sr.id = we.resu_id
+		WHERE
+			sr.`status` = 0
+		<if test="province!=null">
+		AND sr.province LIKE #{province}
+		</if>
+		<if test="city!=null">
+		AND sr.city LIKE #{city}
+		</if>
+		ORDER BY
+			sr.resu_hot DESC,
+			sr.create_time DESC
+	</select>
 
 </mapper>

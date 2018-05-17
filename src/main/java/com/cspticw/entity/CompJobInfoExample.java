@@ -346,63 +346,73 @@ public class CompJobInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andJobCateIdIsNull() {
-            addCriterion("job_cate_id is null");
+        public Criteria andJobCateIsNull() {
+            addCriterion("job_cate is null");
             return (Criteria) this;
         }
 
-        public Criteria andJobCateIdIsNotNull() {
-            addCriterion("job_cate_id is not null");
+        public Criteria andJobCateIsNotNull() {
+            addCriterion("job_cate is not null");
             return (Criteria) this;
         }
 
-        public Criteria andJobCateIdEqualTo(Long value) {
-            addCriterion("job_cate_id =", value, "jobCateId");
+        public Criteria andJobCateEqualTo(String value) {
+            addCriterion("job_cate =", value, "jobCate");
             return (Criteria) this;
         }
 
-        public Criteria andJobCateIdNotEqualTo(Long value) {
-            addCriterion("job_cate_id <>", value, "jobCateId");
+        public Criteria andJobCateNotEqualTo(String value) {
+            addCriterion("job_cate <>", value, "jobCate");
             return (Criteria) this;
         }
 
-        public Criteria andJobCateIdGreaterThan(Long value) {
-            addCriterion("job_cate_id >", value, "jobCateId");
+        public Criteria andJobCateGreaterThan(String value) {
+            addCriterion("job_cate >", value, "jobCate");
             return (Criteria) this;
         }
 
-        public Criteria andJobCateIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("job_cate_id >=", value, "jobCateId");
+        public Criteria andJobCateGreaterThanOrEqualTo(String value) {
+            addCriterion("job_cate >=", value, "jobCate");
             return (Criteria) this;
         }
 
-        public Criteria andJobCateIdLessThan(Long value) {
-            addCriterion("job_cate_id <", value, "jobCateId");
+        public Criteria andJobCateLessThan(String value) {
+            addCriterion("job_cate <", value, "jobCate");
             return (Criteria) this;
         }
 
-        public Criteria andJobCateIdLessThanOrEqualTo(Long value) {
-            addCriterion("job_cate_id <=", value, "jobCateId");
+        public Criteria andJobCateLessThanOrEqualTo(String value) {
+            addCriterion("job_cate <=", value, "jobCate");
             return (Criteria) this;
         }
 
-        public Criteria andJobCateIdIn(List<Long> values) {
-            addCriterion("job_cate_id in", values, "jobCateId");
+        public Criteria andJobCateLike(String value) {
+            addCriterion("job_cate like", value, "jobCate");
             return (Criteria) this;
         }
 
-        public Criteria andJobCateIdNotIn(List<Long> values) {
-            addCriterion("job_cate_id not in", values, "jobCateId");
+        public Criteria andJobCateNotLike(String value) {
+            addCriterion("job_cate not like", value, "jobCate");
             return (Criteria) this;
         }
 
-        public Criteria andJobCateIdBetween(Long value1, Long value2) {
-            addCriterion("job_cate_id between", value1, value2, "jobCateId");
+        public Criteria andJobCateIn(List<String> values) {
+            addCriterion("job_cate in", values, "jobCate");
             return (Criteria) this;
         }
 
-        public Criteria andJobCateIdNotBetween(Long value1, Long value2) {
-            addCriterion("job_cate_id not between", value1, value2, "jobCateId");
+        public Criteria andJobCateNotIn(List<String> values) {
+            addCriterion("job_cate not in", values, "jobCate");
+            return (Criteria) this;
+        }
+
+        public Criteria andJobCateBetween(String value1, String value2) {
+            addCriterion("job_cate between", value1, value2, "jobCate");
+            return (Criteria) this;
+        }
+
+        public Criteria andJobCateNotBetween(String value1, String value2) {
+            addCriterion("job_cate not between", value1, value2, "jobCate");
             return (Criteria) this;
         }
 

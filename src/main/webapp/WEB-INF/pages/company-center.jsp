@@ -7,79 +7,88 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="../../resource/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../resource/css/common.css">
-    <link rel="stylesheet" type="text/css" href="../../resource/css/company-center.css">
+    <link rel="stylesheet" type="text/css" href="../../resource/css/company-center-certi.css">
 </head>
-<body ng-app="" class="body container-fluid">
-<div id="container-fluid">
+<body ng-app="companyCenter" class="body container-fluid">
+<div id="container-fluid" ng-controller="companyCenterCertiController">
 <!--登录条-->
     <div class="nav_log row">
         <div class="change_city  col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <span>上海站</span><a href="#">【切换城市】</a>
         </div>
-        <!--登录注册部分-->
-        <div class="login_out col-xs-offset-8 col-sm-offset-8 col-md-offset-8  col-md-offset-8 col-xs-2 col-sm-2 col-md-2 col-lg-2">
-
-            用户信息
-        </div>
+        <!-- 登录的信息 -->
+		<div class="login_info dropdown col-xs-offset-8 col-sm-offset-8 col-md-offset-8 col-md-offset-8 
+			col-xs-2 col-sm-2 col-md-2 col-lg-2 row" >
+		  	<a class="dropdown-toggle" data-toggle="dropdown"  id="dropdownMenu2" role="button" aria-haspopup="true" aria-expanded="false">
+		      {{loginUser.userName}}
+		      <span class="caret"></span>
+		    </a>
+			<ul class="dropdown-menu " aria-labelledby="dropdownMenu2">
+				<li><a href="/to_user_center">个人中心</a></li>
+			    <li role="separator" class="divider"></li>
+			    <li><a href="/logout">退出</a></li>
+			</ul>
+		</div>
     </div>
-<!--log条-->
+    
+	<!--log条-->
     <div class="nav_head row">
         <!--log图片-->
-        <a href="#">
+        <a href="/to_main">
             <div class="log_img col-xs-3 col-sm-3 col-md-3 col-lg-3 "></div>
         </a>
         <div class="nav-path col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <a href="#">首页</a>&nbsp;&nbsp;/&nbsp;&nbsp;
+            <a href="/to_main">首页</a>&nbsp;&nbsp;/&nbsp;&nbsp;
             用户中心
         </div>
     </div>
-<!--主体-->
+    
+    
+	<!--主体-->
     <div class="center-body row container">
         <!--菜单-->
         <div class="center-menu list-group col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <!--信息-->
-            <a href="#" class="left-nav-one list-group-item ">
+            <a href="/to_user_center" class="left-nav-one list-group-item active">
                 <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                账号信息
+                企业认证
             </a>
-            <div class="left-nav-zhe ">
-                <a href="" class="left-nav-module-child list-group-item <!--active-->">
+            <div class="left-nav-zhe " style="display: block;">
+                <a href="/to_user_center" class="left-nav-module-child list-group-item <!--active-->">
                     <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    修改手机
-                </a>
-                <a href="" class="left-nav-module-child list-group-item <!--active-->">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    修改密码
-                </a>
-                <a href="" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    企业认证
+                    认证信息
                 </a>
             </div>
             <!--简历-->
+            <a href="/to_comp_job_list" class="left-nav-one list-group-item">
+                <span class="glyphicon glyphicon-expand">&nbsp;</span>
+                我的岗位
+            </a>
+            <div class="left-nav-zhe">
+                <a href="/to_comp_job" class="left-nav-module-child list-group-item">
+                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
+                    发布岗位
+                </a>
+                <a href="/to_comp_job_list" class="left-nav-module-child list-group-item">
+                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
+                    岗位列表
+                </a>
+            </div>
+            <!--简历投递-->
             <a href="#" class="left-nav-one list-group-item">
                 <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                企业岗位
+                简历应聘
             </a>
             <div class="left-nav-zhe">
                 <a href="#" class="left-nav-module-child list-group-item">
                     <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    发布岗位
-                </a>
-                <a href="#" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    岗位管理
+                    简历列表
                 </a>
             </div>
-            <!--邀请-->
+            <!--主动招聘-->
             <a href="#" class="left-nav-one list-group-item">
                 <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                收到简历
-            </a>
-            <!--投递-->
-            <a href="#" class="left-nav-one list-group-item">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                企业招聘
+                我的招聘
             </a>
             <div class="left-nav-zhe">
                 <a href="#" class="left-nav-module-child list-group-item">
@@ -87,35 +96,33 @@
                     招聘记录
                 </a>
             </div>
-
+            <!--收藏-->
             <a href="#" class="left-nav-one list-group-item">
                 <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                企业收藏
+                我的收藏
             </a>
+            <div class="left-nav-zhe">
+                <a href="#" class="left-nav-module-child list-group-item">
+                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
+                    收藏记录
+                </a>
+            </div>
+            <!--投诉记录-->
             <a href="#" class="left-nav-one list-group-item">
                 <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                企业投诉
+                我的投诉
             </a>
+            <div class="left-nav-zhe">
+                <a href="#" class="left-nav-module-child list-group-item">
+                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
+                    投诉记录
+                </a>
+            </div>
         </div>
 
         <!--内容-->
         <div class="center-content col-xs-9 col-sm-9 col-md-9 col-lg-9">
-
-            <!--修改手机号-->
-            <div class="row modify-phone">
-
-            </div>
-
-            <!--修改密码-->
-            <div class="row modify-password">
-
-            </div>
-
-            <!--企业认证-->
-            <!--暂未认证-->
-            <div class="row sch-cert-no">
-                暂无认证信息，<a href="">立即认证？</a>
-            </div>
+            
             <!--认证表单-->
             <div class="row sch-cert-form">
                 <!--面板-->
@@ -125,83 +132,103 @@
                     </div>
                     <div class="panel-body">
                         <!---->
-                        <form name="cert-form" novalidate class="cert-form form-horizontal
-                        col-xs-9 col-sm-9 col-md-9 col-lg-9 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+                        <form name="certiForm" novalidate class="cert-form form-horizontal">
+
                             <!--企业名称-->
                             <div class="form-group">
-                                <label for="school-name" class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2">企业名称：</label>
-                                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                                    <input type="text" class="form-control" id="school-name" placeholder="企业全名">
+                                <label for="comp_name" class="control-label col-md-2">公司名称：</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="comp_name" placeholder="企业全名"
+                                           name="comp_name" required="required" ng-model="comp_name">
+                                    <span class="input-error ng-cloak" ng-show="certiForm.comp_name.$error.required">
+                                       * 必填
+                                    </span>
+                                </div>
+                                <label for="comp_home" class="control-label col-md-2">公司主页：</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="comp_home" placeholder="公司主页"
+                                           ng-model="comp_home"  name="comp_home">
                                 </div>
                             </div>
+
                             <!--成立时间-->
                             <div class="form-group">
-                                <label for="comp_establish_time" class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2">成立时间：</label>
-                                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                                    <input type="text" class="form-control" id="comp_establish_time" placeholder="成立时间">
+                                <label for="comp_establish_time" class="control-label col-md-2">成立时间：</label>
+                                <div class="col-md-4">
+                                    <input type="date" class="form-control" id="comp_establish_time" placeholder="成立时间"
+                                           ng-model="comp_establish_time" required="required" name="comp_establish_time">
+                                    <span class="input-error ng-cloak" ng-show="certiForm.comp_establish_time.$error.required">
+                                       * 必填
+                                    </span>
+                                </div>
+
+                                <label for="comp_size" class="control-label col-md-2">公司规模：</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="comp_size" placeholder="公司规模"
+                                           ng-model="comp_size" name="comp_size">
                                 </div>
                             </div>
-                            <!--企业法人-->
-                            <div class="form-group">
-                                <label for="legal_person" class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2">企业法人：</label>
-                                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                                    <input type="text" class="form-control" id="legal_person" placeholder="企业法人">
-                                </div>
-                            </div>
+
                             <!--企业规模-->
                             <div class="form-group">
-                                <label for="comp_size" class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2">企业规模：</label>
-                                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                                    <input type="text" class="form-control" id="comp_size" placeholder="企业规模">
-                                </div>
-                            </div>
-                            <!--企业性质-->
-                            <div class="form-group">
-                                <label for="comp_nature" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">企业性质：</label>
-                                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                                    <select class="form-control" id="comp_nature">
-                                        <option value="0">选择企业性质</option>
+                                <label for="comp_nature" class="control-label col-md-2">公司性质：</label>
+                                <div class="col-md-4">
+                                    <select class="form-control" id="comp_nature" ng-model="comp_nature" name="comp_nature">
                                         <option value="民营">民营</option>
                                         <option value="国营">国营</option>
                                         <option value="外企">外企</option>
                                         <option value="合资">合资</option>
                                     </select>
                                 </div>
-                            </div>
-                           <!--所属行业-->
-                            <div class="form-group">
-                                <label for="comp_industry" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">所属行业：</label>
-                                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                                    <select class="form-control" id="comp_industry">
-                                        <option value="0">选择所属行业</option>
-                                        <option value="计算机">计算机</option>
-                                        <option value="制造">制造</option>
-                                        <option value="艺术">艺术</option>
-                                        <option value="金融">金融</option>
+                                <label for="comp_industry" class="control-label col-md-2">所属行业：</label>
+                                <div class="col-md-4">
+                                	<select class="form-control" id="select_parent" ng-model="select_parent"
+                                                        ng-options="x.categoryNameParent for x in selectParent">
                                     </select>
+
                                 </div>
                             </div>
-                            <!--企业性质-->
+
+                            <!--企业地址-->
                             <div class="form-group">
-                                <label for="comp_address" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">企业地址：</label>
-                                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" id="comp_address">
-                                    <select class="form-control">
-                                        <option value="0">选择省份</option>
-                                        <option value="民营">江苏</option>
+                                <label for="comp_address" class="col-md-2 control-label">公司地址：</label>
+                                <div class="col-md-5" id="comp_address">
+                                
+                                	<select class="form-control" id="select_province" ng-model="select_province"
+                                            ng-options="x1.province for x1 in selectProvince" ng-change="changeProvince()">
                                     </select>
-                                    <select class="form-control">
-                                        <option value="0">选择市区</option>
-                                        <option value="民营">苏州</option>
+
+                                </div>
+                                <div class="col-md-5">
+                                
+                                	<select class="form-control" id="select_city" ng-model="select_city" 
+                                            ng-options="x2.city for x2 in selectCity" >
                                     </select>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-10 col-md-offset-2">
+                                    <input type="text" id="detail_address" class="form-control" placeholder="详细地址"
+                                           name="detail_address" ng-model="detail_address" required="required">
+                                    <span class="input-error ng-cloak" ng-show="certiForm.detail_address.$error.required">
+                                       * 必填
+                                    </span>
                                 </div>
                             </div>
                             <!--企业简介-->
                             <div class="form-group">
-                                <label for="comp_introduction" class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2">企业简介：</label>
+                                <label for="comp_introduction" class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2">公司简介：</label>
                                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                                    <textarea class="form-control" rows="5" id="comp_introduction"  placeholder="企业简介"></textarea>
+                                    <textarea class="form-control" rows="5" id="comp_introduction"  placeholder="公司简介"
+                                              name="comp_introduction" ng-model="comp_introduction" required="required">
+                                    </textarea>
+                                    <span class="input-error ng-cloak" ng-show="certiForm.comp_introduction.$error.required">
+                                       * 必填
+                                    </span>
                                 </div>
                             </div>
+
                             <!--营业执照-->
                             <div class="form-group">
                                 <label for="card-picture" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">营业执照：</label>
@@ -210,12 +237,15 @@
                                         <!--照片1-->
                                         <div class="col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3
                                          col-xs-5 col-sm-5 col-md-5 col-lg-5">
-                                            <div class="img-thumbnail card-pic-01 col-xs-9 col-sm-9 col-md-9 col-lg-9"></div>
+                                            <label for="business_license" class="btn">
+                                                <img  id="image_img" src="../../resource/images/default-image-user.png"
+                                                      class="img-thumbnail" style="height: 110px;">
+                                            </label>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <input type="file" class="col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3
-                                         col-xs-5 col-sm-5 col-md-5 col-lg-5" name="" >
+                                        <input class="form-control"  style="position:absolute;clip:rect(0 0 0 0);"
+                                               type="file" name="business_license" id="business_license">
                                     </div>
                                 </div>
                             </div>
@@ -223,37 +253,97 @@
                             <div class="form-group">
                                 <label for="contact_name" class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2">联系人：</label>
                                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                                    <input type="text" class="form-control" id="contact_name" placeholder="联系人姓名">
+                                    <input type="text" class="form-control" id="contact_name" placeholder="联系人姓名"
+                                           name="contact_name" required="required" ng-model="contact_name">
+                                    <span class="input-error ng-cloak" ng-show="certiForm.contact_name.$error.required">
+                                       * 必填
+                                </span>
                                 </div>
+
                             </div>
                             <!--联系电话-->
                             <div class="form-group">
                                 <label for="contact_phone" class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2">联系电话：</label>
                                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                                    <input type="text" class="form-control" id="contact_phone" placeholder="联系电话">
+                                    <input type="text" class="form-control" id="contact_phone" placeholder="联系电话"
+                                           name="contact_phone" required="required" ng-model="contact_phone">
+                                    <span class="input-error ng-cloak" ng-show="certiForm.contact_phone.$error.required">
+                                       * 必填
+                                </span>
                                 </div>
+
                             </div>
-                            <!--企业邮箱-->
+                            <!--公司邮箱-->
                             <div class="form-group">
-                                <label for="contact_email" class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2">企业邮箱：</label>
+                                <label for="contact_email" class="control-label col-xs-2 col-sm-2 col-md-2 col-lg-2">公司邮箱：</label>
                                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                                    <input type="text" class="form-control" id="contact_email" placeholder="企业邮箱">
+                                    <input type="text" class="form-control" id="contact_email" placeholder="公司邮箱"
+                                           name="contact_email"  ng-model="contact_email">
                                 </div>
                             </div>
                             <!--提交-->
                             <div class="form-group">
                                 <div class="col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4
                                 col-xs-5 col-sm-5 col-md-5 col-lg-5">
-                                    <button type="button" class="btn btn-success input-lg btn-lg form-control">提交认证</button>
+                                    <button type="button" class="btn btn-success input-lg btn-lg col-xs-12 col-sm-12 col-md-12 col-lg-12"
+                                            ng-disabled="!certiForm.$valid" ng-click="submitCerti()">提交认证</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+            
+            
             <!--认证信息-->
             <div class="row sch-cert-info">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        认证信息———待审核
+                    </div>
 
+                    <table class="table table-hover ">
+                        <tr>
+                           <th class="col-md-2">公司名称：</th>
+                            <td class="col-md-4" ng-bind="compName"></td>
+                           <th class="col-md-2">公司主页：</th>
+                            <td class="col-md-4" >
+                            	<a href="{{compHome}}" class="ng-cloak">{{compHome}}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>成立时间：</th><td ng-bind="compEstablishTime"></td>
+                            <th>公司规模：</th><td ng-bind="compSize"></td>
+                        </tr>
+                        <tr>
+                            <th>公司性质：</th><td ng-bind="compNature"></td>
+                            <th>所属行业：</th><td ng-bind="compIndustry"></td>
+                        </tr>
+                        <tr>
+                            <th class="col-md-2">公司地址：</th>
+                            <td colspan="3" class="col-md-10" ng-bind="detailAddress"></td>
+                        </tr>
+                        <tr>
+                            <th >营业执照：</th>
+                            <td >
+                                <img  id="image_img1" ng-src="{{businessLicenseImg}}"
+                                      class="img-thumbnail ng-cloak" style="height: 110px;">
+                            </td>
+                            <th >公司简介：</th>
+                            <td  ng-bind="compIntroduction">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>联系人：</th><td ng-bind="contactName"></td>
+                            <th>联系电话：</th><td ng-bind="contactPhone"></td>
+                        </tr>
+                        <tr>
+                            <th>公司邮箱：</th><td ng-bind="contactEmail"></td>
+                        </tr>
+
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -262,6 +352,7 @@
 <script type="text/javascript" src="../../resource/js/jquery-3.2.1.min.js"></script>
 <script src="../../resource/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../../resource/js/angular.js"></script>
+<script type="text/javascript" src="../../resource/js/company-center-certi.js"></script>
 <script type="text/javascript">
     $(function () {
         $('.left-nav-one').bind('click', function () {

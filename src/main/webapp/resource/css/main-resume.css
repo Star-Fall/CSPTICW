@@ -1,0 +1,64 @@
+.login_out{
+	text-align: center;
+	line-height: 30px;;
+	height: 30px;
+}
+.login{
+	padding: 0px;
+}
+.logout{
+	padding: 0px;
+}
+.nav-4{
+	margin-top: 8px;
+	margin-left: -40px;
+	font-size: 17px;
+}
+.search{
+	height: 54px;
+	line-height: 54px;
+	margin-left: 10px;
+}
+
+.resume-div>.resume-form>.panel{
+    margin-bottom: 10px;
+}
+.resume-div>.resume-form>.panel>.panel-heading{
+    font-size: 16px;
+    font-weight: bold;
+    color:#337AB7;
+}
+.table-list th{
+    text-align: center;
+}
+.table-list td{
+    text-align: center;
+    vertical-align: middle!important;
+}
+.rusume-title{
+    border-bottom: solid 2px #cccccc;
+    font-size: 17px;
+    font-weight: bold;
+    color: #00A57F;
+    margin-bottom: 20px;
+}
+
+.resume-row{
+	margin-top: 10px;
+	margin-left: 150px;
+}
+.resume-panel{
+	margin-bottom: 5px;
+}
+.resu-name{
+	font-size: 16px;
+	padding: 0px;
+	margin-bottom: 2px;
+}
+.resume-gender,.resume-age{
+	padding: 0px;
+	color: #999999;
+}
+.resume-education,.resume-time{
+	line-height: 90px;
+}

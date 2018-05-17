@@ -1,0 +1,73 @@
+.nav-path{
+    font-size: 16px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 20px;
+    margin-left: -50px;
+}
+.panel-main{
+    margin-top: 20px;
+    margin-right: 20px;
+}
+.panel-left{
+    margin-top: 20px;
+}
+.job-title{
+    padding: 0px;
+}
+.salary,.salary-tips{
+    padding: 0px;
+    margin-top: 15px;
+    line-height: 24px;
+    height: 24px;
+    color: #666;
+    font-size: 14px;
+}
+.salary b {
+    color: #fd8000;
+    font-size: 20px;
+    line-height: 25px;
+    vertical-align: bottom;
+}
+.salary-num {
+    font-weight: 700;
+}
+.button-groups{
+    padding: 0px;
+    margin-top: 15px;
+}
+table>tbody>tr>th{
+    font-size: 16px;
+}
+table>tbody>tr>td{
+    font-size: 15px;
+    word-wrap:break-word;
+    word-break : break-all;
+}
+.padding0{
+    padding: 0px;
+}
+.comp-detailss{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    line-height: 24px;
+    height: 24px;
+    color: #666;
+    font-size: 15px;
+}
+.comp-address{
+    margin-bottom: 10px;
+    line-height: 30px;
+    font-size: 15px;
+}
+.comp-introductions{
+    margin-bottom: 10px;
+    font-size: 15px;
+    line-height: 30px;
+    word-wrap:break-word;
+}
+.ad{
+    height:500px;
+    background-image: url("../images/login_img.png");
+    background-repeat: no-repeat;
+}

@@ -1,30 +1,44 @@
 package com.cspticw.dao;
 
-import com.cspticw.entity.RecruitRecord;
-import com.cspticw.entity.RecruitRecordExample;
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
+import com.cspticw.entity.RecruitRecord;
+import com.cspticw.entity.RecruitRecordExample;
+
 public interface RecruitRecordMapper {
-    long countByExample(RecruitRecordExample example);
 
-    int deleteByExample(RecruitRecordExample example);
+	long countByExample(RecruitRecordExample example);
 
-    int deleteByPrimaryKey(Long id);
+	int deleteByExample(RecruitRecordExample example);
 
-    int insert(RecruitRecord record);
+	int deleteByPrimaryKey(Long id);
 
-    int insertSelective(RecruitRecord record);
+	int insert(RecruitRecord record);
 
-    List<RecruitRecord> selectByExample(RecruitRecordExample example);
+	int insertSelective(RecruitRecord record);
 
-    RecruitRecord selectByPrimaryKey(Long id);
+	List<RecruitRecord> selectByExample(RecruitRecordExample example);
 
-    int updateByExampleSelective(@Param("record") RecruitRecord record, @Param("example") RecruitRecordExample example);
+	RecruitRecord selectByPrimaryKey(Long id);
 
-    int updateByExample(@Param("record") RecruitRecord record, @Param("example") RecruitRecordExample example);
+	int updateByExampleSelective(@Param("record") RecruitRecord record,
+			@Param("example") RecruitRecordExample example);
 
-    int updateByPrimaryKeySelective(RecruitRecord record);
+	int updateByExample(@Param("record") RecruitRecord record,
+			@Param("example") RecruitRecordExample example);
 
-    int updateByPrimaryKey(RecruitRecord record);
+	int updateByPrimaryKeySelective(RecruitRecord record);
+
+	int updateByPrimaryKey(RecruitRecord record);
+
+	/**
+	 * 查询上一记录的间隔天数
+	 * 
+	 * @param resumeId
+	 * @param jobId
+	 * @return
+	 */
+	Integer selectDayById2(@Param("resumeId") Long resumeId, @Param("jobId") Long jobId);
 }

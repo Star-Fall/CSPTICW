@@ -1,85 +1,93 @@
 package com.cspticw.entity;
 
-/**
- * @ClassName: ComplaintRecord
- * @author: StarFall
- * @date: 2018年4月7日 下午10:42:14
- * @Description:投诉记录实体
- */
 public class ComplaintRecord extends BaseEntity {
+    private Long resumeId;
 
-	/**
-	 * @Fields serialVersionUID
-	 */
-	private static final long serialVersionUID = -4569045833108295249L;
+    private Long compId;
 
-	private Long resumeId;
+    private Long jobId;
 
-	private Long compJobId;
+    private Long stuId;
 
-	private Integer complaintMode;
+    private Integer complaintMode;
 
-	private String complaintTitle;
+    private String complaintTitle;
 
-	private String complaintContent;
+    private String complaintContent;
 
-	private String handleResult;
+    private String handleResult;
 
-	private Integer status;
+    private Integer status;
 
-	public Long getResumeId() {
-		return resumeId;
-	}
+    public Long getResumeId() {
+        return resumeId;
+    }
 
-	public void setResumeId(Long resumeId) {
-		this.resumeId = resumeId;
-	}
+    public void setResumeId(Long resumeId) {
+        this.resumeId = resumeId;
+    }
 
-	public Long getCompJobId() {
-		return compJobId;
-	}
+    public Long getCompId() {
+        return compId;
+    }
 
-	public void setCompJobId(Long compJobId) {
-		this.compJobId = compJobId;
-	}
+    public void setCompId(Long compId) {
+        this.compId = compId;
+    }
 
-	public Integer getComplaintMode() {
-		return complaintMode;
-	}
+    public Long getJobId() {
+        return jobId;
+    }
 
-	public void setComplaintMode(Integer complaintMode) {
-		this.complaintMode = complaintMode;
-	}
+    public void setJobId(Long jobId) {
+        this.jobId = jobId;
+    }
 
-	public String getComplaintTitle() {
-		return complaintTitle;
-	}
+    public Long getStuId() {
+        return stuId;
+    }
 
-	public void setComplaintTitle(String complaintTitle) {
-		this.complaintTitle = complaintTitle == null ? null : complaintTitle.trim();
-	}
+    public void setStuId(Long stuId) {
+        this.stuId = stuId;
+    }
 
-	public String getComplaintContent() {
-		return complaintContent;
-	}
+    public Integer getComplaintMode() {
+        return complaintMode;
+    }
 
-	public void setComplaintContent(String complaintContent) {
-		this.complaintContent = complaintContent == null ? null : complaintContent.trim();
-	}
+    public void setComplaintMode(Integer complaintMode) {
+        this.complaintMode = complaintMode;
+    }
 
-	public String getHandleResult() {
-		return handleResult;
-	}
+    public String getComplaintTitle() {
+        return complaintTitle;
+    }
 
-	public void setHandleResult(String handleResult) {
-		this.handleResult = handleResult == null ? null : handleResult.trim();
-	}
+    public void setComplaintTitle(String complaintTitle) {
+        this.complaintTitle = complaintTitle == null ? null : complaintTitle.trim();
+    }
 
-	public Integer getStatus() {
-		return status;
-	}
+    public String getComplaintContent() {
+        return complaintContent;
+    }
 
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
+    public void setComplaintContent(String complaintContent) {
+        this.complaintContent = complaintContent == null ? null : complaintContent.trim();
+    }
+
+    public String getHandleResult() {
+        return handleResult;
+    }
+
+    public void setHandleResult(String handleResult) {
+        this.handleResult = handleResult == null ? null : handleResult.trim();
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 }

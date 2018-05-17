@@ -9,6 +9,7 @@
     <result column="country" jdbcType="VARCHAR" property="country" />
     <result column="city_id" jdbcType="VARCHAR" property="cityId" />
   </resultMap>
+  
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

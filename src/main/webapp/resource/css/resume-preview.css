@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.body{
+    background-color: #F1F3F8;
+}
+.panel-container{
+    margin-top: 20px;
+}
+.log_img{
+    background-image: url(../images/152345539154987.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 70px;
+}
+.resume-name{
+    text-align:center;
+}
+.rusume-title{
+    border-bottom: solid 2px #cccccc;
+    font-size: 17px;
+    font-weight: bold;
+    color: #00A57F;
+    margin-bottom: 20px;
+}

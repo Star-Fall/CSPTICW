@@ -1,6 +1,8 @@
 package com.cspticw.service.impl;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import com.cspticw.entity.ResumeJobExample;
 import com.cspticw.entity.ResumeJobExample.Criteria;
 import com.cspticw.entity.ResumeModel;
 import com.cspticw.entity.StuResumeInfo;
+import com.cspticw.entity.StuResumeInfoExample;
 import com.cspticw.entity.StuUserInfo;
 import com.cspticw.entity.WorkExperience;
 import com.cspticw.entity.WorkExperienceExample;
@@ -165,6 +168,46 @@ public class ResumeServiceImpl implements ResumeService {
 		resume.preUpdate();
 		stuResumeInfoMapper.updateByPrimaryKeySelective(resume);
 		return true;
+	}
+
+	@Transactional
+	@Override
+	public List<JSONObject> getResumeTop10(String province, String city) {
+		if (province != null) {
+			province = "%" + province + "%";
+		}
+		if (city != null) {
+			city = "%" + city + "%";
+		}
+		List<JSONObject> list = stuResumeInfoMapper.getResumeTop10(province, city);
+		List<JSONObject> newList = new ArrayList<>();
+		if (list == null) {
+			newList = list;
+		} else if (list.size() <= 10) {
+			newList = list;
+		} else {
+			for (int i = 9; i >= 0; i--) {
+				newList.add(list.get(i));
+			}
+			Collections.reverse(newList);
+		}
+		return newList;
+	}
+
+	@Override
+	public List<JSONObject> getResumeListByParams() {
+		List<JSONObject> list = stuResumeInfoMapper.getResumeTop10(null, null);
+		return list;
+	}
+
+	@Override
+	public List<StuResumeInfo> getMyResumeList(Long stuId) {
+		StuResumeInfoExample example = new StuResumeInfoExample();
+		com.cspticw.entity.StuResumeInfoExample.Criteria criteria = example.createCriteria();
+		criteria.andStuIdEqualTo(stuId);
+		criteria.andStatusEqualTo(0);
+		List<StuResumeInfo> list = stuResumeInfoMapper.selectByExample(example);
+		return list;
 	}
 
 }

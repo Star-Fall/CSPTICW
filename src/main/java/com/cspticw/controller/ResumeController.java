@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cspticw.entity.StuResumeInfo;
+import com.cspticw.entity.StuUserInfo;
 import com.cspticw.service.ResumeService;
 import com.cspticw.util.CommonUtils;
 import com.cspticw.util.tools.Constants;
@@ -123,6 +125,20 @@ public class ResumeController extends BaseController {
 	}
 
 	/**
+	 * 根据简历Id 获取简历详细信息
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/get_resume_detail_id")
+	public Map<String, Object> getResumeDetailById(@RequestParam("resumeId") String id) {
+		Map<String, Object> returnMap = new HashMap<>();
+		Long resumeId = Long.valueOf(id);
+		JSONObject resumeDetail = resumeService.getResumeDetail(resumeId);
+		returnMap.put("data", resumeDetail);
+		return returnMap;
+	}
+
+	/**
 	 * 更新简历
 	 * 
 	 * @param status
@@ -207,4 +223,52 @@ public class ResumeController extends BaseController {
 		}
 		return returnMap;
 	}
+
+	/**
+	 * 热度top10
+	 * 
+	 * @param province
+	 * @param city
+	 * @return
+	 */
+	@RequestMapping("/get_resume_top10")
+	public Map<String, Object> getResumeTop10(String province, String city) {
+		Map<String, Object> returnMap = new HashMap<>();
+		List<JSONObject> list = resumeService.getResumeTop10(province, city);
+		returnMap.put("data", list);
+		return returnMap;
+	}
+
+	/**
+	 * 根据条件参数查询
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/get_resume_list_params")
+	public Map<String, Object> getResumeListByParams() {
+		Map<String, Object> returnMap = new HashMap<>();
+		List<JSONObject> list = resumeService.getResumeListByParams();
+		returnMap.put("data", list);
+		return returnMap;
+	}
+
+	/**
+	 * 获取我的简历列表-用于简历投递
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/get_myresume_list")
+	public Map<String, Object> getMyResumeList() {
+		Map<String, Object> returnMap = new HashMap<>();
+		// 先判断大学生用户
+		StuUserInfo student = getStuUserInfo();
+		if (student == null) {
+			returnMap.put(Constants.ERROR, ErrorCode.ERROR_STUDENT_LOGIN);
+			return returnMap;
+		}
+		List<StuResumeInfo> list = resumeService.getMyResumeList(student.getId());
+		returnMap.put("data", list);
+		return returnMap;
+	}
+
 }

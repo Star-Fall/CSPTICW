@@ -5,9 +5,11 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
-    <result column="resume _id" jdbcType="BIGINT" property="resumeId" />
-    <result column="comp_job_id" jdbcType="BIGINT" property="compJobId" />
-    <result column="complaint _mode" jdbcType="INTEGER" property="complaintMode" />
+    <result column="resume_id" jdbcType="BIGINT" property="resumeId" />
+    <result column="comp_id" jdbcType="BIGINT" property="compId" />
+    <result column="job_id" jdbcType="BIGINT" property="jobId" />
+    <result column="stu_id" jdbcType="BIGINT" property="stuId" />
+    <result column="complaint_mode" jdbcType="INTEGER" property="complaintMode" />
     <result column="complaint_title" jdbcType="VARCHAR" property="complaintTitle" />
     <result column="complaint_content" jdbcType="VARCHAR" property="complaintContent" />
     <result column="handle_result" jdbcType="VARCHAR" property="handleResult" />
@@ -72,8 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, create_time, modify_time, "resume _id", comp_job_id, "complaint _mode", complaint_title, 
-    complaint_content, handle_result, status
+    id, create_time, modify_time, resume_id, comp_id, job_id, stu_id, complaint_mode, 
+    complaint_title, complaint_content, handle_result, status
   </sql>
   <select id="selectByExample" parameterType="com.cspticw.entity.ComplaintRecordExample" resultMap="BaseResultMap">
     select
@@ -107,13 +109,15 @@
   </delete>
   <insert id="insert" parameterType="com.cspticw.entity.ComplaintRecord">
     insert into complaint_record (id, create_time, modify_time, 
-      "resume _id", comp_job_id, "complaint _mode", 
-      complaint_title, complaint_content, handle_result, 
-      status)
+      resume_id, comp_id, job_id, 
+      stu_id, complaint_mode, complaint_title, 
+      complaint_content, handle_result, status
+      )
     values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
-      #{resumeId,jdbcType=BIGINT}, #{compJobId,jdbcType=BIGINT}, #{complaintMode,jdbcType=INTEGER}, 
-      #{complaintTitle,jdbcType=VARCHAR}, #{complaintContent,jdbcType=VARCHAR}, #{handleResult,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER})
+      #{resumeId,jdbcType=BIGINT}, #{compId,jdbcType=BIGINT}, #{jobId,jdbcType=BIGINT}, 
+      #{stuId,jdbcType=BIGINT}, #{complaintMode,jdbcType=INTEGER}, #{complaintTitle,jdbcType=VARCHAR}, 
+      #{complaintContent,jdbcType=VARCHAR}, #{handleResult,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.cspticw.entity.ComplaintRecord">
     insert into complaint_record
@@ -128,13 +132,19 @@
         modify_time,
       </if>
       <if test="resumeId != null">
-        "resume _id",
+        resume_id,
       </if>
-      <if test="compJobId != null">
-        comp_job_id,
+      <if test="compId != null">
+        comp_id,
+      </if>
+      <if test="jobId != null">
+        job_id,
+      </if>
+      <if test="stuId != null">
+        stu_id,
       </if>
       <if test="complaintMode != null">
-        "complaint _mode",
+        complaint_mode,
       </if>
       <if test="complaintTitle != null">
         complaint_title,
@@ -162,8 +172,14 @@
       <if test="resumeId != null">
         #{resumeId,jdbcType=BIGINT},
       </if>
-      <if test="compJobId != null">
-        #{compJobId,jdbcType=BIGINT},
+      <if test="compId != null">
+        #{compId,jdbcType=BIGINT},
+      </if>
+      <if test="jobId != null">
+        #{jobId,jdbcType=BIGINT},
+      </if>
+      <if test="stuId != null">
+        #{stuId,jdbcType=BIGINT},
       </if>
       <if test="complaintMode != null">
         #{complaintMode,jdbcType=INTEGER},
@@ -201,13 +217,19 @@
         modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.resumeId != null">
-        "resume _id" = #{record.resumeId,jdbcType=BIGINT},
+        resume_id = #{record.resumeId,jdbcType=BIGINT},
       </if>
-      <if test="record.compJobId != null">
-        comp_job_id = #{record.compJobId,jdbcType=BIGINT},
+      <if test="record.compId != null">
+        comp_id = #{record.compId,jdbcType=BIGINT},
+      </if>
+      <if test="record.jobId != null">
+        job_id = #{record.jobId,jdbcType=BIGINT},
+      </if>
+      <if test="record.stuId != null">
+        stu_id = #{record.stuId,jdbcType=BIGINT},
       </if>
       <if test="record.complaintMode != null">
-        "complaint _mode" = #{record.complaintMode,jdbcType=INTEGER},
+        complaint_mode = #{record.complaintMode,jdbcType=INTEGER},
       </if>
       <if test="record.complaintTitle != null">
         complaint_title = #{record.complaintTitle,jdbcType=VARCHAR},
@@ -231,9 +253,11 @@
     set id = #{record.id,jdbcType=BIGINT},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
-      "resume _id" = #{record.resumeId,jdbcType=BIGINT},
-      comp_job_id = #{record.compJobId,jdbcType=BIGINT},
-      "complaint _mode" = #{record.complaintMode,jdbcType=INTEGER},
+      resume_id = #{record.resumeId,jdbcType=BIGINT},
+      comp_id = #{record.compId,jdbcType=BIGINT},
+      job_id = #{record.jobId,jdbcType=BIGINT},
+      stu_id = #{record.stuId,jdbcType=BIGINT},
+      complaint_mode = #{record.complaintMode,jdbcType=INTEGER},
       complaint_title = #{record.complaintTitle,jdbcType=VARCHAR},
       complaint_content = #{record.complaintContent,jdbcType=VARCHAR},
       handle_result = #{record.handleResult,jdbcType=VARCHAR},
@@ -252,13 +276,19 @@
         modify_time = #{modifyTime,jdbcType=TIMESTAMP},
       </if>
       <if test="resumeId != null">
-        "resume _id" = #{resumeId,jdbcType=BIGINT},
+        resume_id = #{resumeId,jdbcType=BIGINT},
       </if>
-      <if test="compJobId != null">
-        comp_job_id = #{compJobId,jdbcType=BIGINT},
+      <if test="compId != null">
+        comp_id = #{compId,jdbcType=BIGINT},
+      </if>
+      <if test="jobId != null">
+        job_id = #{jobId,jdbcType=BIGINT},
+      </if>
+      <if test="stuId != null">
+        stu_id = #{stuId,jdbcType=BIGINT},
       </if>
       <if test="complaintMode != null">
-        "complaint _mode" = #{complaintMode,jdbcType=INTEGER},
+        complaint_mode = #{complaintMode,jdbcType=INTEGER},
       </if>
       <if test="complaintTitle != null">
         complaint_title = #{complaintTitle,jdbcType=VARCHAR},
@@ -279,9 +309,11 @@
     update complaint_record
     set create_time = #{createTime,jdbcType=TIMESTAMP},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      "resume _id" = #{resumeId,jdbcType=BIGINT},
-      comp_job_id = #{compJobId,jdbcType=BIGINT},
-      "complaint _mode" = #{complaintMode,jdbcType=INTEGER},
+      resume_id = #{resumeId,jdbcType=BIGINT},
+      comp_id = #{compId,jdbcType=BIGINT},
+      job_id = #{jobId,jdbcType=BIGINT},
+      stu_id = #{stuId,jdbcType=BIGINT},
+      complaint_mode = #{complaintMode,jdbcType=INTEGER},
       complaint_title = #{complaintTitle,jdbcType=VARCHAR},
       complaint_content = #{complaintContent,jdbcType=VARCHAR},
       handle_result = #{handleResult,jdbcType=VARCHAR},

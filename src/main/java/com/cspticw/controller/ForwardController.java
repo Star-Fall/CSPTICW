@@ -3,7 +3,9 @@ package com.cspticw.controller;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cspticw.entity.CompUserInfo;
 import com.cspticw.entity.StuUserInfo;
@@ -25,6 +27,26 @@ public class ForwardController {
 	@RequestMapping("/to_main")
 	public String toMainView() {
 		return "main";
+	}
+
+	/**
+	 * 跳转到主页-兼职
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/to_main_job")
+	public String toMainJob() {
+		return "main-job";
+	}
+
+	/**
+	 * 跳转到主页-简历
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/to_main_resume")
+	public String toMainResume() {
+		return "main-resume";
 	}
 
 	/**
@@ -56,7 +78,7 @@ public class ForwardController {
 	public String toUserCenter() {
 		Subject subject = SecurityUtils.getSubject();
 		if (subject.getPrincipal() instanceof StuUserInfo) {
-			return "student-center";
+			return "student-center-resume-list";
 		} else if (subject.getPrincipal() instanceof CompUserInfo) {
 			return "company-center";
 		}
@@ -91,6 +113,50 @@ public class ForwardController {
 	@RequestMapping("/to_resume_modify")
 	public String toModifyResume() {
 		return "student-center-resume-modify";
+	}
+
+	/**
+	 * 跳转到简历详细的页面 转发简历ID
+	 * 
+	 * @param id
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/to_resume_preview")
+	public String toResumePreview(@RequestParam("id") String id, ModelMap map) {
+		map.put("resumeId", id);
+		return "resume-preview";
+	}
+
+	/**
+	 * 跳转至岗位-公司界面 转发岗位id
+	 * 
+	 * @param id
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/to_job_company")
+	public String tojobCompany(@RequestParam("id") String id, ModelMap map) {
+		map.put("jobId", id);
+		return "job-company";
+	}
+
+	/**
+	 * 跳转岗位发布界面
+	 */
+	@RequestMapping("/to_comp_job")
+	public String toCompJob() {
+		return "company-center-job";
+	}
+
+	/**
+	 * 跳转我的简历
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/to_comp_job_list")
+	public String toMyCompJobList() {
+		return "company-center-job-list";
 	}
 
 	/**

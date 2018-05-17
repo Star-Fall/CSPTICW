@@ -1,401 +1,599 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cspticw.dao.CompJobInfoMapper">
-  <resultMap id="BaseResultMap" type="com.cspticw.entity.CompJobInfo">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
-    <result column="comp_id" jdbcType="BIGINT" property="compId" />
-    <result column="job_cate_id" jdbcType="BIGINT" property="jobCateId" />
-    <result column="job_place" jdbcType="VARCHAR" property="jobPlace" />
-    <result column="job_treat" jdbcType="DECIMAL" property="jobTreat" />
-    <result column="treat_method" jdbcType="VARCHAR" property="treatMethod" />
-    <result column="pay_method" jdbcType="VARCHAR" property="payMethod" />
-    <result column="job_title" jdbcType="VARCHAR" property="jobTitle" />
-    <result column="job_content" jdbcType="VARCHAR" property="jobContent" />
-    <result column="job_require" jdbcType="VARCHAR" property="jobRequire" />
-    <result column="person_num" jdbcType="VARCHAR" property="personNum" />
-    <result column="contact_name" jdbcType="VARCHAR" property="contactName" />
-    <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
-    <result column="is_available" jdbcType="INTEGER" property="isAvailable" />
-    <result column="resu_hot" jdbcType="INTEGER" property="resuHot" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    id, create_time, modify_time, comp_id, job_cate_id, job_place, job_treat, treat_method, 
-    pay_method, job_title, job_content, job_require, person_num, contact_name, contact_phone, 
-    is_available, resu_hot
-  </sql>
-  <select id="selectByExample" parameterType="com.cspticw.entity.CompJobInfoExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from comp_job_info
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from comp_job_info
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from comp_job_info
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.cspticw.entity.CompJobInfoExample">
-    delete from comp_job_info
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.cspticw.entity.CompJobInfo">
-    insert into comp_job_info (id, create_time, modify_time, 
-      comp_id, job_cate_id, job_place, 
-      job_treat, treat_method, pay_method, 
-      job_title, job_content, job_require, 
-      person_num, contact_name, contact_phone, 
-      is_available, resu_hot)
-    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
-      #{compId,jdbcType=BIGINT}, #{jobCateId,jdbcType=BIGINT}, #{jobPlace,jdbcType=VARCHAR}, 
-      #{jobTreat,jdbcType=DECIMAL}, #{treatMethod,jdbcType=VARCHAR}, #{payMethod,jdbcType=VARCHAR}, 
-      #{jobTitle,jdbcType=VARCHAR}, #{jobContent,jdbcType=VARCHAR}, #{jobRequire,jdbcType=VARCHAR}, 
-      #{personNum,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, 
-      #{isAvailable,jdbcType=INTEGER}, #{resuHot,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="com.cspticw.entity.CompJobInfo">
-    insert into comp_job_info
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="modifyTime != null">
-        modify_time,
-      </if>
-      <if test="compId != null">
-        comp_id,
-      </if>
-      <if test="jobCateId != null">
-        job_cate_id,
-      </if>
-      <if test="jobPlace != null">
-        job_place,
-      </if>
-      <if test="jobTreat != null">
-        job_treat,
-      </if>
-      <if test="treatMethod != null">
-        treat_method,
-      </if>
-      <if test="payMethod != null">
-        pay_method,
-      </if>
-      <if test="jobTitle != null">
-        job_title,
-      </if>
-      <if test="jobContent != null">
-        job_content,
-      </if>
-      <if test="jobRequire != null">
-        job_require,
-      </if>
-      <if test="personNum != null">
-        person_num,
-      </if>
-      <if test="contactName != null">
-        contact_name,
-      </if>
-      <if test="contactPhone != null">
-        contact_phone,
-      </if>
-      <if test="isAvailable != null">
-        is_available,
-      </if>
-      <if test="resuHot != null">
-        resu_hot,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="modifyTime != null">
-        #{modifyTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="compId != null">
-        #{compId,jdbcType=BIGINT},
-      </if>
-      <if test="jobCateId != null">
-        #{jobCateId,jdbcType=BIGINT},
-      </if>
-      <if test="jobPlace != null">
-        #{jobPlace,jdbcType=VARCHAR},
-      </if>
-      <if test="jobTreat != null">
-        #{jobTreat,jdbcType=DECIMAL},
-      </if>
-      <if test="treatMethod != null">
-        #{treatMethod,jdbcType=VARCHAR},
-      </if>
-      <if test="payMethod != null">
-        #{payMethod,jdbcType=VARCHAR},
-      </if>
-      <if test="jobTitle != null">
-        #{jobTitle,jdbcType=VARCHAR},
-      </if>
-      <if test="jobContent != null">
-        #{jobContent,jdbcType=VARCHAR},
-      </if>
-      <if test="jobRequire != null">
-        #{jobRequire,jdbcType=VARCHAR},
-      </if>
-      <if test="personNum != null">
-        #{personNum,jdbcType=VARCHAR},
-      </if>
-      <if test="contactName != null">
-        #{contactName,jdbcType=VARCHAR},
-      </if>
-      <if test="contactPhone != null">
-        #{contactPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="isAvailable != null">
-        #{isAvailable,jdbcType=INTEGER},
-      </if>
-      <if test="resuHot != null">
-        #{resuHot,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.cspticw.entity.CompJobInfoExample" resultType="java.lang.Long">
-    select count(*) from comp_job_info
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update comp_job_info
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=BIGINT},
-      </if>
-      <if test="record.createTime != null">
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.modifyTime != null">
-        modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.compId != null">
-        comp_id = #{record.compId,jdbcType=BIGINT},
-      </if>
-      <if test="record.jobCateId != null">
-        job_cate_id = #{record.jobCateId,jdbcType=BIGINT},
-      </if>
-      <if test="record.jobPlace != null">
-        job_place = #{record.jobPlace,jdbcType=VARCHAR},
-      </if>
-      <if test="record.jobTreat != null">
-        job_treat = #{record.jobTreat,jdbcType=DECIMAL},
-      </if>
-      <if test="record.treatMethod != null">
-        treat_method = #{record.treatMethod,jdbcType=VARCHAR},
-      </if>
-      <if test="record.payMethod != null">
-        pay_method = #{record.payMethod,jdbcType=VARCHAR},
-      </if>
-      <if test="record.jobTitle != null">
-        job_title = #{record.jobTitle,jdbcType=VARCHAR},
-      </if>
-      <if test="record.jobContent != null">
-        job_content = #{record.jobContent,jdbcType=VARCHAR},
-      </if>
-      <if test="record.jobRequire != null">
-        job_require = #{record.jobRequire,jdbcType=VARCHAR},
-      </if>
-      <if test="record.personNum != null">
-        person_num = #{record.personNum,jdbcType=VARCHAR},
-      </if>
-      <if test="record.contactName != null">
-        contact_name = #{record.contactName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.contactPhone != null">
-        contact_phone = #{record.contactPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="record.isAvailable != null">
-        is_available = #{record.isAvailable,jdbcType=INTEGER},
-      </if>
-      <if test="record.resuHot != null">
-        resu_hot = #{record.resuHot,jdbcType=INTEGER},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update comp_job_info
-    set id = #{record.id,jdbcType=BIGINT},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
-      comp_id = #{record.compId,jdbcType=BIGINT},
-      job_cate_id = #{record.jobCateId,jdbcType=BIGINT},
-      job_place = #{record.jobPlace,jdbcType=VARCHAR},
-      job_treat = #{record.jobTreat,jdbcType=DECIMAL},
-      treat_method = #{record.treatMethod,jdbcType=VARCHAR},
-      pay_method = #{record.payMethod,jdbcType=VARCHAR},
-      job_title = #{record.jobTitle,jdbcType=VARCHAR},
-      job_content = #{record.jobContent,jdbcType=VARCHAR},
-      job_require = #{record.jobRequire,jdbcType=VARCHAR},
-      person_num = #{record.personNum,jdbcType=VARCHAR},
-      contact_name = #{record.contactName,jdbcType=VARCHAR},
-      contact_phone = #{record.contactPhone,jdbcType=VARCHAR},
-      is_available = #{record.isAvailable,jdbcType=INTEGER},
-      resu_hot = #{record.resuHot,jdbcType=INTEGER}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cspticw.entity.CompJobInfo">
-    update comp_job_info
-    <set>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="modifyTime != null">
-        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="compId != null">
-        comp_id = #{compId,jdbcType=BIGINT},
-      </if>
-      <if test="jobCateId != null">
-        job_cate_id = #{jobCateId,jdbcType=BIGINT},
-      </if>
-      <if test="jobPlace != null">
-        job_place = #{jobPlace,jdbcType=VARCHAR},
-      </if>
-      <if test="jobTreat != null">
-        job_treat = #{jobTreat,jdbcType=DECIMAL},
-      </if>
-      <if test="treatMethod != null">
-        treat_method = #{treatMethod,jdbcType=VARCHAR},
-      </if>
-      <if test="payMethod != null">
-        pay_method = #{payMethod,jdbcType=VARCHAR},
-      </if>
-      <if test="jobTitle != null">
-        job_title = #{jobTitle,jdbcType=VARCHAR},
-      </if>
-      <if test="jobContent != null">
-        job_content = #{jobContent,jdbcType=VARCHAR},
-      </if>
-      <if test="jobRequire != null">
-        job_require = #{jobRequire,jdbcType=VARCHAR},
-      </if>
-      <if test="personNum != null">
-        person_num = #{personNum,jdbcType=VARCHAR},
-      </if>
-      <if test="contactName != null">
-        contact_name = #{contactName,jdbcType=VARCHAR},
-      </if>
-      <if test="contactPhone != null">
-        contact_phone = #{contactPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="isAvailable != null">
-        is_available = #{isAvailable,jdbcType=INTEGER},
-      </if>
-      <if test="resuHot != null">
-        resu_hot = #{resuHot,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.cspticw.entity.CompJobInfo">
-    update comp_job_info
-    set create_time = #{createTime,jdbcType=TIMESTAMP},
-      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      comp_id = #{compId,jdbcType=BIGINT},
-      job_cate_id = #{jobCateId,jdbcType=BIGINT},
-      job_place = #{jobPlace,jdbcType=VARCHAR},
-      job_treat = #{jobTreat,jdbcType=DECIMAL},
-      treat_method = #{treatMethod,jdbcType=VARCHAR},
-      pay_method = #{payMethod,jdbcType=VARCHAR},
-      job_title = #{jobTitle,jdbcType=VARCHAR},
-      job_content = #{jobContent,jdbcType=VARCHAR},
-      job_require = #{jobRequire,jdbcType=VARCHAR},
-      person_num = #{personNum,jdbcType=VARCHAR},
-      contact_name = #{contactName,jdbcType=VARCHAR},
-      contact_phone = #{contactPhone,jdbcType=VARCHAR},
-      is_available = #{isAvailable,jdbcType=INTEGER},
-      resu_hot = #{resuHot,jdbcType=INTEGER}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
+	<resultMap
+		id="BaseResultMap"
+		type="com.cspticw.entity.CompJobInfo">
+		<id
+			column="id"
+			jdbcType="BIGINT"
+			property="id" />
+		<result
+			column="create_time"
+			jdbcType="TIMESTAMP"
+			property="createTime" />
+		<result
+			column="modify_time"
+			jdbcType="TIMESTAMP"
+			property="modifyTime" />
+		<result
+			column="comp_id"
+			jdbcType="BIGINT"
+			property="compId" />
+		<result
+			column="job_cate"
+			jdbcType="VARCHAR"
+			property="jobCate" />
+		<result
+			column="job_place"
+			jdbcType="VARCHAR"
+			property="jobPlace" />
+		<result
+			column="job_treat"
+			jdbcType="DECIMAL"
+			property="jobTreat" />
+		<result
+			column="treat_method"
+			jdbcType="VARCHAR"
+			property="treatMethod" />
+		<result
+			column="pay_method"
+			jdbcType="VARCHAR"
+			property="payMethod" />
+		<result
+			column="job_title"
+			jdbcType="VARCHAR"
+			property="jobTitle" />
+		<result
+			column="job_content"
+			jdbcType="VARCHAR"
+			property="jobContent" />
+		<result
+			column="job_require"
+			jdbcType="VARCHAR"
+			property="jobRequire" />
+		<result
+			column="person_num"
+			jdbcType="VARCHAR"
+			property="personNum" />
+		<result
+			column="contact_name"
+			jdbcType="VARCHAR"
+			property="contactName" />
+		<result
+			column="contact_phone"
+			jdbcType="VARCHAR"
+			property="contactPhone" />
+		<result
+			column="is_available"
+			jdbcType="INTEGER"
+			property="isAvailable" />
+		<result
+			column="resu_hot"
+			jdbcType="INTEGER"
+			property="resuHot" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach
+				collection="oredCriteria"
+				item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim
+						prefix="("
+						prefixOverrides="and"
+						suffix=")">
+						<foreach
+							collection="criteria.criteria"
+							item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach
+										close=")"
+										collection="criterion.value"
+										item="listItem"
+										open="("
+										separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach
+				collection="example.oredCriteria"
+				item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim
+						prefix="("
+						prefixOverrides="and"
+						suffix=")">
+						<foreach
+							collection="criteria.criteria"
+							item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach
+										close=")"
+										collection="criterion.value"
+										item="listItem"
+										open="("
+										separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, create_time, modify_time, comp_id, job_cate, job_place, job_treat,
+		treat_method,
+		pay_method, job_title, job_content, job_require, person_num, contact_name,
+		contact_phone,
+		is_available, resu_hot
+	</sql>
+	<select
+		id="selectByExample"
+		parameterType="com.cspticw.entity.CompJobInfoExample"
+		resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from comp_job_info
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select
+		id="selectByPrimaryKey"
+		parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from comp_job_info
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete
+		id="deleteByPrimaryKey"
+		parameterType="java.lang.Long">
+		delete from comp_job_info
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<delete
+		id="deleteByExample"
+		parameterType="com.cspticw.entity.CompJobInfoExample">
+		delete from comp_job_info
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert
+		id="insert"
+		parameterType="com.cspticw.entity.CompJobInfo">
+		insert into comp_job_info (id, create_time, modify_time,
+		comp_id, job_cate, job_place,
+		job_treat, treat_method, pay_method,
+		job_title, job_content, job_require,
+		person_num, contact_name, contact_phone,
+		is_available, resu_hot)
+		values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
+		#{modifyTime,jdbcType=TIMESTAMP},
+		#{compId,jdbcType=BIGINT}, #{jobCate,jdbcType=VARCHAR}, #{jobPlace,jdbcType=VARCHAR},
+		#{jobTreat,jdbcType=DECIMAL}, #{treatMethod,jdbcType=VARCHAR},
+		#{payMethod,jdbcType=VARCHAR},
+		#{jobTitle,jdbcType=VARCHAR}, #{jobContent,jdbcType=VARCHAR}, #{jobRequire,jdbcType=VARCHAR},
+		#{personNum,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR},
+		#{contactPhone,jdbcType=VARCHAR},
+		#{isAvailable,jdbcType=INTEGER}, #{resuHot,jdbcType=INTEGER})
+	</insert>
+	<insert
+		id="insertSelective"
+		parameterType="com.cspticw.entity.CompJobInfo">
+		insert into comp_job_info
+		<trim
+			prefix="("
+			suffix=")"
+			suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="modifyTime != null">
+				modify_time,
+			</if>
+			<if test="compId != null">
+				comp_id,
+			</if>
+			<if test="jobCate != null">
+				job_cate,
+			</if>
+			<if test="jobPlace != null">
+				job_place,
+			</if>
+			<if test="jobTreat != null">
+				job_treat,
+			</if>
+			<if test="treatMethod != null">
+				treat_method,
+			</if>
+			<if test="payMethod != null">
+				pay_method,
+			</if>
+			<if test="jobTitle != null">
+				job_title,
+			</if>
+			<if test="jobContent != null">
+				job_content,
+			</if>
+			<if test="jobRequire != null">
+				job_require,
+			</if>
+			<if test="personNum != null">
+				person_num,
+			</if>
+			<if test="contactName != null">
+				contact_name,
+			</if>
+			<if test="contactPhone != null">
+				contact_phone,
+			</if>
+			<if test="isAvailable != null">
+				is_available,
+			</if>
+			<if test="resuHot != null">
+				resu_hot,
+			</if>
+		</trim>
+		<trim
+			prefix="values ("
+			suffix=")"
+			suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyTime != null">
+				#{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="compId != null">
+				#{compId,jdbcType=BIGINT},
+			</if>
+			<if test="jobCate != null">
+				#{jobCate,jdbcType=VARCHAR},
+			</if>
+			<if test="jobPlace != null">
+				#{jobPlace,jdbcType=VARCHAR},
+			</if>
+			<if test="jobTreat != null">
+				#{jobTreat,jdbcType=DECIMAL},
+			</if>
+			<if test="treatMethod != null">
+				#{treatMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="payMethod != null">
+				#{payMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="jobTitle != null">
+				#{jobTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="jobContent != null">
+				#{jobContent,jdbcType=VARCHAR},
+			</if>
+			<if test="jobRequire != null">
+				#{jobRequire,jdbcType=VARCHAR},
+			</if>
+			<if test="personNum != null">
+				#{personNum,jdbcType=VARCHAR},
+			</if>
+			<if test="contactName != null">
+				#{contactName,jdbcType=VARCHAR},
+			</if>
+			<if test="contactPhone != null">
+				#{contactPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="isAvailable != null">
+				#{isAvailable,jdbcType=INTEGER},
+			</if>
+			<if test="resuHot != null">
+				#{resuHot,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<select
+		id="countByExample"
+		parameterType="com.cspticw.entity.CompJobInfoExample"
+		resultType="java.lang.Long">
+		select count(*) from comp_job_info
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update
+		id="updateByExampleSelective"
+		parameterType="map">
+		update comp_job_info
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=BIGINT},
+			</if>
+			<if test="record.createTime != null">
+				create_time = #{record.createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.modifyTime != null">
+				modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.compId != null">
+				comp_id = #{record.compId,jdbcType=BIGINT},
+			</if>
+			<if test="record.jobCate != null">
+				job_cate = #{record.jobCate,jdbcType=VARCHAR},
+			</if>
+			<if test="record.jobPlace != null">
+				job_place = #{record.jobPlace,jdbcType=VARCHAR},
+			</if>
+			<if test="record.jobTreat != null">
+				job_treat = #{record.jobTreat,jdbcType=DECIMAL},
+			</if>
+			<if test="record.treatMethod != null">
+				treat_method = #{record.treatMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="record.payMethod != null">
+				pay_method = #{record.payMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="record.jobTitle != null">
+				job_title = #{record.jobTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="record.jobContent != null">
+				job_content = #{record.jobContent,jdbcType=VARCHAR},
+			</if>
+			<if test="record.jobRequire != null">
+				job_require = #{record.jobRequire,jdbcType=VARCHAR},
+			</if>
+			<if test="record.personNum != null">
+				person_num = #{record.personNum,jdbcType=VARCHAR},
+			</if>
+			<if test="record.contactName != null">
+				contact_name = #{record.contactName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.contactPhone != null">
+				contact_phone = #{record.contactPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="record.isAvailable != null">
+				is_available = #{record.isAvailable,jdbcType=INTEGER},
+			</if>
+			<if test="record.resuHot != null">
+				resu_hot = #{record.resuHot,jdbcType=INTEGER},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update
+		id="updateByExample"
+		parameterType="map">
+		update comp_job_info
+		set id = #{record.id,jdbcType=BIGINT},
+		create_time = #{record.createTime,jdbcType=TIMESTAMP},
+		modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+		comp_id = #{record.compId,jdbcType=BIGINT},
+		job_cate = #{record.jobCate,jdbcType=VARCHAR},
+		job_place = #{record.jobPlace,jdbcType=VARCHAR},
+		job_treat = #{record.jobTreat,jdbcType=DECIMAL},
+		treat_method = #{record.treatMethod,jdbcType=VARCHAR},
+		pay_method = #{record.payMethod,jdbcType=VARCHAR},
+		job_title = #{record.jobTitle,jdbcType=VARCHAR},
+		job_content = #{record.jobContent,jdbcType=VARCHAR},
+		job_require = #{record.jobRequire,jdbcType=VARCHAR},
+		person_num = #{record.personNum,jdbcType=VARCHAR},
+		contact_name = #{record.contactName,jdbcType=VARCHAR},
+		contact_phone = #{record.contactPhone,jdbcType=VARCHAR},
+		is_available = #{record.isAvailable,jdbcType=INTEGER},
+		resu_hot = #{record.resuHot,jdbcType=INTEGER}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update
+		id="updateByPrimaryKeySelective"
+		parameterType="com.cspticw.entity.CompJobInfo">
+		update comp_job_info
+		<set>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyTime != null">
+				modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="compId != null">
+				comp_id = #{compId,jdbcType=BIGINT},
+			</if>
+			<if test="jobCate != null">
+				job_cate = #{jobCate,jdbcType=VARCHAR},
+			</if>
+			<if test="jobPlace != null">
+				job_place = #{jobPlace,jdbcType=VARCHAR},
+			</if>
+			<if test="jobTreat != null">
+				job_treat = #{jobTreat,jdbcType=DECIMAL},
+			</if>
+			<if test="treatMethod != null">
+				treat_method = #{treatMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="payMethod != null">
+				pay_method = #{payMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="jobTitle != null">
+				job_title = #{jobTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="jobContent != null">
+				job_content = #{jobContent,jdbcType=VARCHAR},
+			</if>
+			<if test="jobRequire != null">
+				job_require = #{jobRequire,jdbcType=VARCHAR},
+			</if>
+			<if test="personNum != null">
+				person_num = #{personNum,jdbcType=VARCHAR},
+			</if>
+			<if test="contactName != null">
+				contact_name = #{contactName,jdbcType=VARCHAR},
+			</if>
+			<if test="contactPhone != null">
+				contact_phone = #{contactPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="isAvailable != null">
+				is_available = #{isAvailable,jdbcType=INTEGER},
+			</if>
+			<if test="resuHot != null">
+				resu_hot = #{resuHot,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update
+		id="updateByPrimaryKey"
+		parameterType="com.cspticw.entity.CompJobInfo">
+		update comp_job_info
+		set create_time = #{createTime,jdbcType=TIMESTAMP},
+		modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+		comp_id = #{compId,jdbcType=BIGINT},
+		job_cate = #{jobCate,jdbcType=VARCHAR},
+		job_place = #{jobPlace,jdbcType=VARCHAR},
+		job_treat = #{jobTreat,jdbcType=DECIMAL},
+		treat_method = #{treatMethod,jdbcType=VARCHAR},
+		pay_method = #{payMethod,jdbcType=VARCHAR},
+		job_title = #{jobTitle,jdbcType=VARCHAR},
+		job_content = #{jobContent,jdbcType=VARCHAR},
+		job_require = #{jobRequire,jdbcType=VARCHAR},
+		person_num = #{personNum,jdbcType=VARCHAR},
+		contact_name = #{contactName,jdbcType=VARCHAR},
+		contact_phone = #{contactPhone,jdbcType=VARCHAR},
+		is_available = #{isAvailable,jdbcType=INTEGER},
+		resu_hot = #{resuHot,jdbcType=INTEGER}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<!-- 新增 -->
+	<!-- 热点top10 -->
+	<select id="getCompJobTop10" resultMap="BaseResultMap">
+		SELECT
+			*
+		FROM
+			comp_job_info
+		WHERE
+			is_available = 0
+		<if test="province!=null">
+		AND job_place LIKE #{province}
+		</if>
+		<if test="city!=null">
+		AND job_place LIKE #{city}
+		</if>		
+		ORDER BY
+			resu_hot DESC,
+			create_time DESC
+		LIMIT 10
+	</select>
+	
+	
+	<resultMap id="CompanyJobDetailMap"	type="com.alibaba.fastjson.JSONObject">
+		<id	column="id"	jdbcType="BIGINT"	property="id" />
+		<result	column="create_time"	jdbcType="TIMESTAMP"	property="createTime" />
+		<result	column="modify_time"	jdbcType="TIMESTAMP"	property="modifyTime" />
+		<result	column="comp_id"	jdbcType="BIGINT"	property="compId" />
+		<result	column="job_cate"	jdbcType="VARCHAR"	property="jobCate" />
+		<result	column="job_place"	jdbcType="VARCHAR"	property="jobPlace" />
+		<result	column="job_treat"	jdbcType="DECIMAL"	property="jobTreat" />
+		<result	column="treat_method"	jdbcType="VARCHAR"	property="treatMethod" />
+		<result	column="pay_method"	jdbcType="VARCHAR"	property="payMethod" />
+		<result	column="job_title"	jdbcType="VARCHAR"	property="jobTitle" />
+		<result	column="job_content"	jdbcType="VARCHAR"	property="jobContent" />
+		<result	column="job_require"	jdbcType="VARCHAR"	property="jobRequire" />
+		<result	column="person_num"		jdbcType="VARCHAR"	property="personNum" />
+		<result	column="contact_name"	jdbcType="VARCHAR"	property="contactName" />
+		<result	column="contact_phone"	jdbcType="VARCHAR"	property="contactPhone" />
+		<result	column="is_available"	jdbcType="INTEGER"	property="isAvailable" />
+		<result	column="resu_hot"	jdbcType="INTEGER"	property="resuHot" />
+		
+		<result column="comp_name" jdbcType="VARCHAR" property="compName" />
+	    <result column="comp_home" jdbcType="VARCHAR" property="compHome" />
+	    <result column="comp_establish_time" jdbcType="TIMESTAMP" property="compEstablishTime" />
+	    <result column="comp_size" jdbcType="VARCHAR" property="compSize" />
+	    <result column="comp_nature" jdbcType="VARCHAR" property="compNature" />
+	    <result column="comp_industry" jdbcType="VARCHAR" property="compIndustry" />
+	    <result column="province" jdbcType="VARCHAR" property="province" />
+	    <result column="city" jdbcType="VARCHAR" property="city" />
+	    <result column="detail_address" jdbcType="VARCHAR" property="detailAddress" />
+	    <result column="comp_introduction" jdbcType="VARCHAR" property="compIntroduction" />
+	    <result column="business_license" jdbcType="VARCHAR" property="businessLicense" />
+	    <result column="comp_contact_name" jdbcType="VARCHAR" property="compContactName" />
+	    <result column="comp_contact_phone" jdbcType="VARCHAR" property="compContactPhone" />
+	    <result column="comp_contact_email" jdbcType="VARCHAR" property="compContactEmail" />
+	    <result column="is_certified" jdbcType="INTEGER" property="isCertified" />
+	</resultMap>
+	<!--  -->	
+	<select id="getCompanyJobDetailById" parameterType="java.lang.Long" resultMap="CompanyJobDetailMap">
+		SELECT
+			job.*, certi.comp_name,
+			certi.comp_home,
+			certi.comp_establish_time,
+			certi.comp_size,
+			certi.comp_nature,
+			certi.comp_industry,
+			certi.province,
+			certi.city,
+			certi.detail_address,
+			certi.comp_introduction,
+			certi.contact_name AS comp_contact_name,
+			certi.contact_phone AS comp_contact_phone,
+			certi.contact_email AS comp_contact_email,
+			certi.is_certified
+		FROM
+			comp_job_info job
+		LEFT JOIN comp_info_certi certi ON job.comp_id = certi.comp_id
+		WHERE
+			job.id = #{jobId}
+	</select>
+	
 </mapper>

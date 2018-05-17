@@ -3,163 +3,169 @@ package com.cspticw.entity;
 import java.util.Date;
 
 public class CompInfoCerti extends BaseEntity {
-    private Long compId;
 
-    private String compName;
+	/**
+	 * @Fields serialVersionUID
+	 */
+	private static final long serialVersionUID = -3788013581076411745L;
 
-    private String compHome;
+	private Long compId;
 
-    private Date compEstablishTime;
+	private String compName;
 
-    private String compSize;
+	private String compHome;
 
-    private String compNature;
+	private Date compEstablishTime;
 
-    private String compIndustry;
+	private String compSize;
 
-    private String province;
+	private String compNature;
 
-    private String city;
+	private String compIndustry;
 
-    private String detailAddress;
+	private String province;
 
-    private String compIntroduction;
+	private String city;
 
-    private String businessLicense;
+	private String detailAddress;
 
-    private String contactName;
+	private String compIntroduction;
 
-    private String contactPhone;
+	private String businessLicense;
 
-    private String contactEmail;
+	private String contactName;
 
-    private Integer isCertified;
+	private String contactPhone;
 
-    public Long getCompId() {
-        return compId;
-    }
+	private String contactEmail;
 
-    public void setCompId(Long compId) {
-        this.compId = compId;
-    }
+	private Integer isCertified;
 
-    public String getCompName() {
-        return compName;
-    }
+	public Long getCompId() {
+		return compId;
+	}
 
-    public void setCompName(String compName) {
-        this.compName = compName == null ? null : compName.trim();
-    }
+	public void setCompId(Long compId) {
+		this.compId = compId;
+	}
 
-    public String getCompHome() {
-        return compHome;
-    }
+	public String getCompName() {
+		return compName;
+	}
 
-    public void setCompHome(String compHome) {
-        this.compHome = compHome == null ? null : compHome.trim();
-    }
+	public void setCompName(String compName) {
+		this.compName = compName == null ? null : compName.trim();
+	}
 
-    public Date getCompEstablishTime() {
-        return compEstablishTime;
-    }
+	public String getCompHome() {
+		return compHome;
+	}
 
-    public void setCompEstablishTime(Date compEstablishTime) {
-        this.compEstablishTime = compEstablishTime;
-    }
+	public void setCompHome(String compHome) {
+		this.compHome = compHome == null ? null : compHome.trim();
+	}
 
-    public String getCompSize() {
-        return compSize;
-    }
+	public Date getCompEstablishTime() {
+		return compEstablishTime;
+	}
 
-    public void setCompSize(String compSize) {
-        this.compSize = compSize == null ? null : compSize.trim();
-    }
+	public void setCompEstablishTime(Date compEstablishTime) {
+		this.compEstablishTime = compEstablishTime;
+	}
 
-    public String getCompNature() {
-        return compNature;
-    }
+	public String getCompSize() {
+		return compSize;
+	}
 
-    public void setCompNature(String compNature) {
-        this.compNature = compNature == null ? null : compNature.trim();
-    }
+	public void setCompSize(String compSize) {
+		this.compSize = compSize == null ? null : compSize.trim();
+	}
 
-    public String getCompIndustry() {
-        return compIndustry;
-    }
+	public String getCompNature() {
+		return compNature;
+	}
 
-    public void setCompIndustry(String compIndustry) {
-        this.compIndustry = compIndustry == null ? null : compIndustry.trim();
-    }
+	public void setCompNature(String compNature) {
+		this.compNature = compNature == null ? null : compNature.trim();
+	}
 
-    public String getProvince() {
-        return province;
-    }
+	public String getCompIndustry() {
+		return compIndustry;
+	}
 
-    public void setProvince(String province) {
-        this.province = province == null ? null : province.trim();
-    }
+	public void setCompIndustry(String compIndustry) {
+		this.compIndustry = compIndustry == null ? null : compIndustry.trim();
+	}
 
-    public String getCity() {
-        return city;
-    }
+	public String getProvince() {
+		return province;
+	}
 
-    public void setCity(String city) {
-        this.city = city == null ? null : city.trim();
-    }
+	public void setProvince(String province) {
+		this.province = province == null ? null : province.trim();
+	}
 
-    public String getDetailAddress() {
-        return detailAddress;
-    }
+	public String getCity() {
+		return city;
+	}
 
-    public void setDetailAddress(String detailAddress) {
-        this.detailAddress = detailAddress == null ? null : detailAddress.trim();
-    }
+	public void setCity(String city) {
+		this.city = city == null ? null : city.trim();
+	}
 
-    public String getCompIntroduction() {
-        return compIntroduction;
-    }
+	public String getDetailAddress() {
+		return detailAddress;
+	}
 
-    public void setCompIntroduction(String compIntroduction) {
-        this.compIntroduction = compIntroduction == null ? null : compIntroduction.trim();
-    }
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress == null ? null : detailAddress.trim();
+	}
 
-    public String getBusinessLicense() {
-        return businessLicense;
-    }
+	public String getCompIntroduction() {
+		return compIntroduction;
+	}
 
-    public void setBusinessLicense(String businessLicense) {
-        this.businessLicense = businessLicense == null ? null : businessLicense.trim();
-    }
+	public void setCompIntroduction(String compIntroduction) {
+		this.compIntroduction = compIntroduction == null ? null : compIntroduction.trim();
+	}
 
-    public String getContactName() {
-        return contactName;
-    }
+	public String getBusinessLicense() {
+		return businessLicense;
+	}
 
-    public void setContactName(String contactName) {
-        this.contactName = contactName == null ? null : contactName.trim();
-    }
+	public void setBusinessLicense(String businessLicense) {
+		this.businessLicense = businessLicense == null ? null : businessLicense.trim();
+	}
 
-    public String getContactPhone() {
-        return contactPhone;
-    }
+	public String getContactName() {
+		return contactName;
+	}
 
-    public void setContactPhone(String contactPhone) {
-        this.contactPhone = contactPhone == null ? null : contactPhone.trim();
-    }
+	public void setContactName(String contactName) {
+		this.contactName = contactName == null ? null : contactName.trim();
+	}
 
-    public String getContactEmail() {
-        return contactEmail;
-    }
+	public String getContactPhone() {
+		return contactPhone;
+	}
 
-    public void setContactEmail(String contactEmail) {
-        this.contactEmail = contactEmail == null ? null : contactEmail.trim();
-    }
+	public void setContactPhone(String contactPhone) {
+		this.contactPhone = contactPhone == null ? null : contactPhone.trim();
+	}
 
-    public Integer getIsCertified() {
-        return isCertified;
-    }
+	public String getContactEmail() {
+		return contactEmail;
+	}
 
-    public void setIsCertified(Integer isCertified) {
-        this.isCertified = isCertified;
-    }
+	public void setContactEmail(String contactEmail) {
+		this.contactEmail = contactEmail == null ? null : contactEmail.trim();
+	}
+
+	public Integer getIsCertified() {
+		return isCertified;
+	}
+
+	public void setIsCertified(Integer isCertified) {
+		this.isCertified = isCertified;
+	}
 }

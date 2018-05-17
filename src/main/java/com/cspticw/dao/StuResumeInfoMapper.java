@@ -37,8 +37,29 @@ public interface StuResumeInfoMapper {
 	/**
 	 * 新增
 	 */
-
+	/**
+	 * 我的所有简历详细
+	 * 
+	 * @param studentId
+	 * @return
+	 */
 	List<JSONObject> getMyResumeDetailList(@Param("studentId") Long studentId);
 
+	/**
+	 * 指定简历详细
+	 * 
+	 * @param id
+	 * @return
+	 */
 	JSONObject getResumeDetail(@Param("id") Long id);
+
+	/**
+	 * 热门top10
+	 * 
+	 * @param province
+	 * @param city
+	 * @return
+	 */
+	List<JSONObject> getResumeTop10(@Param("province") String province, @Param("city") String city);
+
 }

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cspticw.entity.CompUserInfo;
+import com.cspticw.entity.StuUserInfo;
 import com.cspticw.util.tools.Constants;
 import com.cspticw.util.tools.ErrorCode;
 
@@ -22,16 +24,19 @@ import com.cspticw.util.tools.ErrorCode;
  * @ClassName: LoginController
  * @author: StarFall
  * @date: 2018年4月9日 下午10:33:11
- * @Description:
+ * @Description:登录
  */
 @RestController
 public class LoginController extends BaseController {
 
-	private HashMap<String, Object> returnMap;
-
+	/**
+	 * 
+	 * @param map
+	 * @return
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public Map<String, Object> login(@RequestBody Map<String, Object> map) {
-		returnMap = new HashMap<>();
+		HashMap<String, Object> returnMap = new HashMap<>();
 		if (map == null) {
 			returnMap.put(Constants.ERROR, ErrorCode.ERROR_PARAMS);
 			return returnMap;
@@ -70,6 +75,29 @@ public class LoginController extends BaseController {
 		}
 		// 登录成功
 		returnMap.put(Constants.MSG, Constants.SUCCESS);
+		return returnMap;
+	}
+
+	/**
+	 * 获取登录的用户信息
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/get_login_user")
+	public Map<String, Object> getLoginUserInfo() {
+		HashMap<String, Object> returnMap = new HashMap<>();
+		StuUserInfo student = getStuUserInfo();
+		CompUserInfo company = getCompUserInfo();
+		if (student != null) {
+			returnMap.put("data", student);
+			returnMap.put("userRole", Constants.STUDENT_USER);
+			return returnMap;
+		} else if (company != null) {
+			returnMap.put("data", company);
+			returnMap.put("userRole", Constants.COMPANY_USER);
+			return returnMap;
+		}
+		returnMap.put(Constants.ERROR, ErrorCode.ERROR_NO_LONGIN);
 		return returnMap;
 	}
 }

@@ -20,3 +20,19 @@
 	line-height: 54px;
 	margin-left: 10px;
 }
+
+.top-job{
+	margin-top: 30px;
+}
+.table-resume>tbody>tr>td,.table-job>tbody>tr>td{
+    border:0px;
+    text-align: center;
+    vertical-align: middle!important;
+    
+}
+.table-job>tbody>tr>td:nth-child(1),.table-resume>tbody>tr>td:nth-child(1){
+	text-align: left;
+}
+.table-resume,.table-job{
+     word-break:break-all;
+}

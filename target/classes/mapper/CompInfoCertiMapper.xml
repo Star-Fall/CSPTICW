@@ -15,7 +15,7 @@
     <result column="province" jdbcType="VARCHAR" property="province" />
     <result column="city" jdbcType="VARCHAR" property="city" />
     <result column="detail_address" jdbcType="VARCHAR" property="detailAddress" />
-    <result column="comp_ introduction" jdbcType="VARCHAR" property="compIntroduction" />
+    <result column="comp_introduction" jdbcType="VARCHAR" property="compIntroduction" />
     <result column="business_license" jdbcType="VARCHAR" property="businessLicense" />
     <result column="contact_name" jdbcType="VARCHAR" property="contactName" />
     <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
@@ -82,7 +82,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, create_time, modify_time, comp_id, comp_name, comp_home, comp_establish_time, 
-    comp_size, comp_nature, comp_industry, province, city, detail_address, "comp_ introduction", 
+    comp_size, comp_nature, comp_industry, province, city, detail_address, comp_introduction, 
     business_license, contact_name, contact_phone, contact_email, is_certified
   </sql>
   <select id="selectByExample" parameterType="com.cspticw.entity.CompInfoCertiExample" resultMap="BaseResultMap">
@@ -120,7 +120,7 @@
       comp_id, comp_name, comp_home, 
       comp_establish_time, comp_size, comp_nature, 
       comp_industry, province, city, 
-      detail_address, "comp_ introduction", business_license, 
+      detail_address, comp_introduction, business_license, 
       contact_name, contact_phone, contact_email, 
       is_certified)
     values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
@@ -174,7 +174,7 @@
         detail_address,
       </if>
       <if test="compIntroduction != null">
-        "comp_ introduction",
+        comp_introduction,
       </if>
       <if test="businessLicense != null">
         business_license,
@@ -301,7 +301,7 @@
         detail_address = #{record.detailAddress,jdbcType=VARCHAR},
       </if>
       <if test="record.compIntroduction != null">
-        "comp_ introduction" = #{record.compIntroduction,jdbcType=VARCHAR},
+        comp_introduction = #{record.compIntroduction,jdbcType=VARCHAR},
       </if>
       <if test="record.businessLicense != null">
         business_license = #{record.businessLicense,jdbcType=VARCHAR},
@@ -338,7 +338,7 @@
       province = #{record.province,jdbcType=VARCHAR},
       city = #{record.city,jdbcType=VARCHAR},
       detail_address = #{record.detailAddress,jdbcType=VARCHAR},
-      "comp_ introduction" = #{record.compIntroduction,jdbcType=VARCHAR},
+      comp_introduction = #{record.compIntroduction,jdbcType=VARCHAR},
       business_license = #{record.businessLicense,jdbcType=VARCHAR},
       contact_name = #{record.contactName,jdbcType=VARCHAR},
       contact_phone = #{record.contactPhone,jdbcType=VARCHAR},
@@ -388,7 +388,7 @@
         detail_address = #{detailAddress,jdbcType=VARCHAR},
       </if>
       <if test="compIntroduction != null">
-        "comp_ introduction" = #{compIntroduction,jdbcType=VARCHAR},
+        comp_introduction = #{compIntroduction,jdbcType=VARCHAR},
       </if>
       <if test="businessLicense != null">
         business_license = #{businessLicense,jdbcType=VARCHAR},
@@ -422,7 +422,7 @@
       province = #{province,jdbcType=VARCHAR},
       city = #{city,jdbcType=VARCHAR},
       detail_address = #{detailAddress,jdbcType=VARCHAR},
-      "comp_ introduction" = #{compIntroduction,jdbcType=VARCHAR},
+      comp_introduction = #{compIntroduction,jdbcType=VARCHAR},
       business_license = #{businessLicense,jdbcType=VARCHAR},
       contact_name = #{contactName,jdbcType=VARCHAR},
       contact_phone = #{contactPhone,jdbcType=VARCHAR},

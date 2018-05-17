@@ -10,17 +10,25 @@
     <link rel="stylesheet" type="text/css" href="../../resource/css/student-center-resume.css">
 </head>
 <body ng-app="studentCenter" class="body container-fluid">
-<div id="container-fluid" >
+<div id="container-fluid" ng-controller="resumeController">
     <!--登录条-->
     <div class="nav_log row">
         <div class="change_city  col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <span>上海站</span><a href="">【切换城市】</a>
         </div>
-        <!--登录注册部分-->
-        <div class="login_out col-xs-offset-8 col-sm-offset-8 col-md-offset-8  col-lg-offset-8
-            col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            用户信息
-        </div>
+		<!-- 登录的信息 -->
+		<div class="login_info dropdown col-xs-offset-8 col-sm-offset-8 col-md-offset-8 col-md-offset-8 
+			col-xs-2 col-sm-2 col-md-2 col-lg-2 row" >
+		  	<a class="dropdown-toggle" data-toggle="dropdown"  id="dropdownMenu2" role="button" aria-haspopup="true" aria-expanded="false">
+		      {{loginUser.userName}}
+		      <span class="caret"></span>
+		    </a>
+			<ul class="dropdown-menu " aria-labelledby="dropdownMenu2">
+				<li><a href="/to_user_center">个人中心</a></li>
+			    <li role="separator" class="divider"></li>
+			    <li><a href="/logout">退出</a></li>
+			</ul>
+		</div>
     </div>
     <!--log条-->
     <div class="nav_head row">
@@ -36,21 +44,7 @@
     <div class="center-body row container">
         <!--菜单-->
         <div class="center-menu list-group col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <!--信息-->
-            <a href="" class="left-nav-one list-group-item ">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                账户管理
-            </a>
-            <div class="left-nav-zhe">
-                <a href="" class="left-nav-module-child list-group-item ">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    修改手机
-                </a>
-                <a href="" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    修改密码
-                </a>
-            </div>
+
             <!--简历-->
             <a href="/to_my_resume_list" class="left-nav-one list-group-item active">
                 <span class="glyphicon glyphicon-expand">&nbsp;</span>
@@ -122,7 +116,7 @@
         <!--内容-->
         <div class="center-content col-xs-9 col-sm-9 col-md-9 col-lg-9">
             <!--发布简历-->
-            <div class="row resume-div panel panel-default" ng-controller="resumeController">
+            <div class="row resume-div panel panel-default" >
                 <form name="resumeForm" novalidate class="resume-form panel-body">
                     <!--简历信息-->
                     <div class="panel panel-default">
@@ -413,7 +407,7 @@
 
                                         <label for="image_file" class="btn col-xs-6 col-sm-6 col-md-6 col-lg-6
                                             col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
-                                            <img  id="image_img" ng-src="{{ id_photo}}"
+                                            <img  id="image_img" ng-src="{{id_photo}}"
                                                   class="img-thumbnail" style="height: 110px;">
                                         </label>
                                     </div>

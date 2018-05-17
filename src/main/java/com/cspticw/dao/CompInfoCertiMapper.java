@@ -1,30 +1,35 @@
 package com.cspticw.dao;
 
-import com.cspticw.entity.CompInfoCerti;
-import com.cspticw.entity.CompInfoCertiExample;
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
+import com.cspticw.entity.CompInfoCerti;
+import com.cspticw.entity.CompInfoCertiExample;
+
 public interface CompInfoCertiMapper {
-    long countByExample(CompInfoCertiExample example);
 
-    int deleteByExample(CompInfoCertiExample example);
+	long countByExample(CompInfoCertiExample example);
 
-    int deleteByPrimaryKey(Long id);
+	int deleteByExample(CompInfoCertiExample example);
 
-    int insert(CompInfoCerti record);
+	int deleteByPrimaryKey(Long id);
 
-    int insertSelective(CompInfoCerti record);
+	int insert(CompInfoCerti record);
 
-    List<CompInfoCerti> selectByExample(CompInfoCertiExample example);
+	int insertSelective(CompInfoCerti record);
 
-    CompInfoCerti selectByPrimaryKey(Long id);
+	List<CompInfoCerti> selectByExample(CompInfoCertiExample example);
 
-    int updateByExampleSelective(@Param("record") CompInfoCerti record, @Param("example") CompInfoCertiExample example);
+	CompInfoCerti selectByPrimaryKey(Long id);
 
-    int updateByExample(@Param("record") CompInfoCerti record, @Param("example") CompInfoCertiExample example);
+	int updateByExampleSelective(@Param("record") CompInfoCerti record,
+			@Param("example") CompInfoCertiExample example);
 
-    int updateByPrimaryKeySelective(CompInfoCerti record);
+	int updateByExample(@Param("record") CompInfoCerti record,
+			@Param("example") CompInfoCertiExample example);
 
-    int updateByPrimaryKey(CompInfoCerti record);
+	int updateByPrimaryKeySelective(CompInfoCerti record);
+
+	int updateByPrimaryKey(CompInfoCerti record);
 }

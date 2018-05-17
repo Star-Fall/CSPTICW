@@ -129,12 +129,11 @@
 		<table
 			tableName="website_news"
 			domainObjectName="WebsiteNews"></table>-->
+
 		<table
-			tableName="comp_info_certi"
-			domainObjectName="CompInfoCerti"></table>
-		<table
-			tableName="comp_job_info"
-			domainObjectName="CompJobInfo"></table>
+			tableName="complaint_record"
+			domainObjectName="ComplaintRecord"></table>
+
 			
 	</context>
 </generatorConfiguration>

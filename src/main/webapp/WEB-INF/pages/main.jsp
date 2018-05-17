@@ -11,49 +11,53 @@
     <link rel="stylesheet" href="../../resource/css/common.css">
     <link rel="stylesheet" type="text/css" href="../../resource/css/main.css">
 </head>
-<body ng-app="" class="body container-fluid">
-	<div id="container-fluid">
+<body ng-app="main" class="body container-fluid">
+	<div id="container-fluid" ng-controller="mainController">
+	
 		<div class="nav_log row">
 			<div class="change_city  col-xs-2 col-sm-2 col-md-2 col-lg-2">
 				<span>上海站</span><a href="#">【切换城市】</a>
 			</div>
-			<c:if test="${empty loginUser }">
-				<div class="login_out col-xs-offset-7 col-sm-offset-7 col-md-offset-7 col-md-offset-7 col-xs-3 col-sm-3 col-md-3 col-lg-3 row">
-					<div class="login col-xs-offset-6 col-sm-offset-6 col-md-offset-6 col-md-offset-6 col-xs-2 col-sm-2 col-md-2 col-lg-2">
-						<a 	href="/to_login"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;登录</a>
-					</div>
-					<div class="logout col-xs-2 col-sm-2 col-md-2 col-lg-2">
-						<a  href="/to_regist"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;注册</a>
-					</div>
+			<!-- 未登录 -->
+			<div class="login_out col-xs-offset-7 col-sm-offset-7 col-md-offset-7 col-md-offset-7 
+				col-xs-3 col-sm-3 col-md-3 col-lg-3 row" >
+				<div class="login col-xs-offset-6 col-sm-offset-6 col-md-offset-6 
+					col-md-offset-6 col-xs-2 col-sm-2 col-md-2 col-lg-2">
+					<a 	href="/to_login">
+						<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;登录
+					</a>
 				</div>
-			</c:if> 
-			<c:if test="${not empty loginUser }">
-				<!-- 登录的信息 -->
-				<div class="login_info dropdown col-xs-offset-8 col-sm-offset-8 col-md-offset-8 col-md-offset-8 
-						col-xs-2 col-sm-2 col-md-2 col-lg-2 row">
-				  	<a class="dropdown-toggle" data-toggle="dropdown"  id="dropdownMenu2" role="button" aria-haspopup="true" aria-expanded="false">
-				      ${loginUser.userName }
-				      <span class="caret"></span>
-				    </a>
-					<ul class="dropdown-menu " aria-labelledby="dropdownMenu2">
-						<li><a href="/to_user_center">个人中心</a></li>
-					    <li role="separator" class="divider"></li>
-					    <li><a href="/logout">退出</a></li>
-					</ul>
+				<div class="logout col-xs-2 col-sm-2 col-md-2 col-lg-2">
+					<a  href="/to_regist">
+						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;注册
+					</a>
 				</div>
-			</c:if>
-			
+			</div>
+			<!-- 登录的信息 -->
+			<div class="login_info dropdown col-xs-offset-8 col-sm-offset-8 col-md-offset-8 col-md-offset-8 
+				col-xs-2 col-sm-2 col-md-2 col-lg-2 row" >
+			  	<a class="dropdown-toggle" data-toggle="dropdown"  id="dropdownMenu2" role="button" aria-haspopup="true" aria-expanded="false">
+			      {{loginUser.userName}}
+			      <span class="caret"></span>
+			    </a>
+				<ul class="dropdown-menu " aria-labelledby="dropdownMenu2">
+					<li><a href="/to_user_center">个人中心</a></li>
+				    <li role="separator" class="divider"></li>
+				    <li><a href="/logout">退出</a></li>
+				</ul>
+			</div>
 		</div>
+		
 		<div class="nav_head row">
-			<a href="to_main">
+			<a href="/to_main" >
 				<div class="log_img col-xs-3 col-sm-3 col-md-3 col-lg-3 "></div>
 			</a>
 			<!--网站导航-->
 			<div class="nav-4 col-xs-5 col-sm-5 col-md-5 col-lg-5">
 				<ul class="nav nav-tabs nav-justified">
-					<li role="presentation" class="active"><a href="to_main">首页</a></li>
-					<li role="presentation"><a href="#">兼职招聘</a></li>
-					<li role="presentation"><a href="#">求职简历</a></li>
+					<li role="presentation" class="active"><a href="/to_main">首页</a></li>
+					<li role="presentation"><a href="/to_main_job">兼职招聘</a></li>
+					<li role="presentation"><a href="/to_main_resume">求职简历</a></li>
 					<li role="presentation"><a href="#">网站资讯</a></li>
 				</ul>
 			</div>
@@ -68,23 +72,55 @@
 		
 
 		<div class="next row">
-			  <div class="col-md-1">.col-md-1</div>
-			  <div class="col-md-1">.col-md-1</div>
-			  <div class="col-md-1">.col-md-1</div>
-			  <div class="col-md-1">.col-md-1</div>
-			  <div class="col-md-1">.col-md-1</div>
-			  <div class="col-md-1">.col-md-1</div>
-			  <div class="col-md-1">.col-md-1</div>
-			  <div class="col-md-1">.col-md-1</div>
-			  <div class="col-md-1">.col-md-1</div>
-			  <div class="col-md-1">.col-md-1</div>
-			  <div class="col-md-1">.col-md-1</div>
-			  <div class="col-md-1">.col-md-1</div>
+			<!--岗位-->
+            <div class="top-job col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-md-offset-1
+                col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                    	热门岗位Top10
+                    </div>
+                    <table class="table table-job">
+                    	<tr ng-repeat="x in jobList">
+                    		<td class="ng-cloak col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    			<a href="">{{x.jobTitle}}</a>
+                    		</td>
+                    		<td class="ng-cloak col-xs-4 col-sm-4 col-md-4 col-lg-4">{{x.jobCate}}</td>
+                    		<td class="ng-cloak col-xs-2 col-sm-2 col-md-2 col-lg-2">{{x.jobTreat}}元/{{x.treatMethod}}</td>
+                    		<td class="ng-cloak col-xs-2 col-sm-2 col-md-2 col-lg-2">{{x.createTime | date:"yyyy-MM-dd"}}</td>
+                    	</tr>
+					</table>
+                </div>
+            </div>
+            <!--简历-->
+            <div class="top-resume col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-md-offset-1
+                col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                    	热门简历Top10
+                    </div>
+                    <table class="table table-resume">
+                    	<tr ng-repeat="x in resumeList" >
+                    		<td class="ng-cloak col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                    			<a href="" target="_blank">{{x.resuName}}</a>
+                    		</td>
+                    		<td class="ng-cloak col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    			<span ng-repeat="y in x.resumeJobs">{{y.categoryName}}、</span>
+                    		</td>
+                    		<td class="ng-cloak col-xs-2 col-sm-2 col-md-2 col-lg-2">{{x.education}}</td>
+                    		
+                    		<td class="ng-cloak col-xs-2 col-sm-2 col-md-2 col-lg-2">{{x.createTime | date:"yyyy-MM-dd"}}</td>
+                    	</tr>
+					</table>
+                </div>
+            </div>
 		</div>
 	</div>
 
 <script type="text/javascript" src="../../resource/js/jquery-3.2.1.min.js"></script>
 <script src="../../resource/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../../resource/js/angular.js"></script>
+<script type="text/javascript" src="../../resource/js/main.js"></script>
+
+
 </body>
 </html>

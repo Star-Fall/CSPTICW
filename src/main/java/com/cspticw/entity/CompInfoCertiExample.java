@@ -966,72 +966,72 @@ public class CompInfoCertiExample {
         }
 
         public Criteria andCompIntroductionIsNull() {
-            addCriterion("\"comp_ introduction\" is null");
+            addCriterion("comp_introduction is null");
             return (Criteria) this;
         }
 
         public Criteria andCompIntroductionIsNotNull() {
-            addCriterion("\"comp_ introduction\" is not null");
+            addCriterion("comp_introduction is not null");
             return (Criteria) this;
         }
 
         public Criteria andCompIntroductionEqualTo(String value) {
-            addCriterion("\"comp_ introduction\" =", value, "compIntroduction");
+            addCriterion("comp_introduction =", value, "compIntroduction");
             return (Criteria) this;
         }
 
         public Criteria andCompIntroductionNotEqualTo(String value) {
-            addCriterion("\"comp_ introduction\" <>", value, "compIntroduction");
+            addCriterion("comp_introduction <>", value, "compIntroduction");
             return (Criteria) this;
         }
 
         public Criteria andCompIntroductionGreaterThan(String value) {
-            addCriterion("\"comp_ introduction\" >", value, "compIntroduction");
+            addCriterion("comp_introduction >", value, "compIntroduction");
             return (Criteria) this;
         }
 
         public Criteria andCompIntroductionGreaterThanOrEqualTo(String value) {
-            addCriterion("\"comp_ introduction\" >=", value, "compIntroduction");
+            addCriterion("comp_introduction >=", value, "compIntroduction");
             return (Criteria) this;
         }
 
         public Criteria andCompIntroductionLessThan(String value) {
-            addCriterion("\"comp_ introduction\" <", value, "compIntroduction");
+            addCriterion("comp_introduction <", value, "compIntroduction");
             return (Criteria) this;
         }
 
         public Criteria andCompIntroductionLessThanOrEqualTo(String value) {
-            addCriterion("\"comp_ introduction\" <=", value, "compIntroduction");
+            addCriterion("comp_introduction <=", value, "compIntroduction");
             return (Criteria) this;
         }
 
         public Criteria andCompIntroductionLike(String value) {
-            addCriterion("\"comp_ introduction\" like", value, "compIntroduction");
+            addCriterion("comp_introduction like", value, "compIntroduction");
             return (Criteria) this;
         }
 
         public Criteria andCompIntroductionNotLike(String value) {
-            addCriterion("\"comp_ introduction\" not like", value, "compIntroduction");
+            addCriterion("comp_introduction not like", value, "compIntroduction");
             return (Criteria) this;
         }
 
         public Criteria andCompIntroductionIn(List<String> values) {
-            addCriterion("\"comp_ introduction\" in", values, "compIntroduction");
+            addCriterion("comp_introduction in", values, "compIntroduction");
             return (Criteria) this;
         }
 
         public Criteria andCompIntroductionNotIn(List<String> values) {
-            addCriterion("\"comp_ introduction\" not in", values, "compIntroduction");
+            addCriterion("comp_introduction not in", values, "compIntroduction");
             return (Criteria) this;
         }
 
         public Criteria andCompIntroductionBetween(String value1, String value2) {
-            addCriterion("\"comp_ introduction\" between", value1, value2, "compIntroduction");
+            addCriterion("comp_introduction between", value1, value2, "compIntroduction");
             return (Criteria) this;
         }
 
         public Criteria andCompIntroductionNotBetween(String value1, String value2) {
-            addCriterion("\"comp_ introduction\" not between", value1, value2, "compIntroduction");
+            addCriterion("comp_introduction not between", value1, value2, "compIntroduction");
             return (Criteria) this;
         }
 

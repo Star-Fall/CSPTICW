@@ -5,9 +5,9 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
-    <result column="resume _id" jdbcType="BIGINT" property="resumeId" />
+    <result column="resume_id" jdbcType="BIGINT" property="resumeId" />
     <result column="comp_job_id" jdbcType="BIGINT" property="compJobId" />
-    <result column="is_ check" jdbcType="INTEGER" property="isCheck" />
+    <result column="is_check" jdbcType="INTEGER" property="isCheck" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, create_time, modify_time, "resume _id", comp_job_id, "is_ check", status
+    id, create_time, modify_time, resume_id, comp_job_id, is_check, status
   </sql>
   <select id="selectByExample" parameterType="com.cspticw.entity.ApplyRecordExample" resultMap="BaseResultMap">
     select
@@ -103,7 +103,7 @@
   </delete>
   <insert id="insert" parameterType="com.cspticw.entity.ApplyRecord">
     insert into apply_record (id, create_time, modify_time, 
-      "resume _id", comp_job_id, "is_ check", 
+      resume_id, comp_job_id, is_check, 
       status)
     values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
       #{resumeId,jdbcType=BIGINT}, #{compJobId,jdbcType=BIGINT}, #{isCheck,jdbcType=INTEGER}, 
@@ -122,13 +122,13 @@
         modify_time,
       </if>
       <if test="resumeId != null">
-        "resume _id",
+        resume_id,
       </if>
       <if test="compJobId != null">
         comp_job_id,
       </if>
       <if test="isCheck != null">
-        "is_ check",
+        is_check,
       </if>
       <if test="status != null">
         status,
@@ -177,13 +177,13 @@
         modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.resumeId != null">
-        "resume _id" = #{record.resumeId,jdbcType=BIGINT},
+        resume_id = #{record.resumeId,jdbcType=BIGINT},
       </if>
       <if test="record.compJobId != null">
         comp_job_id = #{record.compJobId,jdbcType=BIGINT},
       </if>
       <if test="record.isCheck != null">
-        "is_ check" = #{record.isCheck,jdbcType=INTEGER},
+        is_check = #{record.isCheck,jdbcType=INTEGER},
       </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
@@ -198,9 +198,9 @@
     set id = #{record.id,jdbcType=BIGINT},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
-      "resume _id" = #{record.resumeId,jdbcType=BIGINT},
+      resume_id = #{record.resumeId,jdbcType=BIGINT},
       comp_job_id = #{record.compJobId,jdbcType=BIGINT},
-      "is_ check" = #{record.isCheck,jdbcType=INTEGER},
+      is_check = #{record.isCheck,jdbcType=INTEGER},
       status = #{record.status,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -216,13 +216,13 @@
         modify_time = #{modifyTime,jdbcType=TIMESTAMP},
       </if>
       <if test="resumeId != null">
-        "resume _id" = #{resumeId,jdbcType=BIGINT},
+        resume_id = #{resumeId,jdbcType=BIGINT},
       </if>
       <if test="compJobId != null">
         comp_job_id = #{compJobId,jdbcType=BIGINT},
       </if>
       <if test="isCheck != null">
-        "is_ check" = #{isCheck,jdbcType=INTEGER},
+        is_check = #{isCheck,jdbcType=INTEGER},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
@@ -234,10 +234,23 @@
     update apply_record
     set create_time = #{createTime,jdbcType=TIMESTAMP},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      "resume _id" = #{resumeId,jdbcType=BIGINT},
+      resume_id = #{resumeId,jdbcType=BIGINT},
       comp_job_id = #{compJobId,jdbcType=BIGINT},
-      "is_ check" = #{isCheck,jdbcType=INTEGER},
+      is_check = #{isCheck,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  
+    <!--新增  -->
+  <select id="selectDayById" resultType="java.lang.Integer">
+  		SELECT
+			DATEDIFF(now(), create_time)
+		FROM
+			apply_record
+		WHERE
+			resume_id = #{resumeId}
+		AND comp_job_id = #{jobId}
+  </select>
+  
+  
 </mapper>

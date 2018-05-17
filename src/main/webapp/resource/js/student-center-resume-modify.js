@@ -13,8 +13,23 @@ $(function () {
 var app=angular.module('studentCenter',[]);
 //简历Controller
 app.controller('resumeController',function ($scope,$http) {
-    //var resopose={"data":{"qq":"121039156","education":"本科","stuId":2,"gender":"男","resumeJobs":[{"jobCateId":12,"categoryName":"网页设计/制作/美工"},{"jobCateId":14,"categoryName":"动画/多媒体制作"},{"jobCateId":18,"categoryName":"游戏测试/试玩/代练"},{"jobCateId":19,"categoryName":"网站管理员/站长/版主"},{"jobCateId":17,"categoryName":"网络录入/发帖员"},{"jobCateId":48,"categoryName":"群众/临时演员"},{"jobCateId":62,"categoryName":"平面设计/logo设计/vi设计"}],"city":"县","wechat":"18362202126","workExperiences":[{"workContent":"哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎哎","workTitle":"哎哎","workExperienceId":14},{"workContent":"安安生生安安生生安安生生安安生生安安生生安安生生安安生生安安生生安安生生安安生生安安生生安安生生安安生生安安生生安安生生安安生生安安生生安安生生安安生生安安生生安安生生安安生生","workTitle":"安安生生","workExperienceId":15}],"resuName":"简历信息全","selfDescription":"其他（自我介绍/兴趣爱好） * 必填其他（自我介绍/兴趣爱好） * 必填其他（自我介绍/兴趣爱好） * 必填其他（自我介绍/兴趣爱好） * 必填其他（自我介绍/兴趣爱好） * 必填其他（自我介绍/兴趣爱好） * 必填其他（自我介绍/兴趣爱好） * 必填其他（自我介绍/兴趣爱好） * 必填其他（自我介绍/兴趣爱好） * 必填其他（自我介绍/兴趣爱好） * 必填","realName":"姓名","annexResume":"2\\JAVA开发工程师-邵赫.html","resuHot":0,"modifyTime":1525752801000,"province":"上海市","major":"专业名称","createTime":1525752679000,"school":"学校名称","phone":"18362202126","id":7,"idPhoto":"2\\b41678b200a94584b8092377cc9bbc1e.jpg","age":21,"status":1}};
-   // var resumeDetail=resopose.data;
+	//首先请求用户的数据
+	$http({
+        url:'/get_login_user',
+        method:'get'
+    }).success(function(response, status, headers, config){
+    	//已登录
+    	 if(response.data){
+    		 $(".login_out").css("display","none");
+    		 $(".login_info").css("display","block");
+    		 $scope.loginUser=response.data;
+    	 }else{
+    		 $(".login_out").css("display","block");
+    		 $(".login_info").css("display","none");
+    	 }
+    	 
+    })
+    
     $http({
         url:'/get_resume_detail',
         method:'get'

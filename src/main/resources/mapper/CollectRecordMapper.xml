@@ -6,8 +6,10 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
     <result column="stu_id" jdbcType="BIGINT" property="stuId" />
+    <result column="job_id" jdbcType="BIGINT" property="jobId" />
     <result column="comp_id" jdbcType="BIGINT" property="compId" />
-    <result column="collect _user" jdbcType="INTEGER" property="collectUser" />
+    <result column="resume_id" jdbcType="BIGINT" property="resumeId" />
+    <result column="collect_user" jdbcType="INTEGER" property="collectUser" />
     <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -69,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, create_time, modify_time, stu_id, comp_id, "collect _user", is_delete
+    id, create_time, modify_time, stu_id, job_id, comp_id, resume_id, collect_user, is_delete
   </sql>
   <select id="selectByExample" parameterType="com.cspticw.entity.CollectRecordExample" resultMap="BaseResultMap">
     select
@@ -103,11 +105,13 @@
   </delete>
   <insert id="insert" parameterType="com.cspticw.entity.CollectRecord">
     insert into collect_record (id, create_time, modify_time, 
-      stu_id, comp_id, "collect _user", 
-      is_delete)
+      stu_id, job_id, comp_id, 
+      resume_id, collect_user, is_delete
+      )
     values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
-      #{stuId,jdbcType=BIGINT}, #{compId,jdbcType=BIGINT}, #{collectUser,jdbcType=INTEGER}, 
-      #{isDelete,jdbcType=INTEGER})
+      #{stuId,jdbcType=BIGINT}, #{jobId,jdbcType=BIGINT}, #{compId,jdbcType=BIGINT}, 
+      #{resumeId,jdbcType=BIGINT}, #{collectUser,jdbcType=INTEGER}, #{isDelete,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.cspticw.entity.CollectRecord">
     insert into collect_record
@@ -124,11 +128,17 @@
       <if test="stuId != null">
         stu_id,
       </if>
+      <if test="jobId != null">
+        job_id,
+      </if>
       <if test="compId != null">
         comp_id,
       </if>
+      <if test="resumeId != null">
+        resume_id,
+      </if>
       <if test="collectUser != null">
-        "collect _user",
+        collect_user,
       </if>
       <if test="isDelete != null">
         is_delete,
@@ -147,8 +157,14 @@
       <if test="stuId != null">
         #{stuId,jdbcType=BIGINT},
       </if>
+      <if test="jobId != null">
+        #{jobId,jdbcType=BIGINT},
+      </if>
       <if test="compId != null">
         #{compId,jdbcType=BIGINT},
+      </if>
+      <if test="resumeId != null">
+        #{resumeId,jdbcType=BIGINT},
       </if>
       <if test="collectUser != null">
         #{collectUser,jdbcType=INTEGER},
@@ -179,11 +195,17 @@
       <if test="record.stuId != null">
         stu_id = #{record.stuId,jdbcType=BIGINT},
       </if>
+      <if test="record.jobId != null">
+        job_id = #{record.jobId,jdbcType=BIGINT},
+      </if>
       <if test="record.compId != null">
         comp_id = #{record.compId,jdbcType=BIGINT},
       </if>
+      <if test="record.resumeId != null">
+        resume_id = #{record.resumeId,jdbcType=BIGINT},
+      </if>
       <if test="record.collectUser != null">
-        "collect _user" = #{record.collectUser,jdbcType=INTEGER},
+        collect_user = #{record.collectUser,jdbcType=INTEGER},
       </if>
       <if test="record.isDelete != null">
         is_delete = #{record.isDelete,jdbcType=INTEGER},
@@ -199,8 +221,10 @@
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
       stu_id = #{record.stuId,jdbcType=BIGINT},
+      job_id = #{record.jobId,jdbcType=BIGINT},
       comp_id = #{record.compId,jdbcType=BIGINT},
-      "collect _user" = #{record.collectUser,jdbcType=INTEGER},
+      resume_id = #{record.resumeId,jdbcType=BIGINT},
+      collect_user = #{record.collectUser,jdbcType=INTEGER},
       is_delete = #{record.isDelete,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -218,11 +242,17 @@
       <if test="stuId != null">
         stu_id = #{stuId,jdbcType=BIGINT},
       </if>
+      <if test="jobId != null">
+        job_id = #{jobId,jdbcType=BIGINT},
+      </if>
       <if test="compId != null">
         comp_id = #{compId,jdbcType=BIGINT},
       </if>
+      <if test="resumeId != null">
+        resume_id = #{resumeId,jdbcType=BIGINT},
+      </if>
       <if test="collectUser != null">
-        "collect _user" = #{collectUser,jdbcType=INTEGER},
+        collect_user = #{collectUser,jdbcType=INTEGER},
       </if>
       <if test="isDelete != null">
         is_delete = #{isDelete,jdbcType=INTEGER},
@@ -235,8 +265,10 @@
     set create_time = #{createTime,jdbcType=TIMESTAMP},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
       stu_id = #{stuId,jdbcType=BIGINT},
+      job_id = #{jobId,jdbcType=BIGINT},
       comp_id = #{compId,jdbcType=BIGINT},
-      "collect _user" = #{collectUser,jdbcType=INTEGER},
+      resume_id = #{resumeId,jdbcType=BIGINT},
+      collect_user = #{collectUser,jdbcType=INTEGER},
       is_delete = #{isDelete,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
