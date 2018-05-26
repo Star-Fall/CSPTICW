@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cspticw.entity.CompJobInfo;
+import com.cspticw.entity.JobListParams;
 
 public interface CompJobService {
 
@@ -14,6 +15,10 @@ public interface CompJobService {
 	 * @return
 	 */
 	boolean addCompJob(CompJobInfo record);
+
+	boolean updateCompanyJob(CompJobInfo record);
+
+	boolean deleteCompanyJob(Long id);
 
 	/**
 	 * 根据公司Id查找所有岗位
@@ -39,6 +44,8 @@ public interface CompJobService {
 	List<CompJobInfo> getCompJobTop10(String province, String city);
 
 	List<CompJobInfo> getCompJobByParams();
+
+	List<JSONObject> getList(JobListParams params);
 
 	/**
 	 * 获取我的岗位列表-用于岗位邀请

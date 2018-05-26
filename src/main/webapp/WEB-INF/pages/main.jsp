@@ -58,7 +58,7 @@
 					<li role="presentation" class="active"><a href="/to_main">首页</a></li>
 					<li role="presentation"><a href="/to_main_job">兼职招聘</a></li>
 					<li role="presentation"><a href="/to_main_resume">求职简历</a></li>
-					<li role="presentation"><a href="#">网站资讯</a></li>
+					<li role="presentation"><a href="/to_main_news">网站资讯</a></li>
 				</ul>
 			</div>
 			<!--搜索框-->

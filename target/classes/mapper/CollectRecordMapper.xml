@@ -272,4 +272,47 @@
       is_delete = #{isDelete,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  
+  <!-- 新增 -->
+  <resultMap id="CollectRecordMap" type="com.alibaba.fastjson.JSONObject">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="stu_id" jdbcType="BIGINT" property="stuId" />
+    <result column="job_id" jdbcType="BIGINT" property="jobId" />
+    <result column="comp_id" jdbcType="BIGINT" property="compId" />
+    <result column="resume_id" jdbcType="BIGINT" property="resumeId" />
+    <result column="collect_user" jdbcType="INTEGER" property="collectUser" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+    <result	column="resu_name"	jdbcType="VARCHAR"	property="resuName" />
+    <result column="resumeStatus" jdbcType="INTEGER" property="resumeStatus" />
+    <result	column="job_title"	jdbcType="VARCHAR"	property="jobTitle" />
+    <result column="is_available" jdbcType="INTEGER" property="isAvailable" />
+  </resultMap>
+  
+  <select id="getCollectRecord" resultMap="CollectRecordMap">
+  	SELECT
+		record.*, resume.resu_name,
+		resume.`status` AS resumeStatus,
+		job.job_title,
+		job.is_available
+	FROM
+		collect_record record
+	LEFT JOIN stu_resume_info resume ON record.resume_id = resume.id
+	LEFT JOIN comp_job_info job ON record.job_id = job.id
+	WHERE
+		record.is_delete = 0
+	<if test="stuId !=null">
+		AND record.stu_id = #{stuId}
+	</if>
+	<if test="compId !=null">
+		AND record.comp_id = #{compId}
+	</if>
+	<if test="collectUser !=null">
+		AND record.collect_user = #{collectUser}
+	</if>	
+	ORDER BY
+		record.create_time DESC
+  </select>
+  
 </mapper>

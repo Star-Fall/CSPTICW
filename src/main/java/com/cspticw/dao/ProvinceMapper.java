@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cspticw.entity.Province;
 import com.cspticw.entity.ProvinceCityModel;
 import com.cspticw.entity.ProvinceExample;
@@ -37,4 +38,7 @@ public interface ProvinceMapper {
 	 * 新增
 	 */
 	List<ProvinceCityModel> getProvinceCity();
+
+	List<JSONObject> getCountryByCity(@Param("province") String province,
+			@Param("city") String city);
 }

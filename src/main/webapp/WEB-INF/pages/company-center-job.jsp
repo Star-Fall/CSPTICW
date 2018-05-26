@@ -43,80 +43,8 @@
     </div>
 <!--主体-->
     <div class="center-body row container" >
-        <!--菜单-->
-        <div class="center-menu list-group col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <!--信息-->
-            <a href="#" class="left-nav-one list-group-item ">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                企业认证
-            </a>
-            <div class="left-nav-zhe ">
-                <a href="" class="left-nav-module-child list-group-item <!--active-->">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    认证信息
-                </a>
-            </div>
-            <!--简历-->
-            <a href="/to_comp_job_list" class="left-nav-one list-group-item active">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                我的岗位
-            </a>
-            <div class="left-nav-zhe"  style="display: block;">
-                <a href="/to_comp_job" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    发布岗位
-                </a>
-                <a href="/to_comp_job_list" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    岗位列表
-                </a>
-            </div>
-            <!--简历投递-->
-            <a href="#" class="left-nav-one list-group-item">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                简历应聘
-            </a>
-            <div class="left-nav-zhe">
-                <a href="#" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    简历列表
-                </a>
-            </div>
-            <!--主动招聘-->
-            <a href="#" class="left-nav-one list-group-item">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                我的招聘
-            </a>
-            <div class="left-nav-zhe">
-                <a href="#" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    招聘记录
-                </a>
-            </div>
-            <!--收藏-->
-            <a href="#" class="left-nav-one list-group-item">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                我的收藏
-            </a>
-            <div class="left-nav-zhe">
-                <a href="#" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    收藏记录
-                </a>
-            </div>
-            <!--投诉记录-->
-            <a href="#" class="left-nav-one list-group-item">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                我的投诉
-            </a>
-            <div class="left-nav-zhe">
-                <a href="#" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    投诉记录
-                </a>
-            </div>
-        </div>
-
+        <%@include file="center-menu-company.jsp" %>
+      
         <!--内容-->
         <div class="center-content col-xs-9 col-sm-9 col-md-9 col-lg-9">
             

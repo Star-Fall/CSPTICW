@@ -596,4 +596,70 @@
 			job.id = #{jobId}
 	</select>
 	
+	<select id="getList" resultMap="CompanyJobDetailMap" >
+		SELECT
+			job.*, certi.comp_name,
+			certi.comp_home,
+			certi.comp_establish_time,
+			certi.comp_size,
+			certi.comp_nature,
+			certi.comp_industry,
+			certi.province,
+			certi.city,
+			certi.detail_address,
+			certi.comp_introduction,
+			certi.contact_name AS comp_contact_name,
+			certi.contact_phone AS comp_contact_phone,
+			certi.contact_email AS comp_contact_email,
+			certi.is_certified
+		FROM
+			comp_job_info job
+		LEFT JOIN comp_info_certi certi ON job.comp_id = certi.comp_id
+		WHERE
+			job.is_available = 0
+		<!-- 类别 -->
+		<if test="jobCateList !=null">
+			and job.job_cate IN
+			<foreach collection="jobCateList" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<!-- 地址 -->
+		<if test="jobPlaceList !=null">
+			and 
+			<foreach collection="jobPlaceList" item="item" open="(" separator="or" close=")">
+				job.job_place LIKE CONCAT('%',#{item},'%' )
+			</foreach>
+		</if>
+		<!-- 金额 -->
+		<if test="start !=null">
+			and job.job_treat >= #{start}
+		</if>
+		<if test="end !=null">
+			and job.job_treat &lt;= #{end}
+		</if>
+		<!--待遇方式  -->
+		<if test="treatMethodList !=null">
+			and job.treat_method IN
+			<foreach collection="treatMethodList" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<!--方式  -->
+		<if test="payMethodList !=null">
+			and job.pay_method IN
+			<foreach collection="payMethodList" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		ORDER BY
+			job.create_time DESC
+	</select>
+	
+	<update id="addJobHot">
+		UPDATE comp_job_info
+		SET resu_hot = resu_hot + #{hot}
+		WHERE
+			id = #{jobId}
+	</update>
 </mapper>

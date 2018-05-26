@@ -43,78 +43,9 @@
     </div>
     <!--主体-->
     <div class="center-body row container">
-        <!--菜单-->
-        <div class="center-menu list-group col-xs-2 col-sm-2 col-md-2 col-lg-2">
-
-
-            <!--简历-->
-            <a href="/to_my_resume_list" class="left-nav-one list-group-item active">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                简历中心
-            </a>
-            <div class="left-nav-zhe" style="display: block;">
-                <a href="/to_student_center_resume" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    发布简历
-                </a>
-                <a href="/to_my_resume_list" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    我的简历
-                </a>
-            </div>
-            <!--投递-->
-            <a href="" class="left-nav-one list-group-item">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                简历投递
-            </a>
-            <div class="left-nav-zhe">
-                <a href="" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    投递记录
-                </a>
-            </div>
-            <!--邀请-->
-            <a href="" class="left-nav-one list-group-item">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                兼职邀请
-            </a>
-            <div class="left-nav-zhe">
-                <a href="" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    收到的邀请
-                </a>
-            </div>
-            <a href="" class="left-nav-one list-group-item">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                我的收藏
-            </a>
-            <div class="left-nav-zhe">
-                <a href="" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    收藏的企业
-                </a>
-            </div>
-            <a href="" class="left-nav-one list-group-item">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                我的投诉
-            </a>
-            <div class="left-nav-zhe">
-                <a href="" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    投诉记录
-                </a>
-            </div>
-            <a href="" class="left-nav-one list-group-item">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                系统消息
-            </a>
-            <div class="left-nav-zhe">
-                <a href="" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    收到的消息
-                </a>
-            </div>
-        </div>
+    
+        <%@include file="center-menu-student.jsp" %>
+    
         <!--内容-->
         <div class="center-content col-xs-9 col-sm-9 col-md-9 col-lg-9">
             <div class="panel panel-default" >
@@ -124,7 +55,7 @@
                 <!--整体body-->
                 <div class="panel-body">
                     <dl>
-                        <dt>* 热度：</dt><dd>简历被查看次数</dd>
+                        <dt>* 热度：</dt><dd>简历被邀请增加2热度，被收藏增加1热度</dd>
                         <dt>* 公开：</dt><dd>设为保密后其他人不可见</dd>
                     </dl>
                 </div>
@@ -346,6 +277,8 @@
     });
     var app=angular.module('studentCenter',[]);
     app.controller('resumeListController',function ($scope,$http) {
+    	$scope.centerMenu=1;
+    	
     	//首先请求用户的数据
     	$http({
             url:'/get_login_user',
@@ -371,6 +304,7 @@
     	});  
 		//单个详情
     	$scope.resumeDetail={};
+		
 		//改变公开
 		$scope.changeRadio=function (val,id) {
         	//找到该简历
@@ -397,8 +331,9 @@
                 	}
                 	
                 }
-            }           
+            }
         };
+        
         /**
          * 修改
          * */
@@ -451,7 +386,6 @@
             }
         };
     });
-    
 </script>
 </body>
 </html>

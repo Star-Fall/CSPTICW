@@ -1,5 +1,9 @@
 package com.cspticw.service;
 
+import java.util.List;
+
+import com.alibaba.fastjson.JSONObject;
+
 /**
  * @ClassName: CollectRecordService
  * @author: StarFall
@@ -34,4 +38,16 @@ public interface CollectRecordService {
 	 * @return
 	 */
 	boolean addCollectRecord(Long stuId, Long jobId, Long compId, Long resumeId, int collectUser);
+
+	/**
+	 * 获取收藏记录
+	 * 
+	 * @param stuId
+	 * @param compId
+	 * @param collectUser
+	 * @return
+	 */
+	List<JSONObject> getCollectRecord(Long stuId, Long compId, Integer collectUser);
+
+	boolean deleteCollectRecord(Long recordId);
 }

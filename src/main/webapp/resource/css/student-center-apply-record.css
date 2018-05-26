@@ -1,0 +1,40 @@
+.nav-path{
+    font-size: 16px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 20px;
+    margin-left: -50px;
+}
+.center-body{
+    margin: auto;
+    margin-top: 10px;
+    height: 300px;
+}
+.center-menu{
+    margin-left: 40px;
+    text-align: center;
+}
+.left-nav-one{
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 25px;
+    text-align: left;
+}
+.left-nav-zhe{
+    line-height: 18px;
+}
+.table-list th{
+    text-align: center;
+}
+.table-list td{
+    text-align: center;
+    vertical-align: middle!important;
+    word-wrap:break-word;
+    word-break : break-all;
+    overflow:hidden;
+}
+.table-list{
+    table-layout:fixed ;
+}
+
+

@@ -22,13 +22,19 @@
     text-align: left;
 }
 .left-nav-zhe{
-    display: none;
     line-height: 18px;
 }
 .input-error{
     font-size: 14px;
     font-weight: normal;
     color: red;
+}
+.table-list th{
+    text-align: center;
+}
+.table-list td{
+    text-align: center;
+    vertical-align: middle!important;
 }
 
 .table {

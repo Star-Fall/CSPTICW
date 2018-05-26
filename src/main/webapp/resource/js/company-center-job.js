@@ -1,5 +1,6 @@
 var app=angular.module('companyCenter',[]);
 app.controller('companyJobController',function ($scope,$http) {
+	$scope.centerMenu=2;
 	//首先请求用户的数据
 	$http({
         url:'/get_login_user',

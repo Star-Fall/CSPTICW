@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cspticw.dao.ProvinceMapper;
 import com.cspticw.entity.ProvinceCityModel;
 import com.cspticw.service.ProvinceService;
@@ -18,6 +19,12 @@ public class ProvinceServiceImpl implements ProvinceService {
 	@Override
 	public List<ProvinceCityModel> getProvinceCity() {
 		return provinceMapper.getProvinceCity();
+	}
+
+	@Override
+	public List<JSONObject> getCountryByCity(String province, String city) {
+
+		return provinceMapper.getCountryByCity(province, city);
 	}
 
 }

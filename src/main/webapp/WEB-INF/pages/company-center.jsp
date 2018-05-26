@@ -46,80 +46,7 @@
     
 	<!--主体-->
     <div class="center-body row container">
-        <!--菜单-->
-        <div class="center-menu list-group col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <!--信息-->
-            <a href="/to_user_center" class="left-nav-one list-group-item active">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                企业认证
-            </a>
-            <div class="left-nav-zhe " style="display: block;">
-                <a href="/to_user_center" class="left-nav-module-child list-group-item <!--active-->">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    认证信息
-                </a>
-            </div>
-            <!--简历-->
-            <a href="/to_comp_job_list" class="left-nav-one list-group-item">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                我的岗位
-            </a>
-            <div class="left-nav-zhe">
-                <a href="/to_comp_job" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    发布岗位
-                </a>
-                <a href="/to_comp_job_list" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    岗位列表
-                </a>
-            </div>
-            <!--简历投递-->
-            <a href="#" class="left-nav-one list-group-item">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                简历应聘
-            </a>
-            <div class="left-nav-zhe">
-                <a href="#" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    简历列表
-                </a>
-            </div>
-            <!--主动招聘-->
-            <a href="#" class="left-nav-one list-group-item">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                我的招聘
-            </a>
-            <div class="left-nav-zhe">
-                <a href="#" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    招聘记录
-                </a>
-            </div>
-            <!--收藏-->
-            <a href="#" class="left-nav-one list-group-item">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                我的收藏
-            </a>
-            <div class="left-nav-zhe">
-                <a href="#" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    收藏记录
-                </a>
-            </div>
-            <!--投诉记录-->
-            <a href="#" class="left-nav-one list-group-item">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                我的投诉
-            </a>
-            <div class="left-nav-zhe">
-                <a href="#" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    投诉记录
-                </a>
-            </div>
-        </div>
-
+        <%@include file="center-menu-company.jsp" %>
         <!--内容-->
         <div class="center-content col-xs-9 col-sm-9 col-md-9 col-lg-9">
             
@@ -133,7 +60,6 @@
                     <div class="panel-body">
                         <!---->
                         <form name="certiForm" novalidate class="cert-form form-horizontal">
-
                             <!--企业名称-->
                             <div class="form-group">
                                 <label for="comp_name" class="control-label col-md-2">公司名称：</label>
@@ -299,7 +225,12 @@
             <div class="row sch-cert-info">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        认证信息———待审核
+                      	 认证信息
+                        <span class="label label-success" ng-show="isCertified==0">认证</span>
+                        <span class="label label-danger" ng-show="isCertified==1">认证失败</span>
+                        <span class="label label-danger" ng-show="isCertified==2">待审查</span>
+                        
+                        <button class="btn btn-default" ng-click="modifyCerti()">修改</button>
                     </div>
 
                     <table class="table table-hover ">

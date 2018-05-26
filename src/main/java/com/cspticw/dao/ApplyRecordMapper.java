@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cspticw.entity.ApplyRecord;
 import com.cspticw.entity.ApplyRecordExample;
 
@@ -45,5 +46,11 @@ public interface ApplyRecordMapper {
 	 * @return
 	 */
 	Integer selectDayById(@Param("resumeId") Long resumeId, @Param("jobId") Long jobId);
+
+	List<JSONObject> getStudentApplyRecord(@Param("stuId") Long stuId,
+			@Param("status") Integer status);
+
+	List<JSONObject> getCompanyApplyRecord(@Param("compId") Long compId, @Param("jobId") Long jobId,
+			@Param("status") Integer status);
 
 }

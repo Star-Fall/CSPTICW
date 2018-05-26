@@ -253,4 +253,59 @@
   </select>
   
   
+    <resultMap id="StudentApplyRecordMap" type="com.alibaba.fastjson.JSONObject">
+	    <id column="id" jdbcType="BIGINT" property="id" />
+	    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+	    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+	    <result column="resume_id" jdbcType="BIGINT" property="resumeId" />
+	    <result column="comp_job_id" jdbcType="BIGINT" property="compJobId" />
+	    <result column="is_check" jdbcType="INTEGER" property="isCheck" />
+	    <result column="status" jdbcType="INTEGER" property="status" />
+	    <result	column="resu_name"	jdbcType="VARCHAR"	property="resuName" />
+	    <result column="resumeStatus" jdbcType="INTEGER" property="resumeStatus" />
+	    <result	column="job_title"	jdbcType="VARCHAR"	property="jobTitle" />
+	    <result column="is_available" jdbcType="INTEGER" property="isAvailable" />
+	</resultMap>
+	
+  <select id="getStudentApplyRecord" resultMap="StudentApplyRecordMap">
+	  SELECT
+			record.*, resume.resu_name,
+			resume.`status` AS resumeStatus,
+			job.job_title,
+			job.is_available
+		FROM
+			apply_record record
+		LEFT JOIN stu_resume_info resume ON record.resume_id = resume.id
+		LEFT JOIN comp_job_info job ON record.comp_job_id = job.id
+		WHERE
+			resume.stu_id = #{stuId}
+		<if test="status !=null">
+			AND record.`status` = #{status}
+		</if>
+  		ORDER BY
+			record.create_time DESC
+  </select>
+  
+  <select id="getCompanyApplyRecord" resultMap="StudentApplyRecordMap">
+	  SELECT
+			record.*, resume.resu_name,
+			resume.`status` AS resumeStatus,
+			job.job_title,
+			job.is_available
+		FROM
+			apply_record record
+		LEFT JOIN stu_resume_info resume ON record.resume_id = resume.id
+		LEFT JOIN comp_job_info job ON record.comp_job_id = job.id
+		WHERE
+			job.comp_id = #{compId}
+		<if test="jobId !=null">
+			AND record.comp_job_id = #{jobId}
+		</if>
+		<if test="status !=null">
+			AND record.`status` = #{status}
+		</if>
+  		ORDER BY
+			record.create_time DESC
+  </select>
+  
 </mapper>

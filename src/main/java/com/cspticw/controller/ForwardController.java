@@ -85,6 +85,7 @@ public class ForwardController {
 		return "main";
 	}
 
+	// 大学生
 	/**
 	 * 发布简历页面
 	 * 
@@ -116,6 +117,16 @@ public class ForwardController {
 	}
 
 	/**
+	 * 跳转学生简历投递记录
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/to_student_apply_record")
+	public String toStudentApplyRecord() {
+		return "student-center-apply-record";
+	}
+
+	/**
 	 * 跳转到简历详细的页面 转发简历ID
 	 * 
 	 * @param id
@@ -126,6 +137,47 @@ public class ForwardController {
 	public String toResumePreview(@RequestParam("id") String id, ModelMap map) {
 		map.put("resumeId", id);
 		return "resume-preview";
+	}
+
+	/**
+	 * 跳转学生收到的岗位邀请
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/to_student_recruit_record")
+	public String toStudentRecruitRecord() {
+		return "student-center-recruit-record";
+	}
+
+	/**
+	 * 跳转学生收藏记录
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/to_student_collect_record")
+	public String toStudentCollectRecord() {
+		return "student-center-collect-record";
+	}
+
+	/**
+	 * 跳转我的投诉
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/to_student_complaint_record")
+	public String toComplaintRecordStudent() {
+		return "student-center-complaint-record";
+	}
+
+	// 企业
+	/**
+	 * 企业认证修改
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/to_company_certi_modify")
+	public String toCompanyCertiModify() {
+		return "company-center-modify";
 	}
 
 	/**
@@ -150,7 +202,7 @@ public class ForwardController {
 	}
 
 	/**
-	 * 跳转我的简历
+	 * 跳转公司岗位列表
 	 * 
 	 * @return
 	 */
@@ -158,6 +210,51 @@ public class ForwardController {
 	public String toMyCompJobList() {
 		return "company-center-job-list";
 	}
+
+	/**
+	 * 跳转公司简历应聘
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/to_company_apply_record")
+	public String toCompanyApplyRecord() {
+		return "company-center-apply-record";
+	}
+
+	/**
+	 * 跳转公司的招聘记录
+	 */
+	@RequestMapping("/to_company_recruit_record")
+	public String toCompanyRecruitRecord() {
+		return "company-center-recruit-record";
+	}
+
+	/**
+	 * 跳转公司收藏记录
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/to_company_collect_record")
+	public String toCompanyCollectRecord() {
+		return "company-center-collect-record";
+	}
+
+	/**
+	 * 跳转我的投诉
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/to_company_complaint_record")
+	public String toComplaintRecordCompany() {
+		return "company-center-complaint-record";
+	}
+
+	// 网站咨询
+	@RequestMapping("/to_main_news")
+	public String toMainNews() {
+		return "main-news";
+	}
+	// 管理员
 
 	/**
 	 * 跳转至管理员

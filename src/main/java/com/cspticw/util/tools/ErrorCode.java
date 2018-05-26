@@ -26,7 +26,7 @@ public interface ErrorCode {
 	 * 验证码发送失败
 	 */
 	public static final String ERROR_SEND_VALIDATE = "1003";
-
+	// 用户
 	/**
 	 * 添加用户错误
 	 */
@@ -51,7 +51,7 @@ public interface ErrorCode {
 	 * 暂无用户登录
 	 */
 	public static final String ERROR_NO_LONGIN = "2006";
-
+	// 简历
 	/**
 	 * 上传文件错误
 	 */
@@ -68,6 +68,7 @@ public interface ErrorCode {
 	 * 删除简历错误
 	 */
 	public static final String ERROR_DELETE_RESUME = "3003";
+	// 认证
 	/**
 	 * 认证信息上传错误
 	 */
@@ -76,7 +77,19 @@ public interface ErrorCode {
 	 * 发布岗位错误
 	 */
 	public static final String ERROR_ADD_JOB = "4002";
-
+	/**
+	 * 修改认证错误
+	 */
+	public static final String ERROR_UPDATE_CERTI = "4003";
+	/**
+	 * 修改岗位
+	 */
+	public static final String ERROR_UPDATE_JOB = "4004";
+	/**
+	 * 删除岗位
+	 */
+	public static final String ERROR_DELETE_JOB = "4005";
+	// 投递
 	/**
 	 * 大学生用户没有登录
 	 */
@@ -95,6 +108,11 @@ public interface ErrorCode {
 	 */
 	public static final String ERROR_JOB_TENDAY = "5004";
 	/**
+	 * 记录更改失败
+	 */
+	public static final String ERROR_RECORD_UPDATE = "5005";
+	// 投诉 收藏流程
+	/**
 	 * 收藏失败
 	 */
 	public static final String ERROR_COLLECT_FAIL = "6001";
@@ -106,6 +124,7 @@ public interface ErrorCode {
 	 * 投诉失败
 	 */
 	public static final String ERROR_COMPLAINT_FAIL = "6003";
+
 	// 添加行业错误
 	public static final String ERROR_ADD_JOB_CATEGORY = "0001";
 }

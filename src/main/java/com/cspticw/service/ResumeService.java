@@ -3,6 +3,7 @@ package com.cspticw.service;
 import java.util.List;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cspticw.entity.ResumeListParams;
 import com.cspticw.entity.StuResumeInfo;
 import com.cspticw.entity.StuUserInfo;
 
@@ -70,6 +71,8 @@ public interface ResumeService {
 	List<JSONObject> getResumeTop10(String province, String city);
 
 	List<JSONObject> getResumeListByParams();
+
+	List<JSONObject> getList(ResumeListParams params);
 
 	/**
 	 * 获取我的简历列表-用于简历投递

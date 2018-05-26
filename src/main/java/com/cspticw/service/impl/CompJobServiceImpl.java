@@ -11,6 +11,7 @@ import com.cspticw.dao.CompJobInfoMapper;
 import com.cspticw.entity.CompJobInfo;
 import com.cspticw.entity.CompJobInfoExample;
 import com.cspticw.entity.CompJobInfoExample.Criteria;
+import com.cspticw.entity.JobListParams;
 import com.cspticw.service.CompJobService;
 
 @Service
@@ -29,11 +30,30 @@ public class CompJobServiceImpl implements CompJobService {
 		return true;
 	}
 
+	@Transactional
+	@Override
+	public boolean updateCompanyJob(CompJobInfo record) {
+		record.preUpdate();
+		int i = compJobInfoMapper.updateByPrimaryKeySelective(record);
+		return i == 1;
+	}
+
+	@Transactional
+	@Override
+	public boolean deleteCompanyJob(Long id) {
+		CompJobInfo record = new CompJobInfo();
+		record.setId(id);
+		record.setIsAvailable(2);
+		int i = compJobInfoMapper.updateByPrimaryKeySelective(record);
+		return i == 1;
+	}
+
 	@Override
 	public List<CompJobInfo> getCompJobList(Long compId) {
 		CompJobInfoExample example = new CompJobInfoExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andCompIdEqualTo(compId);
+		criteria.andIsAvailableNotEqualTo(2);
 		List<CompJobInfo> list = compJobInfoMapper.selectByExample(example);
 		return list;
 	}
@@ -70,6 +90,13 @@ public class CompJobServiceImpl implements CompJobService {
 	public JSONObject getCompanyJobDetailById(Long jobId) {
 		JSONObject jsonObject = compJobInfoMapper.getCompanyJobDetailById(jobId);
 		return jsonObject;
+	}
+
+	@Override
+	public List<JSONObject> getList(JobListParams params) {
+		return compJobInfoMapper.getList(params.getJobCateList(), params.getJobPlaceList(),
+				params.getStart(), params.getEnd(), params.getTreatMethodList(),
+				params.getPayMethodList());
 	}
 
 }

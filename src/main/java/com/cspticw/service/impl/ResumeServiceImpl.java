@@ -16,6 +16,7 @@ import com.cspticw.dao.WorkExperienceMapper;
 import com.cspticw.entity.ResumeJob;
 import com.cspticw.entity.ResumeJobExample;
 import com.cspticw.entity.ResumeJobExample.Criteria;
+import com.cspticw.entity.ResumeListParams;
 import com.cspticw.entity.ResumeModel;
 import com.cspticw.entity.StuResumeInfo;
 import com.cspticw.entity.StuResumeInfoExample;
@@ -208,6 +209,12 @@ public class ResumeServiceImpl implements ResumeService {
 		criteria.andStatusEqualTo(0);
 		List<StuResumeInfo> list = stuResumeInfoMapper.selectByExample(example);
 		return list;
+	}
+
+	@Override
+	public List<JSONObject> getList(ResumeListParams params) {
+		return stuResumeInfoMapper.getList(params.getProvince(), params.getCity(),
+				params.getResumeJobList(), params.getEducationList(), params.getGender());
 	}
 
 }

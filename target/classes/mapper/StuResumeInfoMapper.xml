@@ -692,5 +692,47 @@
 			sr.resu_hot DESC,
 			sr.create_time DESC
 	</select>
+	
+	<select id="getList" resultMap="MyResumeDetailMap">
+		SELECT
+			sr.*, rj.job_cate_id,
+			jc.category_name
+		FROM
+			stu_resume_info sr
+		LEFT JOIN resume_job rj ON sr.id = rj.resu_id
+		LEFT JOIN job_category jc ON rj.job_cate_id = jc.id
+		WHERE
+			sr.`status` = 0
+		<if test="province!=null">
+			AND sr.province LIKE #{province}
+		</if>
+		<if test="city!=null">
+			AND sr.city LIKE #{city}
+		</if>
+		<if test="resumeJobList !=null">
+			AND jc.category_name IN
+			<foreach collection="resumeJobList" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="educationList !=null">
+			AND sr.education IN
+			<foreach collection="educationList" item="item" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="gender !=null">
+			AND sr.gender = #{gender}
+		</if>
+		ORDER BY
+			sr.create_time DESC,
+			sr.resu_hot DESC
+	</select>
 
+	<update id="addResumeHot">
+		UPDATE stu_resume_info
+		SET resu_hot = resu_hot + #{hot}
+		WHERE
+			id = #{resumeId}
+	</update>
 </mapper>

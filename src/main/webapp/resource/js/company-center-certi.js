@@ -1,5 +1,6 @@
 var app=angular.module('companyCenter',[]);
 app.controller('companyCenterCertiController',function ($scope,$http) {
+	$scope.centerMenu=1;
 	//首先请求用户的数据
 	$http({
         url:'/get_login_user',
@@ -14,6 +15,13 @@ app.controller('companyCenterCertiController',function ($scope,$http) {
     	 }
     	 
     })
+    
+    $scope.modifyCerti=function(){
+		if(!window.confirm("修改会重新认证，确定修改吗?")){
+			return;
+		}
+		window.location.href="to_company_certi_modify";
+	}
 	
     //请求数据
 	$http({
@@ -21,7 +29,9 @@ app.controller('companyCenterCertiController',function ($scope,$http) {
         method:'get'
     }).success(function(response, status, headers, config){
     	$scope.compInfoCerti=response.data;
+    	
     	 if($.isEmptyObject($scope.compInfoCerti)){
+    		 
     		 $('.sch-cert-form').css('display','block');
     		 $('.sch-cert-info').css('display','none');
     		 //初始化城市
@@ -83,9 +93,7 @@ app.controller('companyCenterCertiController',function ($scope,$http) {
 	 	    	var businessLicense=document.getElementById("business_license").files[0];
 	 	        formData.append('businessLicense',businessLicense);
 	 	        formData.append('jsonData',JSON.stringify(jsonData));
-	 	        console.log(JSON.stringify(jsonData))
-	 	        console.log(formData)
-	 	       $http({
+	 	        $http({
 	 	        	url:'/add_comp_certi',
 	 	    	   	method:'post',
 	 	    	   	data: formData,
@@ -110,9 +118,9 @@ app.controller('companyCenterCertiController',function ($scope,$http) {
 	 	    }
 	 	     
     	 }else{
+    		 
     		 $('.sch-cert-form').css('display','none');
     		 $('.sch-cert-info').css('display','block');
-    		 console.log($scope.compInfoCerti);
     		 $scope.compName=$scope.compInfoCerti.compName;
     		 $scope.compHome=$scope.compInfoCerti.compHome;
 	 	     $scope.compEstablishTime=$scope.compInfoCerti.compEstablishTime;
@@ -126,7 +134,7 @@ app.controller('companyCenterCertiController',function ($scope,$http) {
 	 	     $scope.contactName=$scope.compInfoCerti.contactName;
 	 	     $scope.contactPhone=$scope.compInfoCerti.contactPhone;
 	 	     $scope.contactEmail=$scope.compInfoCerti.contactEmail;
-	 	     
+	 	    $scope.isCertified=$scope.compInfoCerti.isCertified;
 	 	     $scope.businessLicenseImg="";
 	 	     //处理图像
 	 	     if($scope.compInfoCerti.businessLicense){
@@ -144,6 +152,5 @@ app.controller('companyCenterCertiController',function ($scope,$http) {
     //接受的认证信息
     
     //无数据
-   
 
 })

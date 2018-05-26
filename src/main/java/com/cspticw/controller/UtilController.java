@@ -1,14 +1,19 @@
 package com.cspticw.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cspticw.service.JobCategoryService;
 import com.cspticw.service.ProvinceService;
+import com.cspticw.util.tools.Constants;
 
 /**
  * @ClassName: UtilController
@@ -33,6 +38,28 @@ public class UtilController extends BaseController {
 	public Map<String, Object> getProvinceCity() {
 		Map<String, Object> returnMap = new HashMap<>();
 		returnMap.put("data", provinceService.getProvinceCity());
+		return returnMap;
+	}
+
+	/**
+	 * 根据地级市获取县级
+	 * 
+	 * @param city
+	 * @return
+	 */
+	@RequestMapping("/get_country_by_city")
+	public Map<String, Object> getCountryByCity(@RequestParam("province") String province,
+			@RequestParam("city") String city) {
+		Map<String, Object> returnMap = new HashMap<>();
+		try {
+			city = new String(city.getBytes("iso-8859-1"), "utf-8");
+			province = new String(province.getBytes("iso-8859-1"), "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			returnMap.put(Constants.ERROR, "error");
+			return returnMap;
+		}
+		List<JSONObject> list = provinceService.getCountryByCity(province, city);
+		returnMap.put("data", list);
 		return returnMap;
 	}
 

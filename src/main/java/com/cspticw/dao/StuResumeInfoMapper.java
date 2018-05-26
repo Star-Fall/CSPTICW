@@ -62,4 +62,12 @@ public interface StuResumeInfoMapper {
 	 */
 	List<JSONObject> getResumeTop10(@Param("province") String province, @Param("city") String city);
 
+	List<JSONObject> getList(@Param("province") String province, @Param("city") String city,
+			@Param("resumeJobList") List<String> resumeJobList,
+			@Param("educationList") List<String> educationList, @Param("gender") String gender);
+
+	/**
+	 * 增加热度
+	 */
+	void addResumeHot(@Param("hot") Integer hot, @Param("resumeId") Long resumeId);
 }

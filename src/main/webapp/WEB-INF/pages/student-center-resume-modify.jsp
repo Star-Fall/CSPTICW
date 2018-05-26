@@ -42,82 +42,13 @@
     </div>
     <!--主体-->
     <div class="center-body row container">
-        <!--菜单-->
-        <div class="center-menu list-group col-xs-2 col-sm-2 col-md-2 col-lg-2">
-
-            <!--简历-->
-            <a href="/to_my_resume_list" class="left-nav-one list-group-item active">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                简历中心
-            </a>
-            <div class="left-nav-zhe" style="display: block;">
-                <a href="/to_student_center_resume" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    发布简历
-                </a>
-                <a href="/to_my_resume_list" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    我的简历
-                </a>
-            </div>
-            <!--投递-->
-            <a href="" class="left-nav-one list-group-item">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                简历投递
-            </a>
-            <div class="left-nav-zhe">
-                <a href="" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    投递记录
-                </a>
-            </div>
-            <!--邀请-->
-            <a href="" class="left-nav-one list-group-item">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                兼职邀请
-            </a>
-            <div class="left-nav-zhe">
-                <a href="" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    收到的邀请
-                </a>
-            </div>
-            <a href="" class="left-nav-one list-group-item">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                我的收藏
-            </a>
-            <div class="left-nav-zhe">
-                <a href="" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    收藏的企业
-                </a>
-            </div>
-            <a href="" class="left-nav-one list-group-item">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                我的投诉
-            </a>
-            <div class="left-nav-zhe">
-                <a href="" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    投诉记录
-                </a>
-            </div>
-            <a href="" class="left-nav-one list-group-item">
-                <span class="glyphicon glyphicon-expand">&nbsp;</span>
-                系统消息
-            </a>
-            <div class="left-nav-zhe">
-                <a href="" class="left-nav-module-child list-group-item">
-                    <span class="glyphicon glyphicon-hand-right">&nbsp;</span>
-                    收到的消息
-                </a>
-            </div>
-        </div>
+       <%@include file="center-menu-student.jsp" %>
         <!--内容-->
         <div class="center-content col-xs-9 col-sm-9 col-md-9 col-lg-9">
             <!--发布简历-->
             <div class="row resume-div panel panel-default" >
                 <form name="resumeForm" novalidate class="resume-form panel-body">
+                    
                     <!--简历信息-->
                     <div class="panel panel-default">
                         <div class="panel-heading form-inline">
@@ -239,7 +170,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!--工作经验-->
                     <div class="panel panel-default">
                         <div class="panel-heading">工作经验</div>
@@ -311,7 +241,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!--学校信息-->
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -376,7 +305,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!--其他-->
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -435,7 +363,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!--提交按钮-->
                     <div class="panel panel-default">
                         <div class="panel-heading col-xs-12 col-sm-12 col-md-12 col-lg-12">

@@ -1,5 +1,6 @@
 package com.cspticw.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -47,4 +48,14 @@ public interface CompJobInfoMapper {
 	 * @return
 	 */
 	JSONObject getCompanyJobDetailById(@Param("jobId") Long jobId);
+
+	List<JSONObject> getList(@Param("jobCateList") List<String> jobCateList,
+			@Param("jobPlaceList") List<String> jobPlaceList, @Param("start") BigDecimal start,
+			@Param("end") BigDecimal end, @Param("treatMethodList") List<String> treatMethodList,
+			@Param("payMethodList") List<String> payMethodList);
+
+	/**
+	 * 增加热度
+	 */
+	void addJobHot(@Param("hot") Integer hot, @Param("jobId") Long jobId);
 }

@@ -1,6 +1,7 @@
 package com.cspticw.controller;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cspticw.entity.ResumeListParams;
 import com.cspticw.entity.StuResumeInfo;
 import com.cspticw.entity.StuUserInfo;
 import com.cspticw.service.ResumeService;
@@ -114,7 +116,6 @@ public class ResumeController extends BaseController {
 	@RequestMapping("/get_resume_detail")
 	public Map<String, Object> getResumeDetail() {
 		Map<String, Object> returnMap = new HashMap<>();
-		System.out.println("获取简历详细信息/get_resume_detail");
 		Subject currentUser = SecurityUtils.getSubject();
 		Session session = currentUser.getSession();
 		// 简历ID
@@ -198,7 +199,6 @@ public class ResumeController extends BaseController {
 	@RequestMapping(value = "/save_resume_id", method = RequestMethod.POST)
 	public Map<String, Object> saveResumeId(@RequestBody String id) {
 		Map<String, Object> returnMap = new HashMap<>();
-		System.out.println("保存更新的Id/save_resume_id");
 		Subject currentUser = SecurityUtils.getSubject();
 		Session session = currentUser.getSession();
 		session.setAttribute(Constants.RESUME_ID, id);
@@ -248,6 +248,28 @@ public class ResumeController extends BaseController {
 	public Map<String, Object> getResumeListByParams() {
 		Map<String, Object> returnMap = new HashMap<>();
 		List<JSONObject> list = resumeService.getResumeListByParams();
+		returnMap.put("data", list);
+		return returnMap;
+	}
+
+	/**
+	 * 求职意向 list 学历/ 性别
+	 * 
+	 * @param jsonData
+	 * @param pageNum
+	 * @return
+	 */
+	@RequestMapping("/get_resume_list_params2")
+	public Map<String, Object> getResumeListByParams2(@RequestParam("jsonData") String jsonData) {
+		Map<String, Object> returnMap = new HashMap<>();
+		try {
+			jsonData = new String(jsonData.getBytes("iso-8859-1"), "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			returnMap.put(Constants.ERROR, "error");
+			return returnMap;
+		}
+		ResumeListParams params = JSONObject.parseObject(jsonData, ResumeListParams.class);
+		List<JSONObject> list = resumeService.getList(params);
 		returnMap.put("data", list);
 		return returnMap;
 	}

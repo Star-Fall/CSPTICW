@@ -36,8 +36,39 @@ public class CompCertiServiceImpl implements CompCertiService {
 	public boolean addCompCertiInfo(CompInfoCerti record) {
 		record.preInsert();
 		record.setIsCertified(2);
-		compInfoCertiMapper.insert(record);
-		return true;
+		int i = compInfoCertiMapper.insert(record);
+		return i == 1;
+	}
+
+	@Transactional
+	@Override
+	public boolean updateCompCertiInfo(CompInfoCerti record) {
+		record.preUpdate();
+		record.setIsCertified(2);
+		int i = compInfoCertiMapper.updateByPrimaryKeySelective(record);
+		return i == 1;
+	}
+
+	@Override
+	public List<CompInfoCerti> getCompCertiInfoAdmin(Integer isCertified) {
+		CompInfoCertiExample example = new CompInfoCertiExample();
+		Criteria criteria = example.createCriteria();
+		if (isCertified != null) {
+			criteria.andIsCertifiedEqualTo(isCertified);
+		}
+		List<CompInfoCerti> list = compInfoCertiMapper.selectByExample(example);
+		return list;
+	}
+
+	@Transactional
+	@Override
+	public boolean updateCompCertiInfoAdmin(Long recordId, Integer isCertified) {
+		CompInfoCerti record = new CompInfoCerti();
+		record.setId(recordId);
+		record.setIsCertified(isCertified);
+		record.preUpdate();
+		int i = compInfoCertiMapper.updateByPrimaryKeySelective(record);
+		return i == 1;
 	}
 
 }

@@ -21,8 +21,7 @@
     text-align: left;
 }
 .left-nav-zhe{
-    display: none;
-    line-height: 18px;
+ 	   line-height: 18px;
 }
 .input-error{
     font-size: 14px;
@@ -51,3 +50,5 @@
     color: #00A57F;
     margin-bottom: 20px;
 }
+
+

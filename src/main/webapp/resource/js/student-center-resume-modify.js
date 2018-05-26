@@ -13,6 +13,7 @@ $(function () {
 var app=angular.module('studentCenter',[]);
 //简历Controller
 app.controller('resumeController',function ($scope,$http) {
+	$scope.centerMenu=1;
 	//首先请求用户的数据
 	$http({
         url:'/get_login_user',
@@ -27,7 +28,6 @@ app.controller('resumeController',function ($scope,$http) {
     		 $(".login_out").css("display","block");
     		 $(".login_info").css("display","none");
     	 }
-    	 
     })
     
     $http({
@@ -262,7 +262,7 @@ $('#image_file').bind('change',function (e) {
     if (!/image\/\w+/.test(file.type)) {
         alert("此处需要的是图片文件！");
         //清空选择的文件
-        var obj = document.getElementById('image_btn') ;
+        var obj = document.getElementById('image_file') ;
         obj.select();
         document.selection.clear();
         return;

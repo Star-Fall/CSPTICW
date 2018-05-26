@@ -13,6 +13,7 @@ $(function () {
 var app=angular.module('studentCenter',[]);
 //简历Controller
 app.controller('resumeController',function ($scope,$http) {
+	$scope.centerMenu=1;
 	//首先请求用户的数据
 	$http({
         url:'/get_login_user',

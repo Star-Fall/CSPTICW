@@ -334,4 +334,28 @@
 			province p
 		LEFT JOIN city c ON p.province_id = c.province_id
 	</select>
+	
+	<resultMap id="CountryByCityMap" type="com.alibaba.fastjson.JSONObject">
+	    <id column="id" jdbcType="BIGINT" property="id" />
+	    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+	    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+	    <result column="city_id" jdbcType="VARCHAR" property="cityId" />
+	    <result column="city" jdbcType="VARCHAR" property="city" />
+	    <result column="province_id" jdbcType="VARCHAR" property="provinceId" />
+	    <result column="country_id" jdbcType="VARCHAR" property="countryId" />
+    	<result column="country" jdbcType="VARCHAR" property="country" />
+	</resultMap>
+	<select id="getCountryByCity" resultMap="CountryByCityMap">
+		SELECT
+			ci.*,
+		co.country,
+		co.country_id
+		FROM
+			country co
+		LEFT JOIN city ci ON ci.city_id = co.city_id
+		LEFT JOIN province p ON p.province_id = ci.province_id
+		WHERE
+			p.province = #{province}
+		AND ci.city = #{city}
+	</select>
 </mapper>

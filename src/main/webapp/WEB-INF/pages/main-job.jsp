@@ -58,28 +58,118 @@
 					<li role="presentation" ><a href="/to_main">首页</a></li>
 					<li role="presentation" class="active"><a href="/to_main_job">兼职招聘</a></li>
 					<li role="presentation"><a href="/to_main_resume">求职简历</a></li>
-					<li role="presentation"><a href="#">网站资讯</a></li>
+					<li role="presentation"><a href="/to_main_news">网站资讯</a></li>
 				</ul>
 			</div>
-			<!--搜索框-->
-			<div class="search form-inline col-xs-3 col-sm-3 col-md-3 col-lg-3">
-				<div class="form-group">
-					<input type="text" name="job" class="form-control">
-					<button type="button" class="btn btn-primary">搜索</button>
-				</div>						
-			</div>
+			
 		</div>
 		
 
 		<div class="next row">
             <div class="job-row col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-md-offset-1
                 col-xs-9 col-sm-9 col-md-9 col-lg-9">
+				<!--筛选-->
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        筛选条件
+						<div class="panel panel-default">
+							<table class="table">
+								<tr>
+									<th class="col-md-1">
+										行业：
+									</th>
+									<td class="col-md-11">
+										<ul class="list-inline nav nav-pills " style="border-bottom: 1px solid black">
+											<li ng-repeat="x in parentCate" role="presentation"
+												ng-class="{active: parentCateSelect.categoryNameParent == x.categoryNameParent}">
+												<a href="" ng-cloak ng-click="changeParentCate(x.categoryNameParent)">
+													{{x.categoryNameParent}}
+												</a>
+											</li>
+										</ul>
+										<ul class="list-inline" style="margin-top: 10px;">
+											<li ng-repeat="x in childCate" >
+												<label class="checkbox-inline">
+													<input type="checkbox" ng-click="updateJobCateList($event, x.categoryName)">
+													{{x.categoryName}}
+												</label>
+											</li>
+										</ul>
+									</td>
+								</tr>
+								<tr>
+									<th class="col-md-1">地区</th>
+									<td class="col-md-11">
+										<ul class="list-inline" style="margin-top: 10px;">
+											<li ng-repeat="x in placeDate" >
+												<label class="checkbox-inline">
+													<input type="checkbox" ng-click="updateJobPlaceList($event, x.country)">
+													{{x.country}}
+												</label>
+											</li>
+										</ul>
+									</td>
+								</tr>
+
+								<tr>
+									<th class="col-md-1">待遇</th>
+									<td class="col-md-11">
+										<div class="col-md-12" style="padding: 0px;">
+											<div class="form-group">
+												<div class="col-md-2">
+													<input type="number" class="form-control" id="start" ng-model="start">
+												</div>
+												<div class="col-md-1">
+													<label class="control-label">——</label>
+												</div>
+												<div class="col-md-2">
+													<input type="number" class="form-control" id="end" ng-model="end">
+												</div>
+											</div>
+										</div>
+
+										<ul class="list-inline" style="margin-top: 50px;">
+											<li>
+												<label class="checkbox-inline">
+													<input type="checkbox" value="小时" ng-click="updateTreatMethod($event, '小时')">小时
+												</label>
+												<label class="checkbox-inline">
+													<input type="checkbox" value="天" ng-click="updateTreatMethod($event, '天')">天
+												</label>
+												<label class="checkbox-inline">
+													<input type="checkbox" value="月" ng-click="updateTreatMethod($event, '月')">月
+												</label>
+											</li>
+										</ul>
+										<ul class="list-inline">
+											<li>
+												<label class="checkbox-inline">
+													<input type="checkbox" value="当日结" ng-click="updatePayMethod($event, '当日结')">当日结
+												</label>
+												<label class="checkbox-inline">
+													<input type="checkbox" value="次日结" ng-click="updatePayMethod($event, '次日结')">次日结
+												</label>
+												<label class="checkbox-inline">
+													<input type="checkbox" value="月结" ng-click="updatePayMethod($event, '月结')">月结
+												</label>
+												<label class="checkbox-inline">
+													<input type="checkbox" value="完工结" ng-click="updatePayMethod($event, '完工结')">完工结
+												</label>
+											</li>
+										</ul>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!--按钮-->
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<button ng-click="submit()" class="btn btn-success">按条件筛选</button>
+							</div>
+						</div>
+
                     </div>
                 </div>
-
+				<!-- 数据展示 -->
                 <div class="job-panel panel panel-default" ng-repeat="x in jobList">
                     <div class="panel-body">
                         <!--第一行-->
@@ -98,7 +188,12 @@
                             <div class="job-cate col-md-6">{{x.jobCate}}</div>
 
                             <div class="job-company col-md-2">公司：</div>
-                            <div class="job-companycol-md-6">{{x.company}}</div>
+                            <div class="job-company col-md-6">
+                            	{{x.compName}}
+                            	<span class="label label-danger" 
+                            	data-toggle="tooltip" data-placement="right" title="公司经过网站认证"
+                            		ng-show="x.isCertified == 0">认</span>
+                            </div>
                         </div>
                         <div class="col-md-3">
                             <div class="job-treat col-md-2">{{x.jobTreat}}</div>
@@ -107,111 +202,29 @@
                         </div>
                     </div>
                 </div>
-			</div>
+                
+                <!--分页-->
+				<nav aria-label="Page navigation" >
+					<ul class="pagination">
+						<li ng-class="{false:'disabled'}[hasPreviousPage]">
+							<a href="" aria-label="Previous" ng-click="previousPage()">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
 
-		<!-- Modal -->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-				<div class="modal-dialog modal-lg" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-							<h4 class="modal-title" id="myModalLabel">岗位详情</h4>
-						</div>
-						<div class="modal-body row">
-							<div class=" job-modal-body col-md-8 col-md-offset-2">
+						<li ng-repeat="x in navigatepageNums" ng-class="{'active':x == pageNum}">
+							<a href="" ng-bind="x" ng-click="changePage(x)"></a>
+						</li>
 
-								<div class="modal-jobTitle col-md-12">{{jobDetail.jobTitle}}</div>
-								<div class="col-md-12">
-									<div class="modal-jobTreat col-md-2">{{jobDetail.jobTreat}}￥</div>
-									<div class="modal-treatMethod col-md-2">/{{jobDetail.treatMethod}}</div>
-									<div class="modal-payMethod col-md-2">{{jobDetail.payMethod}}</div>
-									<div class="modal-personNum col-md-2">招{{jobDetail.personNum}}人</div>
-								</div>
-								<div class="col-md-12">
-									<div class="modal-jobPlace-l col-md-3">工作地点：</div>
-									<div class="modal-jobPlace col-md-9">
-										{{jobDetail.jobPlace}}
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="modal-jobCate-l col-md-3">岗位类别：</div>
-									<div class="modal-jobCate col-md-9">
-										{{jobDetail.jobCate}}
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="modal-jobRequire-l col-md-3">
-										工作要求：
-									</div>
-
-									<div class="modal-jobRequire col-md-9 ">
-										{{jobDetail.jobRequire}}
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="modal-jobContent-l col-md-3">
-										工作内容：
-									</div>
-									<div class="modal-jobContent col-md-9 ">
-										{{jobDetail.jobContent}}
-									</div>
-								</div>
-
-								<div class="col-md-12">
-									<div class="modal-jobRequire-l col-md-3">联系方式：</div>
-									<div class="modal-jobRequire col-md-9 ">
-										<footer>
-											<strong>{{jobDetail.contactName}}：</strong>
-											<cite title="手机号码">
-												{{jobDetail.contactPhone}}
-											</cite>
-										</footer>
-									</div>
-
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-info" ng-click="chooseResume(jobDetail.id)" 
-								data-toggle="modal" >投递简历</button>
-							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-			<!-- Modal -->
-			<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        <h4 class="modal-title" id="myModalLabel">选择简历</h4>
-			      </div>
-			      <div class="modal-body">
-			        	<form class="form-horizontal">
-			        	<div class="form-group">
-						    <label for="select_resume" class="col-sm-3 control-label">选择简历：</label>
-						    <div class="col-sm-9">
-						   	 <!-- 简历选择框 -->
-						      <select class="form-control" id="select_resume" ng-model="select_resume"
-                                      ng-options="x.resuName for x in resumeList">
-                              </select>
-						    </div>
-						  </div>
-			        	</form>
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			        <button type="button" class="btn btn-primary" ng-click="resumeToJob()">确定</button>
-			      </div>
-			    </div>
-			  </div>
-			</div>
-			
+						<li ng-class="{false:'disabled'}[hasNextPage]">
+							<a href="" aria-label="Next" ng-click="nextPage()">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+				
+			</div>			
 		</div>
 	</div>
 
@@ -232,81 +245,185 @@
         		 $(".login_info").css("display","block");
         		 
         		 $scope.loginUser=response.data;
-        		 console.log($scope.loginUser)
         	 }else{
         		 $(".login_out").css("display","block");
         		 $(".login_info").css("display","none");
         	 }
-        	 
         })
-    	$scope.chooseJobId="";
-    	$http({
+        //初始化数据
+        var jsonData={};
+        $http({
 			url:'/get_comp_job_params',
-    	   	method:'get'
+    	   	method:'get',
+    	   	params:{'jsonData':jsonData}
 		}).success(function(response, status, headers, config){
-			$scope.jobList=response.data;
+			var globalData=response.data;
+			$scope.jobList=globalData.list;
+			//所有页码
+			$scope.navigatepageNums=globalData.navigatepageNums;
+			$scope.hasPreviousPage=globalData.hasPreviousPage;
+	        $scope.hasNextPage=globalData.hasNextPage;
+	        $scope.pageNum=globalData.pageNum;
 		})
 		
-		$scope.jobDetail={};
-		$scope.detailJob=function (id) {
-            for(var i=0;i<$scope.jobList.length;i++){
-                if($scope.jobList[i].id==id){
-                    $scope.jobDetail=$scope.jobList[i];
-					return;
-                }
-            }
-        }
-		//选择简历
-		$scope.chooseResume=function(id){
-			$scope.chooseJobId=id;
-			//先获取我的简历
-			$http({
-				url:'/get_myresume_list',
-	    	   	method:'get'
-			}).success(function(response, status, headers, config){
-				if(response.error){
-					alert("请登录大学生用户！")
-					return;
-				}				
-				$scope.resumeList=response.data;				
-				if($.isEmptyObject($scope.resumeList)){
-					alert("先去填写简历吧！");
-					return;
-				}else{
-					$scope.select_resume=$scope.resumeList[0];
-					$("#myModal1").modal('show');
-				}				
-			})
-		}
-		//投递
-		$scope.resumeToJob=function(){
-			var jsonData={};
-			jsonData.resumeId=$scope.select_resume.id;
-			jsonData.jobId=$scope.chooseJobId;
-			$http({
-				url:'/resume_to_job',
-	    	   	method:'post',
-	    	   	data:JSON.stringify(jsonData)
-			}).success(function(response, status, headers, config){
-				if(response.msg){
-					alert("投递成功！");
-					$("#myModal1").modal('hide');
-					$("#myModal").modal('hide');
-				}else if(response.error){
-					if("5003"==response.error){
-						alert("十天内不可重复投递");
-						$("#myModal1").modal('hide');
-						$("#myModal").modal('hide');
-					}				
-				}else{
-					alert("系统错误");
-					$("#myModal1").modal('hide');
-					$("#myModal").modal('hide');
+        // //先行业
+        $http({
+	    	url:'/get_job_category',
+		   	method:'get'
+	    }).success(function(response, status, headers, config){
+	    	//所有主行业
+			$scope.parentCate=response.data;
+	        //选中的主行业
+			$scope.parentCateSelect=$scope.parentCate[0];
+	        //主行业的子行业
+			$scope.childCate=$scope.parentCateSelect.jobCategoryList;
+
+			$scope.changeParentCate=function (categoryNameParent) {
+				for(var i=0;i<$scope.parentCate.length;i++){
+				    //主行业里有一样的
+				    if($scope.parentCate[i].categoryNameParent==categoryNameParent){
+				        //赋值选中的
+	                    $scope.parentCateSelect=$scope.parentCate[i];
+	                    $scope.childCate=$scope.parentCateSelect.jobCategoryList;
+					}
 				}
-			})
-			
-		}
-        
+	        }
+		});    
+    	//地区
+        $http({
+	    	url:'/get_country_by_city',
+		   	method:'get',
+		   	params:{'province':'江苏省','city':'苏州市'}
+	    }).success(function(response, status, headers, config){
+	    	$scope.placeDate=response.data;
+		});  
+      	//获取jobCateList
+		$scope.jobCateList=[];
+		$scope.updateJobCateList=function ($event, id) {
+            var checkbox = $event.target;
+            var action = (checkbox.checked ? 'add' : 'remove');
+            if(action == 'add' & $scope.jobCateList.indexOf(id) == -1)
+                $scope.jobCateList.push(id);
+            if(action == 'remove' && $scope.jobCateList.indexOf(id) != -1)
+                $scope.jobCateList.splice($scope.jobCateList.indexOf(id), 1);
+        }
+		//获取jobPlaceList
+        $scope.jobPlaceList=[];
+		$scope.updateJobPlaceList=function ($event, id) {
+            var checkbox = $event.target;
+            var action = (checkbox.checked ? 'add' : 'remove');
+            if(action == 'add' & $scope.jobPlaceList.indexOf(id) == -1)
+                $scope.jobPlaceList.push(id);
+            if(action == 'remove' && $scope.jobPlaceList.indexOf(id) != -1)
+                $scope.jobPlaceList.splice($scope.jobPlaceList.indexOf(id), 1);
+        }
+		//待遇
+		//金额
+		$scope.start=0;
+        $scope.end=100;
+        //treatMethodList
+		$scope.treatMethodList=[];
+		$scope.updateTreatMethod=function ($event, id) {
+            var checkbox = $event.target;
+            var action = (checkbox.checked ? 'add' : 'remove');
+            if(action == 'add' & $scope.treatMethodList.indexOf(id) == -1)
+                $scope.treatMethodList.push(id);
+            if(action == 'remove' && $scope.treatMethodList.indexOf(id) != -1)
+                $scope.treatMethodList.splice($scope.treatMethodList.indexOf(id), 1);
+        }
+		//payMethodList
+		$scope.payMethodList=[];
+        $scope.updatePayMethod=function ($event, id) {
+            var checkbox = $event.target;
+            var action = (checkbox.checked ? 'add' : 'remove');
+            if(action == 'add' & $scope.payMethodList.indexOf(id) == -1)
+                $scope.payMethodList.push(id);
+            if(action == 'remove' && $scope.payMethodList.indexOf(id) != -1)
+                $scope.payMethodList.splice($scope.payMethodList.indexOf(id), 1);
+        }
+        //筛选
+        $scope.submit=function () {
+        	jsonData={};
+            if($scope.jobCateList.length>0){
+                jsonData.jobCateList=$scope.jobCateList;
+			}
+            if($scope.jobPlaceList.length>0){
+                jsonData.jobPlaceList=$scope.jobPlaceList;
+            }
+            if($scope.treatMethodList.length>0){
+                jsonData.treatMethodList=$scope.treatMethodList;
+            }
+            if($scope.payMethodList.length>0){
+                jsonData.payMethodList=$scope.payMethodList;
+            }
+            jsonData.start=$scope.start;
+            jsonData.end=$scope.end;
+            //发请求
+            $http({
+    			url:'/get_comp_job_params',
+        	   	method:'get',
+        	   	params:{'jsonData':jsonData}
+    		}).success(function(response, status, headers, config){
+    			globalData=response.data;
+    			$scope.jobList=globalData.list;
+    			//所有页码
+    			$scope.navigatepageNums=globalData.navigatepageNums;
+    			$scope.hasPreviousPage=globalData.hasPreviousPage;
+    	        $scope.hasNextPage=globalData.hasNextPage;
+    	        $scope.pageNum=globalData.pageNum;
+    		}) 
+        }
+       //分页
+        $scope.previousPage=function () {
+    	   if(!$scope.hasPreviousPage)return;
+    	   //发请求
+	   	   $http({
+	   			url:'/get_comp_job_params',
+	       	   	method:'get',
+	       	   	params:{'jsonData':jsonData,'pageNum':$scope.pageNum-1}
+	   		}).success(function(response, status, headers, config){
+	   			globalData=response.data;
+	   			$scope.jobList=globalData.list;
+	   			//所有页码
+	   			$scope.navigatepageNums=globalData.navigatepageNums;
+	   			$scope.hasPreviousPage=globalData.hasPreviousPage;
+	   	        $scope.hasNextPage=globalData.hasNextPage;
+	   	        $scope.pageNum=globalData.pageNum;
+	   		}) 
+        }
+        $scope.changePage=function (x) {
+        	//发请求
+        	$http({
+	   			url:'/get_comp_job_params',
+	       	   	method:'get',
+	       	   	params:{'jsonData':jsonData,'pageNum':x}
+	   		}).success(function(response, status, headers, config){
+	   			globalData=response.data;
+	   			$scope.jobList=globalData.list;
+	   			//所有页码
+	   			$scope.navigatepageNums=globalData.navigatepageNums;
+	   			$scope.hasPreviousPage=globalData.hasPreviousPage;
+	   	        $scope.hasNextPage=globalData.hasNextPage;
+	   	        $scope.pageNum=globalData.pageNum;
+	   		}) 
+        }
+        $scope.nextPage=function () {
+        	 if(!$scope.hasNextPage)return;
+        	//发请求
+        	$http({
+	   			url:'/get_comp_job_params',
+	       	   	method:'get',
+	       	   	params:{'jsonData':jsonData,'pageNum':$scope.pageNum+1}
+	   		}).success(function(response, status, headers, config){
+	   			globalData=response.data;
+	   			$scope.jobList=globalData.list;
+	   			//所有页码
+	   			$scope.navigatepageNums=globalData.navigatepageNums;
+	   			$scope.hasPreviousPage=globalData.hasPreviousPage;
+	   	        $scope.hasNextPage=globalData.hasNextPage;
+	   	        $scope.pageNum=globalData.pageNum;
+	   		}) 
+        }
     })
 </script>
 </body>

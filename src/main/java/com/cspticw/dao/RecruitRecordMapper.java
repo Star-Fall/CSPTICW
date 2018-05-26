@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cspticw.entity.RecruitRecord;
 import com.cspticw.entity.RecruitRecordExample;
 
@@ -41,4 +42,25 @@ public interface RecruitRecordMapper {
 	 * @return
 	 */
 	Integer selectDayById2(@Param("resumeId") Long resumeId, @Param("jobId") Long jobId);
+
+	/**
+	 * 公司查看自己的招聘
+	 * 
+	 * @param compId
+	 * @param status
+	 * @return
+	 */
+	List<JSONObject> getCompanyRecruitRecord(@Param("compId") Long compId,
+			@Param("status") Integer status);
+
+	/**
+	 * 学生查看兼职邀请
+	 * 
+	 * @param stuId
+	 * @param resumeId
+	 * @param status
+	 * @return
+	 */
+	List<JSONObject> getStudentRecruitRecord(@Param("stuId") Long stuId,
+			@Param("resumeId") Long resumeId, @Param("status") Integer status);
 }

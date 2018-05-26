@@ -1,5 +1,6 @@
 package com.cspticw.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,9 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.fastjson.JSONObject;
 import com.cspticw.entity.CompJobInfo;
 import com.cspticw.entity.CompUserInfo;
+import com.cspticw.entity.JobListParams;
 import com.cspticw.service.CompJobService;
 import com.cspticw.util.tools.Constants;
 import com.cspticw.util.tools.ErrorCode;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 /**
  * @ClassName: CompJobController
@@ -46,6 +50,42 @@ public class CompJobController extends BaseController {
 			returnMap.put(Constants.MSG, Constants.SUCCESS);
 		} else {
 			returnMap.put(Constants.ERROR, ErrorCode.ERROR_ADD_JOB);
+		}
+		return returnMap;
+	}
+
+	/**
+	 * 更新公司岗位
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/update_company_job", method = RequestMethod.POST)
+	public Map<String, Object> updateCompanyJob(@RequestBody String jsonData) {
+		Map<String, Object> returnMap = new HashMap<>();
+		CompJobInfo record = JSONObject.parseObject(jsonData, CompJobInfo.class);
+		boolean result = compJobService.updateCompanyJob(record);
+		if (result) {
+			returnMap.put(Constants.MSG, Constants.SUCCESS);
+		} else {
+			returnMap.put(Constants.ERROR, ErrorCode.ERROR_UPDATE_JOB);
+		}
+		return returnMap;
+	}
+
+	/**
+	 * 删除公司岗位
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/delete_company_job", method = RequestMethod.POST)
+	public Map<String, Object> deleteCompanyJob(@RequestBody String id) {
+		Map<String, Object> returnMap = new HashMap<>();
+		Long jobId = Long.valueOf(id);
+		boolean result = compJobService.deleteCompanyJob(jobId);
+		if (result) {
+			returnMap.put(Constants.MSG, Constants.SUCCESS);
+		} else {
+			returnMap.put(Constants.ERROR, ErrorCode.ERROR_DELETE_JOB);
 		}
 		return returnMap;
 	}
@@ -91,15 +131,32 @@ public class CompJobController extends BaseController {
 	}
 
 	/**
-	 * 根据参数查找工作
+	 * 类别 list<br>
+	 * 地点 list<br>
+	 * 金额 开始 和 结束<br>
+	 * 方式 list<br>
+	 * 结算方式 list<br>
 	 * 
 	 * @return
 	 */
 	@RequestMapping("/get_comp_job_params")
-	public Map<String, Object> getCompJobListByParam() {
+	public Map<String, Object> getCompJobListByParam(@RequestParam("jsonData") String jsonData,
+			@RequestParam(value = "pageNum", required = false) String pageNum) {
 		Map<String, Object> returnMap = new HashMap<>();
-		List<CompJobInfo> list = compJobService.getCompJobByParams();
-		returnMap.put("data", list);
+		try {
+			jsonData = new String(jsonData.getBytes("iso-8859-1"), "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			returnMap.put(Constants.ERROR, "error");
+			return returnMap;
+		}
+		JobListParams params = JSONObject.parseObject(jsonData, JobListParams.class);
+
+		if (pageNum == null)
+			pageNum = 1 + "";
+		PageHelper.startPage(Integer.valueOf(pageNum), 10);
+		List<JSONObject> list = compJobService.getList(params);
+		PageInfo<JSONObject> pageInfo = new PageInfo<>(list, 5);
+		returnMap.put("data", pageInfo);
 		return returnMap;
 	}
 
