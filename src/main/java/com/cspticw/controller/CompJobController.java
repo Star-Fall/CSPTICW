@@ -123,14 +123,29 @@ public class CompJobController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping("/get_comp_job_top10")
-	public Map<String, Object> getCompJobTop10(String province, String city) {
+	public Map<String, Object> getCompJobTop10(
+			@RequestParam(value = "province", required = false) String province,
+			@RequestParam(value = "city", required = false) String city) {
 		Map<String, Object> returnMap = new HashMap<>();
+		try {
+			if (province != null) {
+				province = new String(province.getBytes("iso-8859-1"), "utf-8");
+			}
+			if (city != null) {
+				city = new String(city.getBytes("iso-8859-1"), "utf-8");
+			}
+		} catch (UnsupportedEncodingException e) {
+			returnMap.put(Constants.ERROR, "error");
+			return returnMap;
+		}
+
 		List<CompJobInfo> list = compJobService.getCompJobTop10(province, city);
 		returnMap.put("data", list);
 		return returnMap;
 	}
 
 	/**
+	 * 根据参数筛选岗位<br>
 	 * 类别 list<br>
 	 * 地点 list<br>
 	 * 金额 开始 和 结束<br>
@@ -150,7 +165,6 @@ public class CompJobController extends BaseController {
 			return returnMap;
 		}
 		JobListParams params = JSONObject.parseObject(jsonData, JobListParams.class);
-
 		if (pageNum == null)
 			pageNum = 1 + "";
 		PageHelper.startPage(Integer.valueOf(pageNum), 10);

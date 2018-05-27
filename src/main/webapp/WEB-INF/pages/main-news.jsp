@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>首页</title>
+<title>网站资讯</title>
 	<meta charset="utf-8">
 	<link href="../../resource/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../resource/css/common.css">
@@ -15,7 +15,38 @@
 	<div id="container-fluid" ng-controller="mainJobController">
 		<div class="nav_log row">
 			<div class="change_city  col-xs-2 col-sm-2 col-md-2 col-lg-2">
-				<span>上海站</span><a href="#">【切换城市】</a>
+				<span ng-bind="city"></span><a href="" data-toggle="modal" data-target="#myModal0">【切换城市】</a>
+			</div>
+			<!-- 选择城市 -->
+			<div class="modal fade" id="myModal0" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">选择城市</h4>
+			      </div>
+			      <div class="modal-body ">
+			       	<div class="form-inline row">
+				      	<div class="form-group col-md-6">
+					    	<label for="select_province" >省份：</label>
+					    	<select class="form-control" id="select_province" ng-model="select_province" 
+					      		ng-options="x1.province for x1 in selectProvince" ng-change="changeProvince()">
+		                    </select>
+					  	</div>
+					  	<div class="form-group col-md-6">
+					    	<label for="select_city">城市：</label>
+					    	<select class="form-control" id="select_city" ng-model="select_city" 
+		                    	ng-options="x2.city for x2 in selectCity" >
+		                    </select>
+					  	</div>
+				  	</div>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="saveProvinceCity()">保存</button>
+			      </div>
+			    </div>
+			  </div>
 			</div>
 			
 			<div class="login_out col-xs-offset-7 col-sm-offset-7 col-md-offset-7 col-md-offset-7 
@@ -186,7 +217,52 @@
         	 }
         })
         $scope.showP=1;
-        
+    ////初始化城市
+        $http({
+        	url:'/get_province_city',
+    	   	method:'get'
+        }).success(function(response, status, headers, config){
+        	//填充到selectProvince 数据源
+        	$scope.selectProvince=response.data;
+        	//初始化第一个
+        	$scope.select_province=$scope.selectProvince[0];
+        	//填充到selectCity 数据源
+        	$scope.selectCity=$scope.select_province.cityList;
+        	//初始化第一个
+        	$scope.select_city=$scope.select_province.cityList[0];
+    	});  
+        $scope.changeProvince=function(){
+        	$scope.selectCity=$scope.select_province.cityList;
+        	$scope.select_city=$scope.selectCity[0];
+        }
+        //省份
+        $scope.province="江苏省";
+        //城市
+    	$scope.city="苏州市";
+        //先查询 
+        $http({
+            url:'/get_province_city_session',
+            method:'get',
+        }).success(function(response, status, headers, config){
+        	if(response.error){
+        	}else{
+        		$scope.province=response.province;
+        		$scope.city=response.city;
+        	}
+        })
+        //保存城市
+        $scope.saveProvinceCity=function(){
+        	$http({
+                url:'/save_province_city_session',
+                method:'post',
+                data:{'province':$scope.select_province.province,'city':$scope.select_city.city}
+            }).success(function(response, status, headers, config){
+            	if(response.msg){
+            		$scope.province=$scope.select_province.province;
+            		$scope.city=$scope.select_city.city;
+            	}
+            })
+        }
     })
 </script>
 </body>

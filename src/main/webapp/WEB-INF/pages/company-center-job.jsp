@@ -14,7 +14,7 @@
 <!--登录条-->
     <div class="nav_log row">
         <div class="change_city  col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <span>上海站</span><a href="#">【切换城市】</a>
+            <!-- <span>上海站</span><a href="">【切换城市】</a> -->
         </div>
         <!-- 登录的信息 -->
 		<div class="login_info dropdown col-xs-offset-8 col-sm-offset-8 col-md-offset-8 col-md-offset-8 
@@ -36,9 +36,8 @@
         <a href="/to_main">
             <div class="log_img col-xs-3 col-sm-3 col-md-3 col-lg-3 "></div>
         </a>
-        <div class="nav-path col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <a href="/to_main">首页</a>&nbsp;&nbsp;/&nbsp;&nbsp;
-            用户中心
+        <div class="nav-path col-xs-3 col-sm-3 col-md-3 col-lg-3 ">
+            <a href="/to_main">首页</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="/to_user_center">用户中心</a> &nbsp;&nbsp;/&nbsp;&nbsp;发布岗位
         </div>
     </div>
 <!--主体-->

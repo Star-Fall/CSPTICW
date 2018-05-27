@@ -14,12 +14,11 @@
     <!--登录条-->
     <div class="nav_log row">
         <div class="change_city  col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <span>上海站</span><a href="#">【切换城市】</a>
+           
         </div>
         <!--登录注册部分-->
         <div class="login_out col-xs-offset-8 col-sm-offset-8 col-md-offset-8 col-md-offset-8
             col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            用户信息
         </div>
     </div>
     <!--导航条-->
@@ -200,11 +199,7 @@
         	   	method:'post',
         	   	data:$scope.formData
            	}).success(function(response, status, headers, config){
-        	   	/*response   -- 成功返回的数据 
-	               status     -- 状态码 
-	               headers    -- 头信息 
-	               config     -- 其他信息 
-	             */
+
         	   	if(response.msg){
         	   		//注册成功
         	   		//跳转至主页

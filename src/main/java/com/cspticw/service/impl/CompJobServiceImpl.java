@@ -94,9 +94,9 @@ public class CompJobServiceImpl implements CompJobService {
 
 	@Override
 	public List<JSONObject> getList(JobListParams params) {
-		return compJobInfoMapper.getList(params.getJobCateList(), params.getJobPlaceList(),
-				params.getStart(), params.getEnd(), params.getTreatMethodList(),
-				params.getPayMethodList());
+		return compJobInfoMapper.getList(params.getProvince(), params.getCity(),
+				params.getJobCateList(), params.getJobPlaceList(), params.getStart(),
+				params.getEnd(), params.getTreatMethodList(), params.getPayMethodList());
 	}
 
 }

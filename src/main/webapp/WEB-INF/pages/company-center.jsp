@@ -14,7 +14,7 @@
 <!--登录条-->
     <div class="nav_log row">
         <div class="change_city  col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <span>上海站</span><a href="#">【切换城市】</a>
+            <!-- <span>上海站</span><a href="">【切换城市】</a> -->
         </div>
         <!-- 登录的信息 -->
 		<div class="login_info dropdown col-xs-offset-8 col-sm-offset-8 col-md-offset-8 col-md-offset-8 
@@ -38,8 +38,7 @@
             <div class="log_img col-xs-3 col-sm-3 col-md-3 col-lg-3 "></div>
         </a>
         <div class="nav-path col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <a href="/to_main">首页</a>&nbsp;&nbsp;/&nbsp;&nbsp;
-            用户中心
+            <a href="/to_main">首页</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="/to_user_center">用户中心</a>
         </div>
     </div>
     
@@ -239,7 +238,7 @@
                             <td class="col-md-4" ng-bind="compName"></td>
                            <th class="col-md-2">公司主页：</th>
                             <td class="col-md-4" >
-                            	<a href="{{compHome}}" class="ng-cloak">{{compHome}}</a>
+                            	<a href="{{compHome}}" class="ng-cloak" target="_blank">{{compHome}}</a>
                             </td>
                         </tr>
                         <tr>
@@ -297,6 +296,24 @@
             }
         });
     });
+    /**读取图片**/
+	$('#business_license').bind('change',function (e) {
+	    e = e || window.event;
+	    var file = e.target.files[0];
+	    if (!/image\/\w+/.test(file.type)) {
+	        alert("此处需要的是图片文件！");
+	        //清空选择的文件
+	        var obj = document.getElementById('business_license') ;
+	        obj.select();
+	        document.selection.clear();
+	        return;
+	    }
+	    var reader = new FileReader();
+	    reader.readAsDataURL(file);
+	    reader.onload = function (f) {
+	        $('#image_img').attr('src',this.result);
+	    }
+	})
 </script>
 </body>
 </html>

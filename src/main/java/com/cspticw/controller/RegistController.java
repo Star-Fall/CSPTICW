@@ -33,8 +33,6 @@ public class RegistController {
 	// 验证码
 	private ValidateMap validateMap;
 
-	private HashMap<String, Object> returnMap;
-
 	/**
 	 * 注册方法
 	 * 
@@ -44,7 +42,7 @@ public class RegistController {
 	 */
 	@RequestMapping(value = "/regist", method = RequestMethod.POST)
 	public Map<String, Object> regist(@RequestBody Map<String, Object> map) {
-		returnMap = new HashMap<>();
+		HashMap<String, Object> returnMap = new HashMap<>();
 		if (map == null) {
 			returnMap.put(Constants.ERROR, ErrorCode.ERROR_PARAMS);
 			return returnMap;
@@ -52,7 +50,12 @@ public class RegistController {
 		String regist = map.get("regist").toString();
 		// 验证码 根据手机号取出
 		validateMap = ValidateMap.getInstance();
+
 		String validateCode = validateMap.get(map.get("userName").toString());
+		if (validateCode == null) {
+			returnMap.put(Constants.ERROR, ErrorCode.ERROR_VALIDATE);
+			return returnMap;
+		}
 		if ("".equals(validateCode) || "".equals(map.get("validateCode"))
 				|| !validateCode.equals(map.get("validateCode"))) {
 			returnMap.put(Constants.ERROR, ErrorCode.ERROR_VALIDATE);
@@ -99,12 +102,8 @@ public class RegistController {
 	@RequestMapping(value = "/regist/send_message", method = RequestMethod.POST)
 	public Map<String, Object> sendMessage(@RequestBody Map<String, Object> params)
 			throws Exception {
-		returnMap = new HashMap<>();
+		Map<String, Object> returnMap = new HashMap<>();
 		Map<String, Object> responseMap = null;
-		// responseMap = new HashMap<>();
-		// responseMap.put("Code", "OK");
-		// responseMap.put("Message", "OK");
-		// validateCode = "123456";
 		String userName = params.get("userName").toString();
 		String code = (int) ((Math.random() * 9 + 1) * 100000) + "";
 		try {
@@ -115,10 +114,10 @@ public class RegistController {
 			returnMap.put(Constants.ERROR, ErrorCode.ERROR_SEND_VALIDATE);
 			return returnMap;
 		}
-		System.out.println("code:" + code);
 		// 存储发送的验证码
 		validateMap = ValidateMap.getInstance();
 		validateMap.put(userName, code);
+		// 返回是成功
 		returnMap.put(Constants.MSG, responseMap);
 		return returnMap;
 	}
@@ -134,7 +133,7 @@ public class RegistController {
 	public Map<String, Object> checkUserName(
 			@RequestParam(value = "userName", required = true) String userName,
 			@RequestParam(value = "regist", required = true) String regist) {
-		returnMap = new HashMap<>();
+		HashMap<String, Object> returnMap = new HashMap<>();
 		// 学生用户
 		if (Constants.STUDENT_USER.equals(regist)) {
 			// 验证

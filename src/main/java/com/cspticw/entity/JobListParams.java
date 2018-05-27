@@ -11,6 +11,7 @@ public class JobListParams extends BaseEntity {
 	private static final long serialVersionUID = 8670110608860781736L;
 
 	private List<String> jobCateList;
+	private String province;
 	private String city;
 	private List<String> jobPlaceList;
 	private BigDecimal start;
@@ -24,6 +25,14 @@ public class JobListParams extends BaseEntity {
 
 	public void setJobCateList(List<String> jobCateList) {
 		this.jobCateList = jobCateList;
+	}
+
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
 	}
 
 	public String getCity() {

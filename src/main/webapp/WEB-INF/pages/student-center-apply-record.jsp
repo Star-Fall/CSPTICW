@@ -14,7 +14,7 @@
     <!--登录条-->
     <div class="nav_log row">
         <div class="change_city  col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <span>上海站</span><a href="">【切换城市】</a>
+           <!-- <span>上海站</span><a href="">【切换城市】</a> -->
         </div>
         <!-- 登录的信息 -->
 		<div class="login_info dropdown col-xs-offset-8 col-sm-offset-8 col-md-offset-8 col-md-offset-8 

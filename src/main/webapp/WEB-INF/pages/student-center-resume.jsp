@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<title>简历中心</title>
+	<title>简历发布</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="../../resource/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../resource/css/common.css">
@@ -14,7 +14,7 @@
     <!--登录条-->
     <div class="nav_log row">
 			<div class="change_city  col-xs-2 col-sm-2 col-md-2 col-lg-2">
-				<span>上海站</span><a href="#">【切换城市】</a>
+				<!-- <span>上海站</span><a href="">【切换城市】</a> -->
 			</div>
 			
 			<!-- 登录的信息-->

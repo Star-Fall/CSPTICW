@@ -14,7 +14,7 @@
     <!--登录条-->
     <div class="nav_log row">
         <div class="change_city  col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <span>上海站</span><a href="">【切换城市】</a>
+            <!-- <span>上海站</span><a href="">【切换城市】</a> -->
         </div>
 		<!-- 登录的信息 -->
 		<div class="login_info dropdown col-xs-offset-8 col-sm-offset-8 col-md-offset-8 col-md-offset-8 
@@ -29,7 +29,6 @@
 			    <li><a href="/logout">退出</a></li>
 			</ul>
 		</div>
-			
     </div>
     <!--log条-->
     <div class="nav_head row">
@@ -43,9 +42,7 @@
     </div>
     <!--主体-->
     <div class="center-body row container">
-    
         <%@include file="center-menu-student.jsp" %>
-    
         <!--内容-->
         <div class="center-content col-xs-9 col-sm-9 col-md-9 col-lg-9">
             <div class="panel panel-default" >
@@ -67,7 +64,7 @@
                        <th class="col-xs-2 col-sm-2 col-md-2 col-lg-2">公开</th>
                        <th class="col-xs-4 col-sm-4 col-md-4 col-lg-4">操作</th>
                    </tr>
-                    <tr ng-repeat="x in resumeList" >
+                    <tr ng-repeat="x in resumeList | orderBy: x.createTime:'desc'" >
                         <td class="ng-cloak">{{x.resuName}}</td>
                         <td class="ng-cloak">{{x.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
                         <td class="ng-cloak">{{x.resuHot}}</td>
@@ -110,9 +107,7 @@
                                 <h4 class="modal-title" style="text-align: center; font-weight: bold;" id="myModalLabel">{{resumeDetail.resuName}}</h4>
                             </div>
                             <div class="modal-body">
-
                                 <div class="row">
-
                                     <div class="rusume-title col-xs-10 col-sm-10 col-md-10 col-lg-10 
                                     	col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
                                         <span class="glyphicon glyphicon-user"></span>
@@ -165,7 +160,6 @@
                                                         <li ng-repeat="x in resumeDetail.resumeJobs">
                                                             {{x.categoryName}}&nbsp;
                                                         </li>
-
                                                     </ul>
                                                 </td>
                                             </tr>
@@ -246,16 +240,13 @@
                                 	href="">
                                 	下载附件
                                 </a>
-                                <button type="button" class="btn btn-success " >导出Word</button>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-    
     </div>
 </div>
 
@@ -278,7 +269,6 @@
     var app=angular.module('studentCenter',[]);
     app.controller('resumeListController',function ($scope,$http) {
     	$scope.centerMenu=1;
-    	
     	//首先请求用户的数据
     	$http({
             url:'/get_login_user',
@@ -291,7 +281,6 @@
         	 }else{
         		 $(".login_info").css("display","none");
         	 }
-        	 
         })
     	//简历列表
     	$scope.resumeList=[];
@@ -304,7 +293,6 @@
     	});  
 		//单个详情
     	$scope.resumeDetail={};
-		
 		//改变公开
 		$scope.changeRadio=function (val,id) {
         	//找到该简历
@@ -329,7 +317,6 @@
                 	}else{
                 		return;
                 	}
-                	
                 }
             }
         };
@@ -346,9 +333,14 @@
 	    	}).success(function(response, status, headers, config){
 	    		window.location.href="/to_resume_modify";
 	    	}); 
-        	
         };
+        /**
+         *删除简历
+        */
         $scope.deleteResume=function (id) {
+        	if(!window.confirm("确定删除吗?")){
+    			return;
+    		}
         	$http({
 	        	url:'/delete_resume',
 	    	   	method:'post',
@@ -369,7 +361,6 @@
                 if($scope.resumeList[i].id==id){
                     $scope.resumeDetail=$scope.resumeList[i];
                     //为下载链接赋值
-                    //down_resume_file
                     if($scope.resumeDetail.annexResume){
                     	var fileName=$scope.resumeDetail.annexResume;
             			fileName=fileName.slice(fileName.indexOf('\\')+1);
@@ -380,11 +371,11 @@
             			href+=$scope.resumeDetail.stuId;
             			$("#down_file_a").attr('href',href);
                     }
-                    
                     return;
                 }
             }
         };
+        
     });
 </script>
 </body>

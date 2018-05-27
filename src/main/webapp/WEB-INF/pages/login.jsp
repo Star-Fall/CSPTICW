@@ -38,14 +38,14 @@
                     <div class="form-group">
                         <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5
                             col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-md-offset-1">
-                            <label >
-                                <a href="" >账号登录</a>
+                            <label>
+                                <h4>欢迎登录</h4>	
                             </label>
                         </div>
                         <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5
                             col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-md-offset-1">
                             <label >
-                                <a href="">手机登录</a>
+                                
                             </label>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                                 <input type="checkbox" ng-model="rememberMe">下次自动登录
                             </label>
                         </div>
-                        <a href="" class="col-xs-4 col-sm-4 col-md-4 col-lg-4">忘记密码？</a>
+                        <a href="" class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></a>
                     </div>
                     <!--登录按钮-->
                     <div class="form-group">
@@ -146,7 +146,6 @@
             		}
             	}                
             }).error(function(response, status, headers, config){
-                //do  anything what you want;
             });
         }
     });

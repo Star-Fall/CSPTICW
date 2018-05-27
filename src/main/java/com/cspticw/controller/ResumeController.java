@@ -232,8 +232,21 @@ public class ResumeController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping("/get_resume_top10")
-	public Map<String, Object> getResumeTop10(String province, String city) {
+	public Map<String, Object> getResumeTop10(
+			@RequestParam(value = "province", required = false) String province,
+			@RequestParam(value = "city", required = false) String city) {
 		Map<String, Object> returnMap = new HashMap<>();
+		try {
+			if (province != null) {
+				province = new String(province.getBytes("iso-8859-1"), "utf-8");
+			}
+			if (city != null) {
+				city = new String(city.getBytes("iso-8859-1"), "utf-8");
+			}
+		} catch (UnsupportedEncodingException e) {
+			returnMap.put(Constants.ERROR, "error");
+			return returnMap;
+		}
 		List<JSONObject> list = resumeService.getResumeTop10(province, city);
 		returnMap.put("data", list);
 		return returnMap;

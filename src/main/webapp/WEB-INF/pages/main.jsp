@@ -16,8 +16,40 @@
 	
 		<div class="nav_log row">
 			<div class="change_city  col-xs-2 col-sm-2 col-md-2 col-lg-2">
-				<span>上海站</span><a href="#">【切换城市】</a>
+				<span ng-bind="city"></span><a href="" data-toggle="modal" data-target="#myModal0">【切换城市】</a>
 			</div>
+			<!-- 选择城市 -->
+			<div class="modal fade" id="myModal0" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">选择城市</h4>
+			      </div>
+			      <div class="modal-body ">
+			       	<div class="form-inline row">
+				      	<div class="form-group col-md-6">
+					    	<label for="select_province" >省份：</label>
+					    	<select class="form-control" id="select_province" ng-model="select_province" 
+					      		ng-options="x1.province for x1 in selectProvince" ng-change="changeProvince()">
+		                    </select>
+					  	</div>
+					  	<div class="form-group col-md-6">
+					    	<label for="select_city">城市：</label>
+					    	<select class="form-control" id="select_city" ng-model="select_city" 
+		                    	ng-options="x2.city for x2 in selectCity" >
+		                    </select>
+					  	</div>
+				  	</div>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="saveProvinceCity()">保存</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			
 			<!-- 未登录 -->
 			<div class="login_out col-xs-offset-7 col-sm-offset-7 col-md-offset-7 col-md-offset-7 
 				col-xs-3 col-sm-3 col-md-3 col-lg-3 row" >
@@ -61,16 +93,7 @@
 					<li role="presentation"><a href="/to_main_news">网站资讯</a></li>
 				</ul>
 			</div>
-			<!--搜索框-->
-			<div class="search form-inline col-xs-3 col-sm-3 col-md-3 col-lg-3">
-				<div class="form-group">
-					<input type="text" name="job" class="form-control">
-					<button type="button" class="btn btn-primary">搜索</button>
-				</div>						
-			</div>
 		</div>
-		
-
 		<div class="next row">
 			<!--岗位-->
             <div class="top-job col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-md-offset-1
@@ -82,7 +105,7 @@
                     <table class="table table-job">
                     	<tr ng-repeat="x in jobList">
                     		<td class="ng-cloak col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    			<a href="">{{x.jobTitle}}</a>
+                    			<a href="to_job_company?id={{x.id}}" target="_blank">{{x.jobTitle}}</a>
                     		</td>
                     		<td class="ng-cloak col-xs-4 col-sm-4 col-md-4 col-lg-4">{{x.jobCate}}</td>
                     		<td class="ng-cloak col-xs-2 col-sm-2 col-md-2 col-lg-2">{{x.jobTreat}}元/{{x.treatMethod}}</td>
@@ -101,7 +124,7 @@
                     <table class="table table-resume">
                     	<tr ng-repeat="x in resumeList" >
                     		<td class="ng-cloak col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                    			<a href="" target="_blank">{{x.resuName}}</a>
+                    			<a href="to_resume_preview?id={{x.id}}" target="_blank">{{x.resuName}}</a>
                     		</td>
                     		<td class="ng-cloak col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     			<span ng-repeat="y in x.resumeJobs">{{y.categoryName}}、</span>

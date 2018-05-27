@@ -617,6 +617,12 @@
 		LEFT JOIN comp_info_certi certi ON job.comp_id = certi.comp_id
 		WHERE
 			job.is_available = 0
+		<if test="province !=null">
+			and job.job_place LIKE CONCAT('%',#{province},'%' )
+		</if>
+		<if test="city !=null">
+			and job.job_place LIKE CONCAT('%',#{city},'%' )
+		</if>
 		<!-- 类别 -->
 		<if test="jobCateList !=null">
 			and job.job_cate IN
@@ -656,6 +662,7 @@
 			job.create_time DESC
 	</select>
 	
+	<!--增加岗位热度  -->
 	<update id="addJobHot">
 		UPDATE comp_job_info
 		SET resu_hot = resu_hot + #{hot}

@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title>企业信息认证</title>
+    <title>岗位管理</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="../../resource/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../resource/css/common.css">
@@ -23,7 +23,7 @@
 <!--登录条-->
     <div class="nav_log row">
         <div class="change_city  col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <span>上海站</span><a href="#">【切换城市】</a>
+            <!-- <span>上海站</span><a href="">【切换城市】</a> -->
         </div>
         <!-- 登录的信息 -->
 		<div class="login_info dropdown col-xs-offset-8 col-sm-offset-8 col-md-offset-8 col-md-offset-8 
@@ -45,9 +45,8 @@
         <a href="/to_main">
             <div class="log_img col-xs-3 col-sm-3 col-md-3 col-lg-3 "></div>
         </a>
-        <div class="nav-path col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <a href="/to_main">首页</a>&nbsp;&nbsp;/&nbsp;&nbsp;
-            用户中心
+        <div class="nav-path col-xs-3 col-sm-3 col-md-3 col-lg-3 ">
+            <a href="/to_main">首页</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="/to_user_center">用户中心</a> &nbsp;&nbsp;/&nbsp;&nbsp;我的岗位
         </div>
     </div>
 <!--主体-->
@@ -81,18 +80,15 @@
                             <td class="ng-cloak">
                                 <label class="radio-inline">
                                     <input type="radio"  name="{{x.id+ 'isAvailable'}}" ng-checked="x.isAvailable == 0" ng-click="changeRadio(0,x.id)">
-                                   	 公开
+                                   	 是
                                 </label>
                                 <label class="radio-inline">
                                     <input type="radio"  name="{{x.id+ 'isAvailable'}}" ng-checked="x.isAvailable == 1" ng-click="changeRadio(1,x.id)">
-                                  	  保密
+                                  	  否
                                 </label>
                             </td>
                             <td class="ng-cloak">
-                                <a class="btn btn-link" ng-click="modify(x.id)">
-                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                    	修改
-                                </a>
+                                
                                 <a class="btn btn-link" ng-click="deleteJob(x.id)">
                                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                    	 删除

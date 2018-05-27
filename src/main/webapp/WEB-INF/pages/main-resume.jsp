@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<title>首页</title>
+	<title>求职简历</title>
 	<meta charset="utf-8">
 	<link href="../../resource/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../resource/css/common.css">
@@ -14,7 +14,38 @@
 	<div id="container-fluid" ng-controller="mainResumeController">
 		<div class="nav_log row">
 			<div class="change_city  col-xs-2 col-sm-2 col-md-2 col-lg-2">
-				<span>上海站</span><a href="#">【切换城市】</a>
+				<span ng-bind="city"></span><a href="" data-toggle="modal" data-target="#myModal0">【切换城市】</a>
+			</div>
+			<!-- 选择城市 -->
+			<div class="modal fade" id="myModal0" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">选择城市</h4>
+			      </div>
+			      <div class="modal-body ">
+			       	<div class="form-inline row">
+				      	<div class="form-group col-md-6">
+					    	<label for="select_province" >省份：</label>
+					    	<select class="form-control" id="select_province" ng-model="select_province" 
+					      		ng-options="x1.province for x1 in selectProvince" ng-change="changeProvince()">
+		                    </select>
+					  	</div>
+					  	<div class="form-group col-md-6">
+					    	<label for="select_city">城市：</label>
+					    	<select class="form-control" id="select_city" ng-model="select_city" 
+		                    	ng-options="x2.city for x2 in selectCity" >
+		                    </select>
+					  	</div>
+				  	</div>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="saveProvinceCity()">保存</button>
+			      </div>
+			    </div>
+			  </div>
 			</div>
 			<div class="login_out col-xs-offset-7 col-sm-offset-7 col-md-offset-7 col-md-offset-7 
 				col-xs-3 col-sm-3 col-md-3 col-lg-3 row" >
@@ -57,10 +88,7 @@
 					<li role="presentation"><a href="/to_main_news">网站资讯</a></li>
 				</ul>
 			</div>
-			
 		</div>
-		
-
 		<div class="next row">
             <div class="resume-row col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-md-offset-1
                 col-xs-9 col-sm-9 col-md-9 col-lg-9">
@@ -111,9 +139,7 @@
 												</label>
 											</li>
 										</ul>
-										
 									</td>
-									
 								</tr>
 								<tr>
 									<th class="col-md-1">性别</th>
@@ -129,12 +155,10 @@
 												<label class="checkbox-inline">
 													<input type="radio" name="gender" value="女" ng-model="gender">女
 												</label>
-												
 											</li>
 										</ul>
 									</td>
 								</tr>
-								
 							</table>
 						</div>
 						<!--按钮-->
@@ -143,7 +167,6 @@
 								<button ng-click="submit()" class="btn btn-success">按条件筛选</button>
 							</div>
 						</div>
-
                     </div>
                 </div>
 				<!-- 数据展示 -->
@@ -162,7 +185,6 @@
 									{{x.resuName}}
 								</a>
 							</div>
-
 							<div class="resume-gender col-md-2">性别：</div>
 								<div class="resume-gender col-md-1">{{x.gender}}</div>
 							<div class="resume-age col-md-2">年龄：</div>
@@ -186,20 +208,83 @@
 						<div class="resume-time col-md-2">
 							{{x.createTime| date:"yyyy-MM-dd"}}
 						</div>
-
                     </div>
                 </div>
              </div>
-
 		</div>
 	</div>
-
 <script type="text/javascript" src="../../resource/js/jquery-3.2.1.min.js"></script>
 <script src="../../resource/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../../resource/js/angular.js"></script>
 <script type="text/javascript">
     var app=angular.module('main',[]);
     app.controller('mainResumeController',function ($scope,$http) {
+    ////初始化城市
+        $http({
+        	url:'/get_province_city',
+    	   	method:'get'
+        }).success(function(response, status, headers, config){
+        	//填充到selectProvince 数据源
+        	$scope.selectProvince=response.data;
+        	//初始化第一个
+        	$scope.select_province=$scope.selectProvince[0];
+        	//填充到selectCity 数据源
+        	$scope.selectCity=$scope.select_province.cityList;
+        	//初始化第一个
+        	$scope.select_city=$scope.select_province.cityList[0];
+    	});  
+        $scope.changeProvince=function(){
+        	$scope.selectCity=$scope.select_province.cityList;
+        	$scope.select_city=$scope.selectCity[0];
+        }
+        //省份
+        $scope.province="江苏省";
+        //城市
+    	$scope.city="苏州市";
+        //先查询 
+        $http({
+            url:'/get_province_city_session',
+            method:'get',
+        }).success(function(response, status, headers, config){
+        	if(response.error){
+        	}else{
+        		$scope.province=response.province;
+        		$scope.city=response.city;
+        	}
+        	var jsonData0={};
+            jsonData0.province=$scope.province;
+            jsonData0.city=$scope.city;
+        	$http({
+    			url:'/get_resume_list_params2',
+        	   	method:'get',
+        	   	params:{'jsonData':jsonData0}
+    		}).success(function(response, status, headers, config){
+    			$scope.resumeList=response.data;
+    		})
+        })
+        //保存城市
+        $scope.saveProvinceCity=function(){
+        	$http({
+                url:'/save_province_city_session',
+                method:'post',
+                data:{'province':$scope.select_province.province,'city':$scope.select_city.city}
+            }).success(function(response, status, headers, config){
+            	if(response.msg){
+            		$scope.province=$scope.select_province.province;
+            		$scope.city=$scope.select_city.city;
+            	}
+            	var jsonData01={};
+                jsonData01.province=$scope.province;
+                jsonData01.city=$scope.city;
+            	$http({
+        			url:'/get_resume_list_params2',
+            	   	method:'get',
+            	   	params:{'jsonData':jsonData01}
+        		}).success(function(response, status, headers, config){
+        			$scope.resumeList=response.data;
+        		})
+            })
+        }
     	//首先请求用户的数据
     	$http({
             url:'/get_login_user',
@@ -215,18 +300,20 @@
         		 $(".login_out").css("display","block");
         		 $(".login_info").css("display","none");
         	 }
-        	 
         })
+        
         //初始化数据
-        var jsonData={};
     	$scope.gender="";
+        var jsonData={};
+       /*  jsonData.province=$scope.province;
+        jsonData.city=$scope.city;
     	$http({
 			url:'/get_resume_list_params2',
     	   	method:'get',
     	   	params:{'jsonData':jsonData}
 		}).success(function(response, status, headers, config){
 			$scope.resumeList=response.data;
-		})
+		}) */
         // //先行业
         $http({
 	    	url:'/get_job_category',
@@ -238,7 +325,6 @@
 			$scope.parentCateSelect=$scope.parentCate[0];
 	        //主行业的子行业
 			$scope.childCate=$scope.parentCateSelect.jobCategoryList;
-
 			$scope.changeParentCate=function (categoryNameParent) {
 				for(var i=0;i<$scope.parentCate.length;i++){
 				    //主行业里有一样的
@@ -285,9 +371,8 @@
             if($scope.gender.length>0){
                 jsonData.gender=$scope.gender;
             }
-            jsonData.province='江苏省';
-            jsonData.city='苏州市';
-            
+            jsonData.province=$scope.province;
+            jsonData.city=$scope.city;            
             //发请求
             $http({
     			url:'/get_resume_list_params2',
@@ -296,11 +381,7 @@
     		}).success(function(response, status, headers, config){
     			$scope.resumeList=response.data;
     		})
-        }
-		
-		
-    	
-		
+        }	
     })
 </script>
 </body>

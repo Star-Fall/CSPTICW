@@ -49,7 +49,8 @@ public interface CompJobInfoMapper {
 	 */
 	JSONObject getCompanyJobDetailById(@Param("jobId") Long jobId);
 
-	List<JSONObject> getList(@Param("jobCateList") List<String> jobCateList,
+	List<JSONObject> getList(@Param("province") String province, @Param("city") String city,
+			@Param("jobCateList") List<String> jobCateList,
 			@Param("jobPlaceList") List<String> jobPlaceList, @Param("start") BigDecimal start,
 			@Param("end") BigDecimal end, @Param("treatMethodList") List<String> treatMethodList,
 			@Param("payMethodList") List<String> payMethodList);
